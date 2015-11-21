@@ -1,0 +1,12 @@
+---
+- pip: name=psycopg2 state=present
+
+- postgresql_db: name={{ dbname }} state=present login_user={{ dbadmin }}
+
+- postgresql_ext: db={{ dbname }} name={{ item }} login_user={{ dbadmin }}
+  with_items:
+      - postgis
+      - postgis_topology
+
+- postgresql_user: name={{ dbuser }} password={{ dbpass }} db={{ dbname }} priv=ALL login_user={{ dbadmin }}
+

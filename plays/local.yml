@@ -1,0 +1,8 @@
+---
+- hosts: local
+  roles:
+      - hopestarterdb
+  vars:
+      dbuser: "{{ lookup('env','PGUSER') }}"
+      dbpass: "{{ lookup('env','PGPASS') }}"
+      dbadmin: "{{ lookup('env', 'USER') }}"
