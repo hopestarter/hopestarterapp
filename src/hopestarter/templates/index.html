@@ -1,3 +1,6 @@
+{% load i18n %}
+{% load account %}
+
 <html lang="pt-BR">
 <head>
 	<meta charset="utf-8" />
@@ -6,6 +9,16 @@
     <title>{{ project_name }}</title>
 </head>
 <body>
-	
+
+{% if user.is_authenticated %}
+{% user_display user as user_display %}
+{% blocktrans %}{{ user_display }} has logged in...{% endblocktrans %}
+{% url 'account_logout' as logout_url %}
+{% blocktrans %}<a href="{{ logout_url }}">logout</a>{% endblocktrans %}
+{% else %}
+{% url 'account_login' as login_url %}
+{% blocktrans %}Please <a href="{{ login_url }}">login</a>{% endblocktrans %}
+{% endif %}
+
 </body>
 </html>
