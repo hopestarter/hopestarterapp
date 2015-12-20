@@ -7,5 +7,5 @@ from hopecollector import views
 urlpatterns = format_suffix_patterns([
     url(r'^mark/$',
         views.LocationMarkSubmitView.as_view(),
-        name='locationmark')
+        name='locationmark'),
 ]);
