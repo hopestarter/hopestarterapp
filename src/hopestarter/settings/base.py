@@ -17,12 +17,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.gis',
-
-    # 3rd party apps
-    'rest_framework',
-    'rest_framework_gis',
-    # our apps
-    'world',
+    'hopespace'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -83,8 +78,3 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, "..", "..", "site", "static"))
 MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, "..", ".." "site", "media"))
-
-try:
-    from .drf import *
-except ImportError:
-    pass

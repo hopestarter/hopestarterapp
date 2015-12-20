@@ -1,5 +1,5 @@
 import raven
-from .base import *
+from .world import *
 from .utils import get_env_variable
 
 DEBUG = False
