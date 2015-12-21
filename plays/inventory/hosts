@@ -1,2 +1,7 @@
 [local]
 localhost
+
+[tag_nodetype_frontend]
+
+[frontend:children]
+tag_nodetype_frontend

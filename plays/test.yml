@@ -1,0 +1,20 @@
+---
+- hosts: frontend
+  remote_user: ec2-user
+  pre_tasks:
+    - local_action:
+        module: rds
+        command: facts
+        instance_name: "{{ rds_instance_name }}"
+      register: rds
+  roles:
+      - common
+      - { role: hopestarterdb, dbhost: "{{ rds.instance.endpoint }}" }
+  vars:
+      rds_instance_name: HopestarterTest
+      dbuser: "{{ lookup('env','PGUSER') }}"
+      dbpass: "{{ lookup('env','PGPASS') }}"
+      dbadmin: postgres
+      dbadminpw: postgres
+      become_user: root
+      become_method: sudo

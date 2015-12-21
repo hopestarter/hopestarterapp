@@ -1,0 +1,2 @@
+- yum: name=python27-psycopg2 state=present
+  become: yes

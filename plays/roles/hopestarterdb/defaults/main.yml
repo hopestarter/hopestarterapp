@@ -1,3 +1,5 @@
 dbname: hopestarter
 dbuser: hopestarter
 dbadmin: postgres
+dbadminpw:
+dbhost: localhost

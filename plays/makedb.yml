@@ -1,0 +1,31 @@
+
+---
+- hosts: local
+  tasks:
+    - local_action:
+        module: rds
+        command: create
+        instance_name: "{{ rds_instance_name }}"
+        region: eu-central-1
+        zone: eu-central-1b
+        subnet: "{{ rds_subnet }}"
+        vpc_security_groups: "{{ rds_sg }}"
+        publicly_accessible: no
+        db_engine: postgres
+        size: 5
+        instance_type: db.t2.micro
+        username: "{{ rds_user }}"
+        password: "{{ rds_password }}"
+        wait: yes
+        wait_timeout: 600
+        tags:
+            Name: "{{ rds_instance_name }}"
+      register: rds
+
+    - debug: msg="The new db endpoint is {{ rds.instance.endpoint }}"
+  vars:
+      rds_instance_name: HopestarterTest
+      rds_subnet: hopestartertest
+      rds_sg: sg-a3a0eaca
+      rds_user: postgres
+      rds_password: postgres
