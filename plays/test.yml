@@ -7,9 +7,12 @@
         command: facts
         instance_name: "{{ rds_instance_name }}"
       register: rds
+      tags:
+        - db
   roles:
       - common
       - { role: hopestarterdb, dbhost: "{{ rds.instance.endpoint }}" }
+      - { role: hopeapi }
   vars:
       rds_instance_name: HopestarterTest
       dbuser: "{{ lookup('env','PGUSER') }}"
@@ -18,3 +21,5 @@
       dbadminpw: postgres
       become_user: root
       become_method: sudo
+      repo_url: "https://github.com/hopestarter/hopestarterapp.git"
+      app_home: /home/ec2-user/

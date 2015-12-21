@@ -1,0 +1,10 @@
+- yum: name={{ item }} state=present
+  become: yes
+  with_items:
+      - git
+
+- git: repo={{ repo_url }} dest="{{ app_home }}/hopestarterapp"
+
+- pip: name=virtualenv state=present extra_args="--user"
+
+- pip: requirements="{{ app_home }}/hopestarterapp/requirements/api.txt" virtualenv="{{ app_home }}/venv" virtualenv_site_packages=yes
