@@ -1,10 +1,15 @@
-- yum: name={{ item }} state=present
+- yum: name={{ item }} state=present enablerepo=epel
   become: yes
   with_items:
       - git
+      - postgresql94-devel
+      - gcc
+      - geos
+      - gdal
+      - nginx
 
 - git: repo={{ repo_url }} dest="{{ app_home }}/hopestarterapp"
 
 - pip: name=virtualenv state=present extra_args="--user"
 
-- pip: requirements="{{ app_home }}/hopestarterapp/requirements/api.txt" virtualenv="{{ app_home }}/venv" virtualenv_site_packages=yes
+- pip: requirements="{{ app_home }}/hopestarterapp/requirements/production_api.txt" virtualenv="{{ app_home }}/venv" virtualenv_site_packages=yes

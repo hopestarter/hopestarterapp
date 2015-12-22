@@ -1,4 +1,3 @@
 -r api.txt
-setproctitle
-gunicorn
+uwsgi
 raven

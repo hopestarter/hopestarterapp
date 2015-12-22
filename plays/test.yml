@@ -23,3 +23,4 @@
       become_method: sudo
       repo_url: "https://github.com/hopestarter/hopestarterapp.git"
       app_home: /home/ec2-user/
+      app_settings: hopestarter.settings.api_production

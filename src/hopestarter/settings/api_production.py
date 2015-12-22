@@ -1,5 +1,5 @@
 import raven
-from .world import *
+from .base import *
 from .utils import get_env_variable
 
 DEBUG = False
@@ -18,3 +18,7 @@ RAVEN_CONFIG = {
 }
 
 SECRET_KEY = get_env_variable("SECRET_KEY")
+
+
+# removing the browsable API - comment this if you WANT the browsable API in production.
+# REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = ('rest_framework.renderers.JSONRenderer',)
