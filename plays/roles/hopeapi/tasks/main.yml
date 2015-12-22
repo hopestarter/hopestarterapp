@@ -1,3 +1,9 @@
 - include: code.yml
   tags:
       - code
+
+- include: nginx.yml
+  tags:
+      - config
+
+- include: django.yml

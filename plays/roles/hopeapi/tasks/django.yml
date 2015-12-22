@@ -1,0 +1,6 @@
+- include: migrate.yml
+  when: migrate_django == true
+
+- django_manage: command=collectstatic app_path="{{ app_home }}/hopestarterapp/src/" virtualenv="{{ app_home }}/venv" settings="{{ app_settings }}"
+  tags:
+      - code
