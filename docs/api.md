@@ -77,7 +77,7 @@ URL might be:
 Important: This operation requires a token the `set-location` scope (see example above). We submit a _POST_ request to the API which includes location data in JSON, e.g.
 
 	{
-		"created": "2012-08-22T16:20:09.822",
+		"created": "2012-08-22T16:20:09.822+00:00",
 		"point": {
 			"type": "point",
 			"coordinates": [1000, 1000]
@@ -88,5 +88,11 @@ Important: This operation requires a token the `set-location` scope (see example
 	$ curl -H "Authorization: Bearer <your_access_token>" -X POST -H "Content-Type: application/json" -d "$JSON_BODY"  http://localhost:8000/api/collector/mark/
 
 The server responds with `202 Created` upon succesfull validation of the data.
+
+Request attributes:
+* `created`: an ISO formatted timestamp of when this position was recorded (timezone information is required, for example above, the timezone is UTC).
+* `point`: a Geo-JSON formatted feature specification. `type` is required to be `point`.
+* `image_url`: the S3 URL of a previously uploaded image.
+
 
 Error messages: TBD
