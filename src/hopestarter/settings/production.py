@@ -1,6 +1,7 @@
 import raven
 from .world import *
 from .utils import get_env_variable
+from .api_secret import *
 
 DEBUG = False
 TEMPLATE_DEBUG = False
@@ -14,7 +15,7 @@ MIDDLEWARE_CLASSES = (
 ) + MIDDLEWARE_CLASSES
 
 RAVEN_CONFIG = {
-    'dsn': '__dsn__'
+    'dsn': RAVEN_DSN
 }
 
 SECRET_KEY = get_env_variable("SECRET_KEY")

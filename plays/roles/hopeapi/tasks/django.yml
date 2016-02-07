@@ -1,8 +1,10 @@
+- template: src=api_secret.py.j2 dest="{{ django_home }}/hopestarter/settings/api_secret.py"
+
 - include: migrate.yml
   when: migrate_django == "true"
   tags:
       - db
 
-- django_manage: command=collectstatic app_path="{{ app_home }}/hopestarterapp/src/" virtualenv="{{ app_home }}/venv" settings="{{ app_settings }}"
+- django_manage: command=collectstatic app_path="{{ django_home }}" virtualenv="{{ app_home }}/venv" settings="{{ app_settings }}"
   tags:
       - code
