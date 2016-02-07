@@ -1,5 +1,7 @@
 - include: migrate.yml
-  when: migrate_django == true
+  when: migrate_django == "true"
+  tags:
+      - db
 
 - django_manage: command=collectstatic app_path="{{ app_home }}/hopestarterapp/src/" virtualenv="{{ app_home }}/venv" settings="{{ app_settings }}"
   tags:
