@@ -15,7 +15,8 @@ MIDDLEWARE_CLASSES = (
 ) + MIDDLEWARE_CLASSES
 
 RAVEN_CONFIG = {
-    'dsn': RAVEN_DSN
+    'dsn': RAVEN_DSN,
+    'release': raven.fetch_git_sha(os.path.dirname(__file__)),
 }
 
 SECRET_KEY = get_env_variable("SECRET_KEY")
@@ -23,5 +24,3 @@ SECRET_KEY = get_env_variable("SECRET_KEY")
 SITE_ID = 1
 
 GRAPPELLI_INDEX_DASHBOARD = 'hopestarter.dashboard.CustomIndexDashboard'
-
-ACCOUNT_SIGNUP_PASSWORD_VERIFICATION = False

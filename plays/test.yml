@@ -9,10 +9,12 @@
       register: rds
       tags:
         - db
+        - code
+        - config
   roles:
       - common
       - { role: hopestarterdb, dbhost: "{{ rds.instance.endpoint }}" }
-      - { role: hopeapi }
+      - { role: hopeapi, dbhost: "{{ rds.instance.endpoint }}"  }
   vars:
       rds_instance_name: HopestarterTest
       dbuser: "{{ lookup('env','PGUSER') }}"

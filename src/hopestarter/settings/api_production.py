@@ -1,7 +1,6 @@
 import raven
-from .base import *
+from .api import *
 from .utils import get_env_variable
-from .api_secret import *
 
 DEBUG = False
 TEMPLATE_DEBUG = False
@@ -15,11 +14,11 @@ MIDDLEWARE_CLASSES = (
 ) + MIDDLEWARE_CLASSES
 
 RAVEN_CONFIG = {
-    'dsn': RAVEN_DSN
+    'dsn': RAVEN_DSN,
+    'release': raven.fetch_git_sha(os.path.dirname(__file__)),
 }
 
 SECRET_KEY = get_env_variable("SECRET_KEY")
-
 
 # removing the browsable API - comment this if you WANT the browsable API in production.
 # REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = ('rest_framework.renderers.JSONRenderer',)

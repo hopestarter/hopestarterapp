@@ -1,3 +1,8 @@
+- name: setup env
+  template: src=envrc.j2 dest="{{ app_home }}/.envrc"
+  tags:
+    - config
+
 - include: code.yml
   tags:
       - code

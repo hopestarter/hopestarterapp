@@ -1,6 +1,7 @@
 djangoenv:
     PGUSER: "{{ dbuser }}"
     PGPASS: "{{ dbpass }}"
+    PGHOST: "{{ dbhost }}"
     PGDATABASE: "{{ dbname }}"
     SECRET_KEY: "{{ django_secret_key }}"
 django_home: "{{ app_home }}/hopestarterapp/src/"
