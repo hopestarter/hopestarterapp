@@ -31,7 +31,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
 )
 
-ROOT_URLCONF = 'hopestarter.urls'
+ROOT_URLCONF = 'hopestarter.urls.main'
 
 TEMPLATES = [
     {

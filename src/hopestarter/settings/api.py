@@ -5,7 +5,7 @@ try:
 except ImportError:
     pass
 
-ROOT_URLCONF = 'hopestarter.urls_api'
+ROOT_URLCONF = 'hopestarter.urls.api'
 
 INSTALLED_APPS += (
     'oauth2_provider',
