@@ -8,5 +8,6 @@
       - db
 
 - django_manage: command=collectstatic app_path="{{ django_home }}" virtualenv="{{ app_home }}/venv" settings="{{ app_settings }}"
+  environment: "{{djangoenv}}"
   tags:
       - code
