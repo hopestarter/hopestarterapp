@@ -8,3 +8,4 @@ class LocationMarkSerializer(GeoFeatureModelSerializer):
     class Meta:
         model = LocationMark
         geo_field = "point"
+        fields = ('created', 'point')
