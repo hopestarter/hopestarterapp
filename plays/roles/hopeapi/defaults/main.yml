@@ -1,0 +1,5 @@
+djangoenv:
+    PGUSER: "{{ dbuser }}"
+    PGPASS: "{{ dbpass }}"
+    PGDATABASE: "{{ dbname }}"
+    SECRET_KEY: "{{ django_secret_key }}"

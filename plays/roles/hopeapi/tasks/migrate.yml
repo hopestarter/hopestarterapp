@@ -1,2 +1,3 @@
 
 - django_manage: command=migrate app_path="{{ app_home }}/hopestarterapp/src/" virtualenv="{{ app_home }}/venv" settings="{{ app_settings }}"
+  environment: "{{djangoenv}}"
