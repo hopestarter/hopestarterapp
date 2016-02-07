@@ -14,8 +14,7 @@ MIDDLEWARE_CLASSES = (
 ) + MIDDLEWARE_CLASSES
 
 RAVEN_CONFIG = {
-    'dsn': RAVEN_DSN,
-    'release': raven.fetch_git_sha(os.path.dirname(__file__)),
+    'dsn': RAVEN_DSN
 }
 
 SECRET_KEY = get_env_variable("SECRET_KEY")
