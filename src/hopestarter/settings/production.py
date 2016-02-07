@@ -18,3 +18,9 @@ RAVEN_CONFIG = {
 }
 
 SECRET_KEY = get_env_variable("SECRET_KEY")
+
+SITE_ID = 1
+
+GRAPPELLI_INDEX_DASHBOARD = 'hopestarter.dashboard.CustomIndexDashboard'
+
+ACCOUNT_SIGNUP_PASSWORD_VERIFICATION = False
