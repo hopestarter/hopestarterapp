@@ -33,7 +33,7 @@ cd plays
 export PGUSER=geotest
 export PGPASS=geotest
 export PGDATABASE=geotest
-ansible-playbook -i hosts local.yml
+ansible-playbook -i inventory/local local.yml
 ```
 
 Last, run `./manage.py syncdb` from within the `src` directory.
