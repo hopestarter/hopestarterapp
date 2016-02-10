@@ -30,6 +30,9 @@ Run the ansible play book to create local db:
 
 ```
 cd plays
+export PGUSER=geotest
+export PGPASS=geotest
+export PGDATABASE=geotest
 ansible-playbook -i hosts local.yml
 ```
 
