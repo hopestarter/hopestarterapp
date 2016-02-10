@@ -1,6 +1,7 @@
 import raven
 from .world import *
 from .utils import get_env_variable
+from .auth import *
 from .api_secret import *
 
 DEBUG = False
