@@ -15,6 +15,7 @@ To test install the dependencies:
 
 ```bash
 pip install -r requirements/test.txt
+pip install -r requirements/api.txt
 ```
 
 ## Configuration
@@ -38,6 +39,10 @@ ansible-playbook -i inventory/local local.yml
 
 Last, run `./manage.py syncdb` from within the `src` directory.
 
-## Running
+## Running the website
 
 Execute `./manage.py runserver` from within the `src` directory.
+
+## Running the API
+
+Execute `./manage_api.py runserver` from within the `src` directory.
