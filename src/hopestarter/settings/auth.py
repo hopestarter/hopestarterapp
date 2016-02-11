@@ -18,3 +18,8 @@ INSTALLED_APPS += (
 LOGIN_REDIRECT_URL = 'home'
 
 ACCOUNT_SIGNUP_PASSWORD_VERIFICATION = False
+
+ACCOUNT_ADAPTER = 'hopestarter.account.AccountAdapter'
+
+ACCOUNT_SIGNUP_FORM_CLASS = 'hopestarter.forms.SignupForm'
+
