@@ -19,7 +19,7 @@ LOGIN_REDIRECT_URL = 'home'
 
 ACCOUNT_SIGNUP_PASSWORD_VERIFICATION = False
 
-ACCOUNT_ADAPTER = 'hopestarter.account.AccountAdapter'
+ACCOUNT_ADAPTER = 'hopebase.account.AccountAdapter'
 
-ACCOUNT_SIGNUP_FORM_CLASS = 'hopestarter.forms.SignupForm'
+ACCOUNT_SIGNUP_FORM_CLASS = 'hopebase.forms.SignupForm'
 
