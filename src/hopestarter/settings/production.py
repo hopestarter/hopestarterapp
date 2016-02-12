@@ -15,7 +15,7 @@ except ImportError:
 
 DEBUG = False
 TEMPLATE_DEBUG = False
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['staging.hopestarter.org']
 
 MIDDLEWARE_CLASSES = (
   'raven.contrib.django.raven_compat.middleware.Sentry404CatchMiddleware',
