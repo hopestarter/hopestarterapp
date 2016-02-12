@@ -17,3 +17,8 @@
   tags:
       - config
       - code
+
+- template: src=vassal-site.ini.j2 dest="{{ app_home }}/vassals/site.ini"
+  tags:
+      - config
+      - code

@@ -1,0 +1,11 @@
+# {{ ansible_managed }}
+[uwsgi]
+master = true
+socket = :8000
+chdir = {{ django_home }}
+module = hopestarter.wsgi
+home = {{ app_home }}/venv/
+envdir = {{ app_home }}/.env/
+env = DJANGO_SETTINGS_MODULE=hopestarter.settings.production
+vacuum = true
+processes = 10
