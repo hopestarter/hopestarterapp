@@ -18,8 +18,10 @@ class LocationMark(models.Model):
 class Ethnicity(models.Model):
     class Meta:
         ordering = ['name']
+        verbose_name_plural = "ethnicities"
 
-    name = models.CharField(max_length=200)
+
+    name = models.CharField(max_length=settings.ETHNICITY_MAX_NAME)
     people = models.ManyToManyField(
 		settings.AUTH_USER_MODEL,
 		through='EthnicMember',

@@ -1,5 +1,6 @@
 from .base import *
 from .world import *
+from .space import *
 from .auth import *
 
 INSTALLED_APPS += ('debug_toolbar',

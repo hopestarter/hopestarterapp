@@ -1,5 +1,6 @@
 import raven
 from .world import *
+from .space import *
 from .utils import get_env_variable
 from .auth import *
 

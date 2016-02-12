@@ -81,3 +81,5 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, "..", "..", "site", "static"))
 MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, "..", ".." "site", "media"))
+
+NAME_MAX = 100

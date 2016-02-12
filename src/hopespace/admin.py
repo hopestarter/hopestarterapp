@@ -9,7 +9,7 @@ class EthnicityAdmin(admin.ModelAdmin):
 
 
 class EthnicMemberAdmin(admin.ModelAdmin):
-    readonly_fields = ('created', 'modified', )
+    readonly_fields = ('created', 'modified', 'person')
 
 admin.site.register(Ethnicity, EthnicityAdmin)
 admin.site.register(EthnicMember, EthnicMemberAdmin)
