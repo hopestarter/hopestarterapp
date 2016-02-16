@@ -1,0 +1,11 @@
+{
+  "name": "hopestarter-image-resize",
+  "version": "0.0.1",
+  "description": "hopestarter image resize",
+  "devDependencies": {
+    "async": "1.5.2"
+  },
+  "dependencies": {
+    "gm": "^1.21.1"
+  }
+}
