@@ -8,4 +8,7 @@ urlpatterns = format_suffix_patterns([
     url(r'^mark/$',
         views.LocationMarkSubmitView.as_view(),
         name='locationmark'),
+    url(r'^uploadimage/$',
+        views.upload_image,
+        name='uploadimage'),
 ]);

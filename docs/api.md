@@ -56,11 +56,17 @@ Images are uploaded to Amazon S3, using temporary credentials that are provided 
 
 	$ curl -H "Authorization: Bearer <your_access_token>" http://localhost:8000/api/collector/uploadimage/
 	{
-		"access_key_id": "ACCESSKEY",
-		"secret_access_key": "SECRETKEY",
-		"session_token": "TOKEN",
-		"bucket_name": "hopebucket",
-		"bucket_prefix": "uploads/70e03e9b-242a-49a6-85fa-cba18dabeebd/userid/"
+		"credentials": {
+			"SecretAccessKey": "DN+sl0x70vEeOQ/SnZ2bIw3kCffNmZShYdugPev6",
+			"SessionToken": "AQoDYXdzEIr//////////wEa4AOKXpr4sdNUC9kmBQtq37tysrkhVVh4KisYbK6uuwYv7lMo+8OTBOMlinT+Xvl76bffICkPR4bzmYFy1BsbwNs9igbwshrlmbbGqo76PGg5xaj3zad/1nNNZDm0j15DWnF46a1Z+mdupnzWxLo2UAxMBkH9XhCOGDj9Ggha9fkvp6zSUjBE+KDZAcd5qQu7O+238Mkxiv+7Oay4U3cr3v6M1aDJMUFq5UCP3xKjyny2cNOfwTMiyPK0GXypeua5mAWdawaxKB0AO/a/11Xih63mgHR+uFZT0yaAbctkE+Mj0iyD5OfPBQP2Eo8AqjJIf8R0IMvvB2oRlaN26ELl1hNZbVKICLKd2Uj6asPeav2G/X4lJaAL6lM6dekqThr0X0BJdhlVbhtMhZWt6ZdxcWZY8aUeIL2R006OMmVDo55kxD+UGRk4MV7uxU8rk3wc2Ucxh/jMHuN5tISt2fDNao0/XarzHhgtU8cVjskmchfeHSx/PhRD/+EY8gDAb/lwGcXZHJVgkdBK64IRQtQhBdgmcTkI/PhndsrMxWmtK9XzCOTFsX9zlXlq4vh7QCggy0glqpLCC9pNxgSW4DRM8GYoNQrEX8zlqauSNK6PSmEw6tDpotO7M8AxMaln5iaKDO8gpdGLtgU=",
+			"Expiration": "2016-02-16T09:30:17Z",
+			"AccessKeyId": "ASIAIEOLIJYCF7GLM53Q"
+		},
+		"bucket": {
+			"region": "eu-west-1",
+			"prefix": "uploads/d6ba9804-6632-472e-8318-ce4f66a4970a/",
+			"name": "hopebucket"
+		}
 	}
 
 The keys and token attributes correspond to the attributes of the
@@ -70,6 +76,13 @@ under the prefix specified and using the filename of it's choosing. E.g. the S3
 URL might be:
 
 	s3://hopebucket/uploads/70e03e9b-242a-49a6-85fa-cba18dabeebd/123456/myfamily.jpg
+
+For example with the AWS CLI tool you can do:
+
+	env AWS_ACCESS_KEY_ID=ASIAIEOLIJYCF7GLM53Q \
+ 		AWS_SECRET_ACCESS_KEY="DN+sl0x70vEeOQ/SnZ2bIw3kCffNmZShYdugPev6" \
+		AWS_SESSION_TOKEN="AQoDYXdzEIr//////////wEa..."  \
+		 aws s3 cp ~/Downloads/HappyFace.jpg s3://hopebucket/uploads/d6ba9804-6632-472e-8318-ce4f66a4970a/smileyface.jpg
 
 
 ## Submit a new user position (_/collector/mark/_)
@@ -93,6 +106,7 @@ Request attributes:
 * `created`: an ISO formatted timestamp of when this position was recorded (timezone information is required, for example above, the timezone is UTC).
 * `point`: a Geo-JSON formatted feature specification. `type` is required to be `point`.
 * `image_url`: the S3 URL of a previously uploaded image.
+
 
 
 Error messages: TBD

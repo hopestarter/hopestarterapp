@@ -1,5 +1,6 @@
 from .base import *
 from .space import *
+from .aws import *
 
 try:
     from .drf import *

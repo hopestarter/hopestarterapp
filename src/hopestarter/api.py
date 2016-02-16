@@ -8,5 +8,6 @@ from rest_framework import permissions
 @permission_classes((permissions.AllowAny,))
 def api_root(request, format=None):
     return Response({
-        'mark': reverse('collector:locationmark', request=request, format=format)
+        'mark': reverse('collector:locationmark', request=request, format=format),
+        'uploadimage': reverse('collector:uploadimage', request=request, format=format)
     })
