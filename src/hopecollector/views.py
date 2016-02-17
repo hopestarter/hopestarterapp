@@ -21,9 +21,6 @@ class LocationMarkSubmitView(generics.CreateAPIView):
     model = LocationMark
     serializer_class = serializers.LocationMarkSerializer
 
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
-
 
 @api_view(['POST'])
 def upload_image(request):
