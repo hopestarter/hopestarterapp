@@ -19,7 +19,12 @@ INSTALLED_APPS += (
 )
 
 OAUTH2_PROVIDER = {
-    'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'set-location': 'Set location'}
+    'SCOPES': {
+        'read': 'Read scope',
+        'write': 'Write scope',
+        'set-location': 'Set location',
+        'update-profile': 'Update Profile'
+    }
 }
 
 TEMPLATES[0]['OPTIONS']['context_processors'] += (

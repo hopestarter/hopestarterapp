@@ -108,5 +108,34 @@ Request attributes:
 * `image_url`: the S3 URL of a previously uploaded image.
 
 
+## Edit user profile (_/user/profile/_)
+
+To use this endpoint you need a token with `update-profile` scope.
+
+### _GET /user/profile/_
+
+    * Request:
+    * Response:
+    {
+        "created": "2016-02-17T09:22:30.052142Z",
+        "modified": "2016-02-17T09:22:30.052153Z",
+        "name": "foo",
+        "surname": "bar"
+    }
+
+### _PUT /user/profile/_
+
+    * Request:
+    {
+        "surname": "mama"
+    }
+    * Response
+    {
+        "created": "2016-02-17T09:22:30.052142Z",
+        "modified": "2016-02-17T09:26:19.062675Z",
+        "name": "foo",
+        "surname": "mama"
+    }
+
 
 Error messages: TBD

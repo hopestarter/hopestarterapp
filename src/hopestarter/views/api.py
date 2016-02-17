@@ -9,5 +9,6 @@ from rest_framework import permissions
 def api_root(request, format=None):
     return Response({
         'mark': reverse('collector:locationmark', request=request, format=format),
-        'uploadimage': reverse('collector:uploadimage', request=request, format=format)
+        'uploadimage': reverse('collector:uploadimage', request=request, format=format),
+        'profile': reverse('base:profile', request=request, format=format)
     })
