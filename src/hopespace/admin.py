@@ -11,6 +11,9 @@ class EthnicityAdmin(admin.ModelAdmin):
 class EthnicMemberAdmin(admin.ModelAdmin):
     readonly_fields = ('created', 'modified', 'person')
 
+class LocationMarkAdmin(admin.OSMGeoAdmin):
+    readonly_fields = ('created', 'user')
+
 admin.site.register(Ethnicity, EthnicityAdmin)
 admin.site.register(EthnicMember, EthnicMemberAdmin)
-admin.site.register(LocationMark, admin.OSMGeoAdmin)
+admin.site.register(LocationMark, LocationMarkAdmin)
