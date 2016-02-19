@@ -11,6 +11,7 @@ class UserProfile(models.Model):
     surname = models.CharField(max_length=100, null=True, blank=True)
     created = models.DateTimeField(editable=False, blank=True)
     modified = models.DateTimeField(editable=False, blank=True)
+    picture = models.URLField(max_length=100, null=True, blank=True)
 
     def save(self, *args, **kwargs):
         if not self.id:

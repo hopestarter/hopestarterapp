@@ -1,9 +1,11 @@
 from rest_framework import serializers
 
-from hopebase import models
+from hopebase import models, fields
 
 class UserProfileSerializer(serializers.ModelSerializer):
     """ A class to serialize the user profile """
+
+    picture = fields.ProfileURLField(allow_blank=True)
 
     class Meta:
         model = models.UserProfile
