@@ -12,4 +12,4 @@
 
 - pip: name=virtualenv state=present extra_args="--user"
 
-- pip: requirements="{{ app_home }}/hopestarterapp/requirements/production_api.txt" virtualenv="{{ venv_path }}" virtualenv_site_packages=yes
+- pip: requirements="{{ app_home }}/hopestarterapp/requirements/production.txt" virtualenv="{{ app_home }}/venv" virtualenv_site_packages=yes

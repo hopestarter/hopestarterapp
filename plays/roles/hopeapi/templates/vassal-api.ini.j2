@@ -4,7 +4,7 @@ master = true
 socket = :8001
 chdir = {{ django_home }}
 module = hopestarter.wsgi
-home = {{ app_home }}/venv/
+home = {{ venv_path }}
 envdir = {{ app_home }}/.env/
 env = DJANGO_SETTINGS_MODULE=hopestarter.settings.api_production
 vacuum = true

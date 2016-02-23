@@ -1,0 +1,1 @@
+django_home: "{{ app_home }}/hopestarterapp/src/"

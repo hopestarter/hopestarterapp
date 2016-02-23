@@ -13,7 +13,7 @@
 
 - include: django.yml
 
-- template: src=vassal-api.ini.j2 dest="{{ app_home }}/vassals/api.ini"
+- template: src=vassal-site.ini.j2 dest="{{ app_home }}/vassals/site.ini"
   tags:
       - config
       - code
