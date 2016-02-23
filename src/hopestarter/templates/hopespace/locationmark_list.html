@@ -1,0 +1,230 @@
+{% load i18n %}
+{% load account %}
+{% load humanize %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Image vector layer example</title>
+<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="http://openlayers.org/en/v3.11.2/css/ol.css" type="text/css">
+<script src="http://openlayers.org/en/v3.11.2/build/ol.js"></script>
+<style>
+body > .container-fluid {
+	padding: 0;
+}
+
+.container-fluid .fixed {
+	position: fixed;
+	height: 150px;
+	background-color: white;
+	z-index: 200;
+}
+
+.status a img { width: 30px; }
+.status > img { width: 100%; }
+
+.first {
+	padding-top: 150px;
+}
+
+.map {
+	width: 100%; height: 100%; position:fixed;
+}
+.country-name {
+    z-index: 100;
+    position: absolute;
+}
+/**
+ * The zoomslider in the second map shall be placed between the zoom-in and
+ * zoom-out buttons.
+ */
+.ol-zoom .ol-zoom-out {
+  margin-top: 204px;
+}
+.ol-zoomslider {
+  background-color: transparent;
+  top: 2.3em;
+}
+
+.ol-touch .ol-zoom .ol-zoom-out {
+  margin-top: 212px;
+}
+.ol-touch .ol-zoomslider {
+  top: 2.75em;
+}
+
+.ol-zoom-in.ol-has-tooltip:hover [role=tooltip],
+.ol-zoom-in.ol-has-tooltip:focus [role=tooltip] {
+  top: 3px;
+}
+
+.ol-zoom-out.ol-has-tooltip:hover [role=tooltip],
+.ol-zoom-out.ol-has-tooltip:focus [role=tooltip] {
+  top: 232px;
+}
+
+</style>
+
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="fixed">
+    <div class="row">
+      <header class="col-xs-6 col-md-4">
+        <h1><a href="#">Hopestarter</a></h1>
+      </header>
+      <nav class="col-xs-12 col-md-8">
+        <ul>
+          <li><a href="#">How to help</a></li>
+          <li><a href="#">About us</a></li>
+          <li>
+{% if user.is_authenticated %}
+{% user_display user as user_display %}
+<a title="{% blocktrans %}{{ user_display }} has logged in...{% endblocktrans %}"
+   href="{% url 'account_logout' %}">{% trans "logout" %}</a>
+{% else %}
+<a title="{% trans 'Please login' %}"
+   href="{% url 'account_login' %}">{% trans "login" %}</a>
+{% endif %}
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-md-4"><h2>World</h2></div>
+        <div class="col-xs-12 col-md-8">
+          <div class="pull-right">
+            <strong>838 refugees</strong> need your help around the world.
+          </div>
+          <div class="pull-right">
+            <strong>$ 1206,43</strong> donated to them so far
+          </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="first">
+    <div class="row">
+      <div class="col-xs-6 col-md-4">
+      {% for mark in object_list %}
+        <div class="status">
+          <a href="#"><img src="{{ mark.user.profile.picture|default:"https://dl-web.dropbox.com/account_photo/get/dbid%3AAADpuOR1rMlu--LBQJi4BXnoUVIM0RYzpWY?vers=1417006963406&circle_crop=1&size=128x128" }}" alt="profile picture of {{ mark.user.profile|escape }}"/></a>
+          <a href="#"><strong>{{ mark.user.profile }}</strong></a>
+          <span class="ethnicity">{% for m in mark.user.membership.all %}{{ m.ethnicity }}{% include "comma.html" %}{% endfor %}</span>
+          &middot; <span class="location">Athens, Greece</span>
+          &middot; <span class="time">{{ mark.created|naturaltime }}</span>
+          <img src="https://farm3.staticflickr.com/2430/3729158698_a50f932c48_z_d.jpg" alt="towel on beach"/>
+          <div class="text">
+          <span>We found a towel on the beach!! </span>
+          <span class="readmore">Read more</span>
+          </div>
+          <div>344 views</div>
+        </div>
+      {% endfor %}
+      </div>
+      <div class="col-xs-12 col-md-8">
+        <div id="map" class="map"></div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+<script>
+var map = new ol.Map({
+  controls: ol.control.defaults().extend([
+    new ol.control.OverviewMap(),
+    new ol.control.ZoomSlider()
+  ]),
+  layers: [
+    new ol.layer.Tile({
+      source: new ol.source.MapQuest({layer: 'sat'})
+    }),
+    new ol.layer.Image({
+      source: new ol.source.ImageVector({
+        source: new ol.source.Vector({
+          url: 'http://openlayers.org/en/v3.11.2/examples/data/geojson/countries.geojson',
+          format: new ol.format.GeoJSON()
+        }),
+        style: new ol.style.Style({
+          fill: new ol.style.Fill({
+            color: 'rgba(255, 255, 255, 0.6)'
+          }),
+          stroke: new ol.style.Stroke({
+            color: '#319FD3',
+            width: 1
+          })
+        })
+      })
+    })
+  ],
+  target: 'map',
+  view: new ol.View({
+    center: [300000, 6000000],
+    zoom: 7
+  })
+});
+
+var featureOverlay = new ol.layer.Vector({
+  source: new ol.source.Vector(),
+  map: map,
+  style: new ol.style.Style({
+    stroke: new ol.style.Stroke({
+      color: '#f00',
+      width: 1
+    }),
+    fill: new ol.style.Fill({
+      color: 'rgba(255,0,0,0.1)'
+    })
+  })
+});
+
+var highlight;
+var info = $('<div>');
+info.addClass('country-name');
+info.addClass('alert');
+info.addClass('alert-success');
+info.hide();
+$('map').append(info);
+var displayFeatureInfo = function(pixel) {
+
+  var feature = map.forEachFeatureAtPixel(pixel, function(feature, layer) {
+    return feature;
+  });
+
+  if (feature) {
+    info.text(feature.getId() + ': ' + feature.get('name'));
+    info.css({top: pixel[1], left: pixel[0]});
+	info.show();
+  } else {
+    info.hide();
+  }
+
+  if (feature !== highlight) {
+    if (highlight) {
+      featureOverlay.getSource().removeFeature(highlight);
+    }
+    if (feature) {
+      featureOverlay.getSource().addFeature(feature);
+    }
+    highlight = feature;
+  }
+
+};
+
+map.on('pointermove', function(evt) {
+  if (evt.dragging) {
+    return;
+  }
+  var pixel = map.getEventPixel(evt.originalEvent);
+  displayFeatureInfo(pixel);
+});
+
+map.on('click', function(evt) {
+  displayFeatureInfo(evt.pixel);
+});
+
+</script>
+</body>
+</html>

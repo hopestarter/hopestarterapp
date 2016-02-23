@@ -41,7 +41,7 @@ class Ethnicity(models.Model):
 
 class EthnicMember(models.Model):
     person = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='membership')
-    ethnicity = models.ForeignKey(Ethnicity, related_name='membership')
+    ethnicity = models.ForeignKey(Ethnicity, related_name='ethnicity')
     created = models.DateTimeField(editable=False, blank=True)
     modified = models.DateTimeField(editable=False, blank=True)
 

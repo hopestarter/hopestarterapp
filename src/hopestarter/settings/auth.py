@@ -1,14 +1,10 @@
-from .base import *
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-if 'django.contrib.sites' not in INSTALLED_APPS:
-	INSTALLED_APPS += ('django.contrib.sites',)
-
-INSTALLED_APPS += (
+AUTH_INSTALLED_APPS = (
 	'allauth',
 	'allauth.account',
 	'allauth.socialaccount',

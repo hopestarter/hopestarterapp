@@ -1,7 +1,11 @@
-from .base import *
-from .world import *
+from .web import *
 from .space import *
 from .auth import *
+
+INSTALLED_APPS += AUTH_INSTALLED_APPS
+
+if 'django.contrib.sites' not in INSTALLED_APPS:
+	INSTALLED_APPS += ('django.contrib.sites',)
 
 INSTALLED_APPS += ('debug_toolbar',
                    'django_extensions', )

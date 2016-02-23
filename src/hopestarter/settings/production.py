@@ -1,8 +1,13 @@
 import raven
-from .world import *
+from .web import *
 from .space import *
 from .utils import get_env_variable
 from .auth import *
+
+INSTALLED_APPS += AUTH_INSTALLED_APPS
+
+if 'django.contrib.sites' not in INSTALLED_APPS:
+	INSTALLED_APPS += ('django.contrib.sites',)
 
 try:
     from .api_secret import *
