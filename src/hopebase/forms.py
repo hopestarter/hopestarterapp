@@ -9,6 +9,8 @@ class SignupForm(forms.Form):
         label="First name", max_length=settings.NAME_MAX, required=False)
     surname = forms.CharField(
         label="Last name", max_length=settings.NAME_MAX, required=False)
+    picture = forms.URLField(
+        label="Profile picture URL", required=False)
 
     def signup(self, request, user):
         """
