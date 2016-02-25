@@ -2,6 +2,8 @@ from django.contrib.gis.db import models
 from django.conf import settings
 from django.utils import timezone
 
+from hopebase.models import ImageUpload
+
 
 class LocationMark(models.Model):
     created = models.DateTimeField()
@@ -13,6 +15,10 @@ class LocationMark(models.Model):
         return "<MARK:{}:{},{}:{}>".format(
             self.id, self.point.coords[0], self.point.coords[1],
             self.created.isoformat())
+
+
+class LocationImageUpload(ImageUpload):
+    mark = models.ForeignKey(LocationMark, related_name='picture')
 
 
 class Ethnicity(models.Model):

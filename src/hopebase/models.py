@@ -21,3 +21,21 @@ class UserProfile(models.Model):
 
     def __unicode__(self):
         return " ".join(filter(None, [self.name, self.surname]))
+
+
+class ImageUpload(models.Model):
+    created = models.DateTimeField(editable=False, blank=True)
+    modified = models.DateTimeField(editable=False, blank=True)
+    url = models.URLField(max_length=100, null=True, blank=True)
+
+    class Meta:
+        abstract = True
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.created = timezone.now()
+        self.modified = timezone.now()
+        super(ImageUpload, self).save(*args, **kwargs)
+
+    def __unicode__(self):
+        return self.__class__.name + ":" + self.url
