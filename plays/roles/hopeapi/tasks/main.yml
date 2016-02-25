@@ -3,6 +3,24 @@
   tags:
     - config
 
+- lineinfile:
+    create: yes
+    state: present
+    dest: "{{ app_home }}/.env/AWS_ACCESS_KEY_ID"
+    line: "{{ aws_api_key }}"
+  no_log: true
+  tags:
+    - config
+
+- lineinfile:
+    create: yes
+    state: present
+    dest: "{{ app_home }}/.env/AWS_SECRET_ACCESS_KEY"
+    line: "{{ aws_api_secret }}"
+  no_log: true
+  tags:
+    - config
+
 - include: code.yml
   tags:
       - code
