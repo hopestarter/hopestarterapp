@@ -1,5 +1,5 @@
 Django==1.8.6
-psycopg2>=2.0.14
+psycopg2>=2.4.5
 celery==3.1.18
 redis==2.10.3
 django-grappelli==2.7.3
