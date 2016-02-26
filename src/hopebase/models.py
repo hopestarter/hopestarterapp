@@ -11,7 +11,7 @@ class UserProfile(models.Model):
     surname = models.CharField(max_length=100, null=True, blank=True)
     created = models.DateTimeField(editable=False, blank=True)
     modified = models.DateTimeField(editable=False, blank=True)
-    picture = models.URLField(max_length=100, null=True, blank=True)
+    picture = models.URLField(max_length=200, null=True, blank=True)
 
     def save(self, *args, **kwargs):
         if not self.id:
@@ -26,7 +26,7 @@ class UserProfile(models.Model):
 class ImageUpload(models.Model):
     created = models.DateTimeField(editable=False, blank=True)
     modified = models.DateTimeField(editable=False, blank=True)
-    url = models.URLField(max_length=100, null=True, blank=True)
+    url = models.URLField(max_length=200, null=True, blank=True)
 
     class Meta:
         abstract = True
