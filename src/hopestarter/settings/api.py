@@ -1,5 +1,6 @@
 from .base import *
 from .space import *
+from .log import *
 from .aws import *
 
 try:

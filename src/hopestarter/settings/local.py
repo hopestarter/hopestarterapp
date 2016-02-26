@@ -1,5 +1,6 @@
 from .web import *
 from .space import *
+from .log import *
 from .auth import *
 
 INSTALLED_APPS += AUTH_INSTALLED_APPS

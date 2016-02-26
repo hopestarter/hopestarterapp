@@ -21,3 +21,10 @@ SECRET_KEY = get_env_variable("SECRET_KEY")
 
 # removing the browsable API - comment this if you WANT the browsable API in production.
 # REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = ('rest_framework.renderers.JSONRenderer',)
+
+LOGGING['handlers']['file'] = {
+    'level': 'DEBUG',
+    'class': 'logging.FileHandler',
+    'filename': '/var/log/nginx/api.log',
+}
+LOGGING['loggers']['django']['handlers'] = ['file']

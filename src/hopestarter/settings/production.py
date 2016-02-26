@@ -1,6 +1,7 @@
 import raven
 from .web import *
 from .space import *
+from .log import *
 from .utils import get_env_variable
 from .auth import *
 
@@ -33,3 +34,10 @@ SECRET_KEY = get_env_variable("SECRET_KEY")
 SITE_ID = 1
 
 GRAPPELLI_INDEX_DASHBOARD = 'hopestarter.dashboard.CustomIndexDashboard'
+
+LOGGING['handlers']['file'] = {
+    'level': 'DEBUG',
+    'class': 'logging.FileHandler',
+    'filename': '/var/log/nginx/django.log',
+}
+LOGGING['loggers']['django']['handlers'] = ['file']
