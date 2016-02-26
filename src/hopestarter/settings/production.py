@@ -38,6 +38,6 @@ GRAPPELLI_INDEX_DASHBOARD = 'hopestarter.dashboard.CustomIndexDashboard'
 LOGGING['handlers']['file'] = {
     'level': 'DEBUG',
     'class': 'logging.FileHandler',
-    'filename': '/var/log/nginx/django.log',
+    'filename': '/var/log/hope/django.log',
 }
 LOGGING['loggers']['django']['handlers'] = ['file']

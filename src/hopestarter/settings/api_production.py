@@ -32,6 +32,6 @@ PROFILE_PERMS = ['IsAuthenticated', 'TokenHasScope']
 LOGGING['handlers']['file'] = {
     'level': 'DEBUG',
     'class': 'logging.FileHandler',
-    'filename': '/var/log/nginx/api.log',
+    'filename': '/var/log/hope/api.log',
 }
 LOGGING['loggers']['django']['handlers'] = ['file']

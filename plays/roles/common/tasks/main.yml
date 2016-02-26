@@ -2,3 +2,7 @@
   become: yes
   tags:
     - deps
+
+- file: path=/var/log/hope state=directory
+  tags:
+    - config
