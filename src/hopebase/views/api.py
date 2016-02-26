@@ -1,15 +1,14 @@
 from django.shortcuts import get_object_or_404
+from django.conf import settings
 
 from rest_framework import generics
-from rest_framework import permissions
 
-from hopebase import serializers
-from hopecollector.permissions import OptionalTokenHasScope
+from hopebase import serializers, permissions
 from hopebase.models import UserProfile
 
 
 class UserProfileView(generics.RetrieveUpdateAPIView):
-    permission_classes = (permissions.IsAuthenticated, OptionalTokenHasScope)
+    permission_classes = [getattr(permissions, p) for p in settings.PROFILE_PERMS]
     required_scopes = ['update-profile']
     model = UserProfile
     serializer_class = serializers.UserProfileSerializer

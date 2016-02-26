@@ -43,4 +43,7 @@ SITE_ID = 2
 
 GRAPPELLI_INDEX_DASHBOARD = 'hopecollector.dashboard.CustomIndexDashboard'
 
+LOCATION_PERMS = ['IsAuthenticated', 'OptionalTokenHasScope']
+PROFILE_PERMS = ['IsAuthenticated', 'OptionalTokenHasScope']
+
 from .api_secret import *

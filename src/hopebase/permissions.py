@@ -1,4 +1,5 @@
 from oauth2_provider.ext.rest_framework import TokenHasScope
+from rest_framework.permissions import *
 
 class OptionalTokenHasScope(TokenHasScope):
     """

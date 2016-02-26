@@ -19,8 +19,15 @@ RAVEN_CONFIG = {
 
 SECRET_KEY = get_env_variable("SECRET_KEY")
 
-# removing the browsable API - comment this if you WANT the browsable API in production.
-# REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = ('rest_framework.renderers.JSONRenderer',)
+# removing the browsable API - comment the following lines if you WANT the
+# browsable API in production.
+REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = ('rest_framework.renderers.JSONRenderer',)
+REST_FRAMEWORK["DEFAULT_AUTHENTICATION_CLASSES"] = (
+    'oauth2_provider.ext.rest_framework.OAuth2Authentication',
+)
+LOCATION_PERMS = ['IsAuthenticated', 'TokenHasScope']
+PROFILE_PERMS = ['IsAuthenticated', 'TokenHasScope']
+# end browsable API disabled settings
 
 LOGGING['handlers']['file'] = {
     'level': 'DEBUG',

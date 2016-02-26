@@ -6,17 +6,15 @@ from django.conf import settings
 
 from rest_framework import mixins
 from rest_framework import generics
-from rest_framework import permissions
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
-from hopecollector import serializers
-from hopecollector.permissions import OptionalTokenHasScope
+from hopecollector import serializers, permissions
 from hopespace.models import LocationMark
 
 
 class LocationMarkSubmitView(generics.CreateAPIView):
-    permission_classes = (permissions.IsAuthenticated, OptionalTokenHasScope)
+    permission_classes = [getattr(permissions, p) for p in settings.LOCATION_PERMS]
     required_scopes = ['set-location']
     model = LocationMark
     serializer_class = serializers.LocationMarkSerializer
