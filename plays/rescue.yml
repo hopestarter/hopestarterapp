@@ -1,0 +1,12 @@
+- local_action:
+    module: slack
+    token: "{{ slack_token }}"
+    msg: "Error in {{ state }}"
+  when: slack_token is defined
+  tags:
+    - always
+
+- fail: msg="failed"
+  tags:
+    - always
+

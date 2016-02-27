@@ -1,4 +1,6 @@
-- template: src=api_secret.py.j2 dest="{{ django_home }}/hopestarter/settings/api_secret.py"
-  tags:
-      - code
-
+- block:
+    - template: src=api_secret.py.j2 dest="{{ django_home }}/hopestarter/settings/api_secret.py"
+      tags:
+          - code
+  rescue:
+    - include: rescue.yml state=secrets

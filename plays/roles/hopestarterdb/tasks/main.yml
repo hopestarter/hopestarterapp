@@ -1,5 +1,7 @@
 ---
-
-- include: db.yml
-  tags:
-      - db
+- block:
+    - include: db.yml
+      tags:
+          - db
+  rescue:
+    - include: rescue.yml state=db

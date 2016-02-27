@@ -1,19 +1,22 @@
-- name: setup env
-  template: src=envrc.j2 dest="{{ app_home }}/.envrc"
-  tags:
-    - config
+- block:
+    - name: setup env
+      template: src=envrc.j2 dest="{{ app_home }}/.envrc"
+      tags:
+        - config
 
-- include: code.yml
-  tags:
-      - code
+    - include: code.yml
+      tags:
+          - code
 
-- include: nginx.yml
-  tags:
-      - config
+    - include: nginx.yml
+      tags:
+          - config
 
-- include: django.yml
+    - include: django.yml
 
-- template: src=vassal-site.ini.j2 dest="{{ app_home }}/vassals/site.ini"
-  tags:
-      - config
-      - code
+    - template: src=vassal-site.ini.j2 dest="{{ app_home }}/vassals/site.ini"
+      tags:
+          - config
+          - code
+  rescue:
+    - include: rescue.yml state=web
