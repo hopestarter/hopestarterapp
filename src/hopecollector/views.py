@@ -9,7 +9,8 @@ from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
-from hopecollector import serializers, permissions
+from hopecollector import serializers
+from hopebase import permissions
 from hopespace.models import LocationMark
 
 
