@@ -1,0 +1,25 @@
+- block:
+    - name: notify slack
+      slack: token={{ slack_token }} msg="Starting deployment"
+      when: slack_token is defined
+      tags: ['always']
+
+    - name: get latest revision
+      command: git rev-parse HEAD
+      register: git_head
+      when: git_head is not defined
+      tags: ['always']
+
+    - name: set revision to install
+      set_fact: git_version={{ git_head.stdout|default(git_head) }}
+      tags: ['always']
+
+    - name: discover RDS endpoint
+      rds: command=facts instance_name={{ rds_instance_name }}
+      register: rds
+      tags:
+        - db
+        - code
+        - config
+  rescue:
+    - include: rescue.yml state=pre

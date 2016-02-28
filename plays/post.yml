@@ -1,0 +1,4 @@
+- local_action: slack token={{ slack_token }} msg="Deployment finished."
+  when: slack_token is defined
+  tags: ['always']
+

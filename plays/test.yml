@@ -2,27 +2,8 @@
 - hosts: frontend
   remote_user: ec2-user
   pre_tasks:
-    - block:
-        - local_action:
-            module: slack
-            token: "{{ slack_token }}"
-            msg: "Starting deployment"
-          when: slack_token is defined
-          tags:
-            - db
-            - code
-            - config
-        - local_action:
-            module: rds
-            command: facts
-            instance_name: "{{ rds_instance_name }}"
-          register: rds
-          tags:
-            - db
-            - code
-            - config
-      rescue:
-        - include: rescue.yml state=pre_tasks
+      - local_action: include pre.yml
+        run_once: true
   roles:
       - common
       - { role: hopestarterdb, dbhost: "{{ rds.instance.endpoint }}" }
@@ -30,15 +11,7 @@
       - { role: hopeweb, dbhost: "{{ rds.instance.endpoint }}"  }
       - { role: hopesecrets }
   post_tasks:
-    - local_action:
-        module: slack
-        token: "{{ slack_token }}"
-        msg: "Deployment finished."
-      when: slack_token is defined
-      tags:
-        - db
-        - code
-        - config
+      - include: post.yml
   vars:
       rds_instance_name: HopestarterTest
       dbuser: "{{ lookup('env','PGUSER') }}"
