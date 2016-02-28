@@ -1,4 +1,5 @@
 -r base.txt
 -r auth.txt
+-r web.txt
 django-debug-toolbar
 django-extensions

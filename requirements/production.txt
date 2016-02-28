@@ -1,4 +1,6 @@
 -r base.txt
+-r auth.txt
+-r web.txt
 setproctitle
 gunicorn
 raven
