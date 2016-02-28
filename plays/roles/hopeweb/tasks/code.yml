@@ -1,4 +1,5 @@
-- yum: name={{ item }} state=present enablerepo=epel
+- name: installing system level dependencies
+  yum: name={{ item }} state=present enablerepo=epel
   become: yes
   with_items:
       - git
@@ -8,8 +9,11 @@
       - gdal
       - nginx
 
-- git: repo={{ repo_url }} dest="{{ app_home }}/hopestarterapp"
+- name: updating source code to {{ git_version }}
+  git: repo={{ repo_url }} dest="{{ app_home }}/hopestarterapp" version={{ git_version }}
 
-- pip: name=virtualenv state=present extra_args="--user"
+- name: installing virtualenv
+  pip: name=virtualenv state=present extra_args="--user"
 
-- pip: requirements="{{ app_home }}/hopestarterapp/requirements/production.txt" virtualenv="{{ app_home }}/venv" virtualenv_site_packages=yes
+- name: installing python dependencies
+  pip: requirements="{{ app_home }}/hopestarterapp/requirements/production.txt" virtualenv="{{ app_home }}/venv" virtualenv_site_packages=yes

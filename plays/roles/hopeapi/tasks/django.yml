@@ -3,7 +3,8 @@
   tags:
       - db
 
-- django_manage: command=collectstatic app_path="{{ django_home }}" virtualenv="{{ venv_path }}" settings="{{ app_settings }}"
+- name: running collectstatic
+  django_manage: command=collectstatic app_path="{{ django_home }}" virtualenv="{{ venv_path }}" settings="{{ app_settings }}"
   environment: "{{djangoenv}}"
   tags:
       - code

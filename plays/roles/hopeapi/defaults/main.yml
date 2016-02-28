@@ -6,3 +6,4 @@ djangoenv:
     SECRET_KEY: "{{ django_secret_key }}"
 django_home: "{{ app_home }}/hopestarterapp/src/"
 venv_path: "{{ app_home }}/venv_api/"
+git_version: HEAD

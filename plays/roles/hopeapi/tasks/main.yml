@@ -1,38 +1,36 @@
 - block:
     - name: setup env
       template: src=envrc.j2 dest="{{ app_home }}/.envrc"
-      tags:
-        - config
+      tags: ['config']
 
-    - lineinfile:
+    - name: configuring AWS_ACCESS_KEY_ID
+      lineinfile:
         create: yes
         state: present
         dest: "{{ app_home }}/.env/AWS_ACCESS_KEY_ID"
         line: "{{ aws_api_key }}"
       no_log: true
-      tags:
-        - config
+      tags: ['config']
 
-    - lineinfile:
+    - name: configuring AWS_SECRET_ACCESS_KEY
+      lineinfile:
         create: yes
         state: present
         dest: "{{ app_home }}/.env/AWS_SECRET_ACCESS_KEY"
         line: "{{ aws_api_secret }}"
       no_log: true
-      tags:
-        - config
+      tags: ['config']
 
     - include: code.yml
-      tags:
-          - code
+      tags: ['code']
 
     - include: nginx.yml
-      tags:
-          - config
+      tags: ['config']
 
     - include: django.yml
 
-    - template: src=vassal-api.ini.j2 dest="{{ app_home }}/vassals/api.ini"
+    - name: installing uWSGI vassal configuration
+      template: src=vassal-api.ini.j2 dest="{{ app_home }}/vassals/api.ini"
       tags:
           - config
           - code

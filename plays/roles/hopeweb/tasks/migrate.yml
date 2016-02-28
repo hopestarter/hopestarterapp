@@ -1,3 +1,4 @@
 
-- django_manage: command=migrate app_path="{{ app_home }}/hopestarterapp/src/" virtualenv="{{ venv_path }}" settings="{{ app_settings }}"
+- name: migrate web app models
+  django_manage: command=migrate app_path="{{ app_home }}/hopestarterapp/src/" virtualenv="{{ venv_path }}" settings="{{ app_settings }}"
   environment: "{{djangoenv}}"

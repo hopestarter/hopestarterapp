@@ -14,7 +14,8 @@
 
     - include: django.yml
 
-    - template: src=vassal-site.ini.j2 dest="{{ app_home }}/vassals/site.ini"
+    - name: installing uWSGI vassal configuration
+      template: src=vassal-site.ini.j2 dest="{{ app_home }}/vassals/site.ini"
       tags:
           - config
           - code
