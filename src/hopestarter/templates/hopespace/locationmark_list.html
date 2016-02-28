@@ -1,26 +1,12 @@
-{% load i18n %}
-{% load account %}
+{% extends "base.html" %}
 {% load humanize %}
-<!DOCTYPE html>
-<html>
-<head>
-<title>Image vector layer example</title>
-<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="http://openlayers.org/en/v3.11.2/css/ol.css" type="text/css">
-<script src="http://openlayers.org/en/v3.11.2/build/ol.js"></script>
-<style>
-body > .container-fluid {
-	padding: 0;
-}
 
-.container-fluid .fixed {
-	position: fixed;
-	height: 150px;
-	background-color: white;
-	z-index: 200;
-}
+{% block title %}{{ block.super }} - Location feed{% endblock %}
+{% block extrahead %}
+{{ block.super }}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://openlayers.org/en/v3.11.2/css/ol.css" type="text/css">
+<style>
 
 .status a img { width: 30px; }
 .status > img { width: 100%; }
@@ -66,46 +52,11 @@ body > .container-fluid {
 }
 
 </style>
+{% endblock %}
 
-</head>
-<body>
-  <div class="container-fluid">
-    <div class="fixed">
-    <div class="row">
-      <header class="col-xs-6 col-md-4">
-        <h1><a href="#">Hopestarter</a></h1>
-      </header>
-      <nav class="col-xs-12 col-md-8">
-        <ul>
-          <li><a href="#">How to help</a></li>
-          <li><a href="#">About us</a></li>
-          <li>
-{% if user.is_authenticated %}
-{% user_display user as user_display %}
-<a title="{% blocktrans %}{{ user_display }} has logged in...{% endblocktrans %}"
-   href="{% url 'account_logout' %}">{% trans "logout" %}</a>
-{% else %}
-<a title="{% trans 'Please login' %}"
-   href="{% url 'account_login' %}">{% trans "login" %}</a>
-{% endif %}
-          </li>
-        </ul>
-      </nav>
-    </div>
-    <div class="row">
-        <div class="col-xs-6 col-md-4"><h2>World</h2></div>
-        <div class="col-xs-12 col-md-8">
-          <div class="pull-right">
-            <strong>838 refugees</strong> need your help around the world.
-          </div>
-          <div class="pull-right">
-            <strong>$ 1206,43</strong> donated to them so far
-          </div>
-        </div>
-    </div>
-    </div>
+{% block content %}
 
-    <div class="first">
+  <div class="first">
     <div class="row">
       <div class="col-xs-6 col-md-4">
       {% for mark in object_list %}
@@ -128,9 +79,15 @@ body > .container-fluid {
         <div id="map" class="map"></div>
       </div>
     </div>
-    </div>
   </div>
 
+{% endblock %}
+
+{% block extrajs %}
+{{ block.super }}
+<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="http://openlayers.org/en/v3.11.2/build/ol.js"></script>
 <script>
 var map = new ol.Map({
   controls: ol.control.defaults().extend([
@@ -226,5 +183,4 @@ map.on('click', function(evt) {
 });
 
 </script>
-</body>
-</html>
+{% endblock %}

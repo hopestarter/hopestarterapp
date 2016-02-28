@@ -1,0 +1,53 @@
+{% load static %}
+{% load i18n %}
+{% load account %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{% block title %}Hopestarter{% endblock %}</title>
+    <meta charset="utf-8" />
+    {% block extrahead %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% endblock %}
+  </head>
+
+  <body>
+  <div class="container-fluid">
+    <div class="fixed">
+    <div class="row">
+      <header class="col-xs-6 col-md-4">
+        <h1><a href="#">Hopestarter</a></h1>
+      </header>
+      <nav class="col-xs-12 col-md-8">
+        <ul>
+          <li><a href="#">How to help</a></li>
+          <li><a href="#">About us</a></li>
+          <li>
+{% if user.is_authenticated %}
+{% user_display user as user_display %}
+<a title="{% blocktrans %}{{ user_display }} has logged in...{% endblocktrans %}"
+   href="{% url 'account_logout' %}">{% trans "logout" %}</a>
+{% else %}
+<a title="{% trans 'Please login' %}"
+   href="{% url 'account_login' %}">{% trans "login" %}</a>
+{% endif %}
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-md-4"><h2>World</h2></div>
+        <div class="col-xs-12 col-md-8">
+          <div class="pull-right">
+            <strong>838 refugees</strong> need your help around the world.
+          </div>
+          <div class="pull-right">
+            <strong>$ 1206,43</strong> donated to them so far
+          </div>
+        </div>
+    </div>
+    </div>
+    {% block content %}{% endblock %}
+    {% block extrajs %}{% endblock %}
+  </body>
+</html>

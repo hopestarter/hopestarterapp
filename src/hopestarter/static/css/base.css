@@ -1,0 +1,10 @@
+body > .container-fluid {
+    padding: 0;
+}
+
+.container-fluid .fixed {
+    position: fixed;
+    height: 150px;
+    background-color: white;
+    z-index: 200;
+}
