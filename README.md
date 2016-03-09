@@ -46,3 +46,11 @@ Execute `./manage.py runserver` from within the `src` directory.
 ## Running the API
 
 Execute `./manage_api.py runserver` from within the `src` directory.
+
+
+## Mac OSX dependencies
+
+```
+brew install postgis gdal geos virtualenv
+```
+
