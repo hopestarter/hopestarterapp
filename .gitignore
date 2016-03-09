@@ -75,3 +75,4 @@ plays/ansible.cfg
 plays/ssh.config
 plays/inventory/local
 src/hopestarter/settings/api_secret.py
+.DS_Store

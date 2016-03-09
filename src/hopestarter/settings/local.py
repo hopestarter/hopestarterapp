@@ -8,9 +8,10 @@ INSTALLED_APPS += AUTH_INSTALLED_APPS
 if 'django.contrib.sites' not in INSTALLED_APPS:
 	INSTALLED_APPS += ('django.contrib.sites',)
 
-INSTALLED_APPS += ('debug_toolbar',
-                   'django_extensions', )
-MIDDLEWARE_CLASSES += ('debug_toolbar.middleware.DebugToolbarMiddleware', )
+if False:
+	INSTALLED_APPS += ('debug_toolbar',
+			   'django_extensions', )
+	MIDDLEWARE_CLASSES += ('debug_toolbar.middleware.DebugToolbarMiddleware', )
 
 SITE_ID = 1
 
