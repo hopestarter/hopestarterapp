@@ -19,6 +19,7 @@ INSTALLED_APPS = (
     'grappelli.dashboard',
     'grappelli',
     'django.contrib.admin',
+    'hopestarter',
     'hopespace',
     'hopebase',
 )
