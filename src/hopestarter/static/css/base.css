@@ -1,10 +1,217 @@
+/* ==========================================================================
+  Hopestarter Web App
+  Version: 0.1
+  CSS Author: Harris Rodis
+========================================================================== */
+
+
+
+/********** Main Styles **********/
+
 body > .container-fluid {
-    padding: 0;
+  padding: 0;
+  color: #4A4A4A;
 }
 
-.container-fluid .fixed {
-    position: fixed;
-    height: 150px;
-    background-color: white;
-    z-index: 200;
+header.fixed {
+  position: fixed;
+  width: 100%;
+  height: 150px;
+  background-color: white;
+  z-index: 200;
+}
+
+.first {
+  padding-top: 150px;
+}
+
+
+
+/********** Header **********/
+
+.topbar {
+  padding: 20px 0;
+  margin: 0 30px 20px;
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.topbar h1 {
+  margin: 0;
+  padding: 0;
+  float: left;
+  font-size: 1.2em;
+  line-height: 20px;
+}
+
+.topbar h1 a {
+  width: 168px;
+  height: 20px;
+  opacity: 1;
+  -webkit-transition: opacity 0.4s; /* Safari */
+  -moz-transition: opacity 0.4s; /* Mozilla */
+  transition: opacity 0.4s;
+}
+
+.topbar h1 a:hover {
+  opacity: 0.5;
+}
+
+.topbar nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  float: right;
+}
+
+.topbar nav ul li {
+    display: inline;
+    padding-left: 30px;
+}
+
+.topbar nav ul li a {
+  font-size: 1em;
+  line-height: 20px;
+  color: #3DB4CC;
+  -webkit-transition: color 0.4s; /* Safari */
+  -moz-transition: color 0.4s; /* Mozilla */
+  transition: color 0.4s;
+}
+
+.topbar nav ul li a:hover {
+  color: #2E8799;
+  text-decoration: none;
+}
+
+.info {
+  padding-top: 10px;
+  margin: 0 30px;
+}
+
+h2.title {
+  font-size: 1.5em;
+  line-height: 1;
+  font-weight: normal;
+  margin-top: 20px;
+  color: #4A4A4A;
+  float: left;
+}
+
+.counter h3 {
+  font-size: 1.35em;
+  line-height: 14px;
+  font-weight: normal;
+  color: #4A4A4A;
+  text-align: right;
+  margin-top: 8px;
+}
+
+.counter p {
+  font-size: 0.9em;
+  line-height: 12px;
+  color: #A9A9A9;
+  text-align: right;
+}
+
+
+
+/********** World Feed **********/
+
+.first .row .col-md-4 {
+  background-color: #14181A;
+}
+
+.status {
+  background-color: white;
+  margin: 10px 5px 10px 20px;
+  border-radius: 2px;
+}
+
+.status a img {
+  width: 38px;
+  margin: 10px;
+}
+
+.status a strong {
+  color: #3DB4CC;
+  -webkit-transition: color 0.4s; /* Safari */
+  -moz-transition: color 0.4s; /* Mozilla */
+  transition: color 0.4s;
+}
+
+.status a:hover strong {
+  font-size: 1em;
+  color: #2E8799;
+  text-decoration: none;
+}
+
+.status a:hover {
+  text-decoration: none;
+}
+
+.ethnicity,
+.location,
+.time {
+  font-size: 0.9em;
+  color: #A9A9A9;
+}
+
+.status > img { width: 100%; }
+
+.status .text {
+  margin: 10px;
+  font-size: 1em;
+  color: #4A4A4A;
+}
+
+.status div:last-child {
+  font-size: 0.9em;
+  color: #A9A9A9;
+  margin-left: 10px;
+  padding-bottom: 10px;
+}
+
+
+
+/********** Interactive Map **********/
+
+.first .row .col-md-8 {
+  padding-left: 0;
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+.country-name {
+    z-index: 100;
+    position: absolute;
+}
+/**
+ * The zoomslider in the second map shall be placed between the zoom-in and
+ * zoom-out buttons.
+ */
+.ol-zoom .ol-zoom-out {
+  margin-top: 204px;
+}
+.ol-zoomslider {
+  background-color: transparent;
+  top: 2.3em;
+}
+
+.ol-touch .ol-zoom .ol-zoom-out {
+  margin-top: 212px;
+}
+.ol-touch .ol-zoomslider {
+  top: 2.75em;
+}
+
+.ol-zoom-in.ol-has-tooltip:hover [role=tooltip],
+.ol-zoom-in.ol-has-tooltip:focus [role=tooltip] {
+  top: 3px;
+}
+
+.ol-zoom-out.ol-has-tooltip:hover [role=tooltip],
+.ol-zoom-out.ol-has-tooltip:focus [role=tooltip] {
+  top: 232px;
 }
