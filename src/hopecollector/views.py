@@ -1,5 +1,4 @@
 import boto3
-import uuid
 import json
 
 from django.conf import settings
@@ -10,6 +9,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
 from hopecollector import serializers
+from hopecollector.utils import generate_upload_prefix
 from hopebase import permissions
 from hopespace.models import LocationMark
 
@@ -24,7 +24,7 @@ class LocationMarkSubmitView(generics.CreateAPIView):
 @api_view(['POST'])
 def upload_image(request):
     bname = settings.AWS_BUCKET_UPLOAD
-    bprefix = settings.AWS_BUCKET_UPLOAD_PREFIX + str(uuid.uuid4()) + "/"
+    bprefix = generate_upload_prefix()
     barn = "arn:aws:s3:::" + bname
     bpolicy = json.dumps({
         "Version": "2012-10-17",
