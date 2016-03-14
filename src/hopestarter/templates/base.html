@@ -18,7 +18,7 @@
 			<div class="col-md-12">
 				<h1>
 					<a href="#">
-						<img src="{% static 'img/logo.jpg' %}" alt="Hopestarter" />
+						<img src="{% static 'img/logo.png' %}" alt="Hopestarter" />
 					</a>
 				</h1>
 				<nav>
@@ -29,10 +29,10 @@
 				{% if user.is_authenticated %}
 				{% user_display user as user_display %}
 							<a title="{% blocktrans %}{{ user_display }} has logged in...{% endblocktrans %}"
-							   href="{% url 'account_logout' %}">{% trans "logout" %}</a>
+							   href="{% url 'account_logout' %}">{% trans "Logout" %}</a>
 				{% else %}
 							<a title="{% trans 'Please login' %}"
-							   href="{% url 'account_login' %}">{% trans "login" %}</a>
+							   href="{% url 'account_login' %}">{% trans "Login" %}</a>
 				{% endif %}
 						</li>
 					</ul>
@@ -53,6 +53,7 @@
 			</div>
 		</div>
 	</header>
+  </div>
 
 
 
