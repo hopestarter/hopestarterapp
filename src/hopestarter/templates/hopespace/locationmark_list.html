@@ -6,78 +6,47 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" href="http://openlayers.org/en/v3.11.2/css/ol.css" type="text/css">
 {{ block.super }}
-<style>
-
-.status a img { width: 30px; }
-.status > img { width: 100%; }
-
-.first {
-	padding-top: 150px;
-}
-
-.map {
-	width: 100%; height: 100%; position:fixed;
-}
-.country-name {
-    z-index: 100;
-    position: absolute;
-}
-/**
- * The zoomslider in the second map shall be placed between the zoom-in and
- * zoom-out buttons.
- */
-.ol-zoom .ol-zoom-out {
-  margin-top: 204px;
-}
-.ol-zoomslider {
-  background-color: transparent;
-  top: 2.3em;
-}
-
-.ol-touch .ol-zoom .ol-zoom-out {
-  margin-top: 212px;
-}
-.ol-touch .ol-zoomslider {
-  top: 2.75em;
-}
-
-.ol-zoom-in.ol-has-tooltip:hover [role=tooltip],
-.ol-zoom-in.ol-has-tooltip:focus [role=tooltip] {
-  top: 3px;
-}
-
-.ol-zoom-out.ol-has-tooltip:hover [role=tooltip],
-.ol-zoom-out.ol-has-tooltip:focus [role=tooltip] {
-  top: 232px;
-}
-
-</style>
 {% endblock %}
 
 {% block content %}
 
   <div class="first">
-    <div class="row">
-      <div class="col-xs-6 col-md-4">
-      {% for mark in object_list %}
-        <div class="status">
-          <a href="#"><img src="{{ mark.user.profile.picture|default:"https://dl-web.dropbox.com/account_photo/get/dbid%3AAADpuOR1rMlu--LBQJi4BXnoUVIM0RYzpWY?vers=1417006963406&circle_crop=1&size=128x128" }}" alt="profile picture of {{ mark.user.profile|escape }}"/></a>
-          <a href="#"><strong>{{ mark.user.profile }}</strong></a>
-          <span class="ethnicity">{% for m in mark.user.membership.all %}{{ m.ethnicity }}{% include "comma.html" %}{% endfor %}</span>
-          &middot; <span class="location">Athens, Greece</span>
-          &middot; <span class="time">{{ mark.created|naturaltime }}</span>
-          <img src="https://farm3.staticflickr.com/2430/3729158698_a50f932c48_z_d.jpg" alt="towel on beach"/>
-          <div class="text">
-          <span>We found a towel on the beach!! </span>
-          <span class="readmore">Read more</span>
+    <div class="left-side">
+    {% for mark in object_list %}
+      <div class="status">
+        <header>
+          <!-- TEMPORARY DATA FOR TESTING -->
+          <a class="profile-picture" href="#"><img src="/static/img/avatar_s.png" alt="profile picture"/></a>
+          <a class="username" href="#">Muhammad Erbil</a>
+          <div class="meta">
+            <p>
+              <span class="ethnicity">Syrian</span> &middot; <span class="location">Athens, Greece</span> &middot; <span class="time">10 minutes ago</span>
+            </p>
           </div>
-          <div>344 views</div>
+          <!-- END OF TEMPORARY DATA FOR TESTING -->
+          <!-- WHEN WE HAVE REAL DATA, DELETE THE TEMPORARY ABOVE AND UNCOMMENT THE FOLLOWING -->
+          <!--<a class="profile-picture" href="#"><img src="{{ mark.user.profile.picture|default:"https://dl-web.dropbox.com/account_photo/get/dbid%3AAADpuOR1rMlu--LBQJi4BXnoUVIM0RYzpWY?vers=1417006963406&circle_crop=1&size=128x128" }}" alt="profile picture of {{ mark.user.profile|escape }}"/></a>
+          <a class="username" href="#">{{ mark.user.profile }}</a>
+          <div class="meta">
+            <p>
+              <span class="ethnicity">{% for m in mark.user.membership.all %}{{ m.ethnicity }}{% include "comma.html" %}{% endfor %}</span> &middot; <span class="location">Athens, Greece</span> &middot; <span class="time">{{ mark.created|naturaltime }}</span>
+            </p>
+          </div>-->
+        </header>
+        <div class="photo">
+          <img src="https://farm3.staticflickr.com/2430/3729158698_a50f932c48_z_d.jpg" alt="towel on beach"/>
         </div>
-      {% endfor %}
+        <div class="message">
+          <p>The island we landed on was called Samothrace. We were so thankful to be there. We thought we’d reached safety.</p>
+        </div>
+        <div class="number-of-views">
+          <small>344 views</small>
+        </div>
       </div>
-      <div class="col-xs-12 col-md-8">
-        <div id="map" class="map"></div>
-      </div>
+    {% endfor %}
+    </div>
+    <div class="right-side">
+      <div id="map" class="map"></div>
     </div>
   </div>
 

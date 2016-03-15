@@ -116,30 +116,38 @@ h2.title {
 
 /********** World Feed **********/
 
-.first .row .col-md-4 {
+.first .left-side {
   background-color: #14181A;
   width: 380px;
+  float: left;
+  padding: 20px;
 }
 
 .status {
   background-color: white;
-  margin: 10px 5px 10px 20px;
   border-radius: 2px;
+  margin-bottom: 10px;
+  padding: 10px 0;
 }
 
-.status a img {
+.profile-picture {
   width: 38px;
-  margin: 10px;
+  height: 38px;
+  margin: 0 10px 10px;
+  float: left;
 }
 
-.status a strong {
+.username {
   color: #3DB4CC;
+  font-weight: bold;
   -webkit-transition: color 0.4s; /* Safari */
   -moz-transition: color 0.4s; /* Mozilla */
   transition: color 0.4s;
+  display: block;
+  margin: 0 10px 2px 58px;
 }
 
-.status a:hover strong {
+.username:hover  {
   font-size: 1em;
   color: #2E8799;
   text-decoration: none;
@@ -149,23 +157,21 @@ h2.title {
   text-decoration: none;
 }
 
-.ethnicity,
-.location,
-.time {
-  font-size: 0.9em;
+.meta p {
+  font-size: 0.8em;
   color: #A9A9A9;
 }
 
-.status > img { width: 100%; }
+.photo img { width: 100%; }
 
-.status .text {
+.message p {
   margin: 10px;
   font-size: 1em;
   color: #4A4A4A;
 }
 
-.status div:last-child {
-  font-size: 0.9em;
+.number-of-views small {
+  font-size: 0.8em;
   color: #A9A9A9;
   margin-left: 10px;
   padding-bottom: 10px;
@@ -175,8 +181,9 @@ h2.title {
 
 /********** Interactive Map **********/
 
-.first .row .col-md-8 {
-  padding-left: 0;
+.first .right-side {
+  margin-left: 380px;
+  width: 100%;
 }
 
 .map {

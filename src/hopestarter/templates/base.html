@@ -12,52 +12,50 @@
   </head>
 
   <body>
-  <div class="container-fluid">
-	<header class="fixed">
-		<div class="row topbar">
-			<div class="col-md-12">
-				<h1>
-					<a href="#">
-						<img src="{% static 'img/logo.png' %}" alt="Hopestarter" />
-					</a>
-				</h1>
-				<nav>
-					<ul>
-						<li><a href="#">How to help</a></li>
-						<li><a href="#">About us</a></li>
-						<li>
-				{% if user.is_authenticated %}
-				{% user_display user as user_display %}
-							<a title="{% blocktrans %}{{ user_display }} has logged in...{% endblocktrans %}"
-							   href="{% url 'account_logout' %}">{% trans "Logout" %}</a>
-				{% else %}
-							<a title="{% trans 'Please login' %}"
-							   href="{% url 'account_login' %}">{% trans "Login" %}</a>
-				{% endif %}
-						</li>
-					</ul>
-				</nav>
-			</div>
-		</div>
-		<div class="row info">
-			<div class="col-md-7">
-				<h2 class="title">World Updates</h2>
-			</div>
-			<div class="col-md-3 counter">
-				<h3>838 refugees</h3>
-				<p>need your help around the world</p>
-			</div>
-			<div class="col-md-2 counter">
-				<h3>$1206,43</h3>
-				<p>donated to them so far</p>
-			</div>
-		</div>
-	</header>
-  </div>
+		<div class="container-fluid">
+			<header class="fixed">
+				<div class="row topbar">
+					<div class="col-md-12">
+						<h1>
+							<a href="#">
+								<img src="{% static 'img/logo.png' %}" alt="Hopestarter" />
+							</a>
+						</h1>
+						<nav>
+							<ul>
+								<li><a href="#">How to help</a></li>
+								<li><a href="#">About us</a></li>
+								<li>
+						{% if user.is_authenticated %}
+						{% user_display user as user_display %}
+									<a title="{% blocktrans %}{{ user_display }} has logged in...{% endblocktrans %}"
+									   href="{% url 'account_logout' %}">{% trans "Logout" %}</a>
+						{% else %}
+									<a title="{% trans 'Please login' %}"
+									   href="{% url 'account_login' %}">{% trans "Login" %}</a>
+						{% endif %}
+								</li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+				<div class="row info">
+					<div class="col-md-7">
+						<h2 class="title">World Updates</h2>
+					</div>
+					<div class="col-md-3 counter">
+						<h3>838 refugees</h3>
+						<p>need your help around the world</p>
+					</div>
+					<div class="col-md-2 counter">
+						<h3>$1206,43</h3>
+						<p>donated to them so far</p>
+					</div>
+				</div>
+			</header>
 
-
-
-    {% block content %}{% endblock %}
-    {% block extrajs %}{% endblock %}
+		    {% block content %}{% endblock %}
+		    {% block extrajs %}{% endblock %}
+	  	</div>
   </body>
 </html>
