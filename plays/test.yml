@@ -7,8 +7,8 @@
   roles:
       - common
       - { role: hopestarterdb, dbhost: "{{ rds.instance.endpoint }}" }
-      - { role: hopeapi, dbhost: "{{ rds.instance.endpoint }}"  }
-      - { role: hopeweb, dbhost: "{{ rds.instance.endpoint }}"  }
+      - { role: hopeapi, dbhost: "{{ rds.instance.endpoint }}", app_settings: "{{ api_settings }}"  }
+      - { role: hopeweb, dbhost: "{{ rds.instance.endpoint }}", app_settings: "{{ web_settings }}"  }
       - { role: hopesecrets }
   post_tasks:
       - include: post.yml
@@ -22,4 +22,5 @@
       become_method: sudo
       repo_url: "https://github.com/hopestarter/hopestarterapp.git"
       app_home: /home/ec2-user/
-      app_settings: hopestarter.settings.api_production
+      api_settings: hopestarter.settings.api_production
+      web_settings: hopestarter.settings.production
