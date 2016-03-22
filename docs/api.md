@@ -19,6 +19,12 @@ Probably a _Accept_ header with a JSON based MIME type which includes the versio
 
 ## Authentication with user credentials via mobile app
 
+
+For user authentication in the API we use OAuth 2.0 with bearer tokens. A valid token authenticates the client's user and authorizes the client to act on behalf of the user based on the token scope. Valid token scopes are:
+
+1. `update-profile`
+1. `set-location`
+
 The URLs we will use are:
 
 ### Token request (_/o/token/_)
