@@ -21,8 +21,4 @@ class ProfileURLField(fields.CharField):
         self.validators.append(validator)
 
     def to_representation(self, url):
-        _, key_name = S3URLValidator.get_bucket_and_key(url)
-        if key_name is None:
-            return settings.BROKEN_IMAGE_URL
-        return 'https://{}/images/medium/{}'.format(
-            settings.AWS_BUCKET_UPLOAD_CDN, key_name)
+        return S3URLValidator.get_public_url(url)

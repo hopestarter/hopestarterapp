@@ -3,6 +3,9 @@ from django.conf import settings
 from django.utils import timezone
 
 
+from hopebase.validators import S3URLValidator
+
+
 class UserProfile(models.Model):
 
     user = models.OneToOneField(settings.AUTH_USER_MODEL,
@@ -22,6 +25,13 @@ class UserProfile(models.Model):
     def __unicode__(self):
         return " ".join(filter(None, [self.name, self.surname]))
 
+    def _picture_url(self, size='medium'):
+        return S3URLValidator.get_public_url(self.picture, size)
+
+    @property
+    def picture_thumbnail(self):
+        return self._picture_url('thumbnail')
+
 
 class ImageUpload(models.Model):
     created = models.DateTimeField(editable=False, blank=True)
@@ -38,4 +48,15 @@ class ImageUpload(models.Model):
         super(ImageUpload, self).save(*args, **kwargs)
 
     def __unicode__(self):
-        return self.__class__.name + ":" + self.url
+        return self.__class__.__name__ + ":" + self.url
+
+    def _picture_url(self, size='medium'):
+        return S3URLValidator.get_public_url(self.url, size)
+
+    @property
+    def thumbnail(self):
+        return self._picture_url('thumbnail')
+
+    @property
+    def medium(self):
+        return self._picture_url('medium')

@@ -40,3 +40,12 @@ class S3URLValidator(RegexValidator):
         if not match or len(match.groups()) != 2:
             return (None, None)
         return (match.group(1), match.group(2))
+
+
+    @classmethod
+    def get_public_url(cls, url, size='medium'):
+        _, key_name = cls.get_bucket_and_key(url)
+        if key_name is None:
+            return settings.BROKEN_IMAGE_URL
+        return 'https://{}/images/{}/{}'.format(
+            settings.AWS_BUCKET_UPLOAD_CDN, size, key_name)

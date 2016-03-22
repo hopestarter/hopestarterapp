@@ -15,30 +15,24 @@
     {% for mark in object_list %}
       <div class="status">
         <header>
-          <!-- TEMPORARY DATA FOR TESTING -->
-          <a class="profile-picture" href="#"><img src="/static/img/avatar_s.png" alt="profile picture"/></a>
-          <a class="username" href="#">Muhammad Erbil</a>
-          <div class="meta">
-            <p>
-              <span class="ethnicity">Syrian</span> &middot; <span class="location">Athens, Greece</span> &middot; <span class="time">10 minutes ago</span>
-            </p>
-          </div>
-          <!-- END OF TEMPORARY DATA FOR TESTING -->
-          <!-- WHEN WE HAVE REAL DATA, DELETE THE TEMPORARY ABOVE AND UNCOMMENT THE FOLLOWING -->
-          <!--<a class="profile-picture" href="#"><img src="{{ mark.user.profile.picture|default:"https://dl-web.dropbox.com/account_photo/get/dbid%3AAADpuOR1rMlu--LBQJi4BXnoUVIM0RYzpWY?vers=1417006963406&circle_crop=1&size=128x128" }}" alt="profile picture of {{ mark.user.profile|escape }}"/></a>
+          <a class="profile-picture" href="#"><img src="{{ mark.user.profile.picture_thumbnail|default:"https://dl-web.dropbox.com/account_photo/get/dbid%3AAADpuOR1rMlu--LBQJi4BXnoUVIM0RYzpWY?vers=1417006963406&circle_crop=1&size=128x128" }}" alt="profile picture of {{ mark.user.profile|escape }}"/></a>
           <a class="username" href="#">{{ mark.user.profile }}</a>
           <div class="meta">
             <p>
               <span class="ethnicity">{% for m in mark.user.membership.all %}{{ m.ethnicity }}{% include "comma.html" %}{% endfor %}</span> &middot; <span class="location">Athens, Greece</span> &middot; <span class="time">{{ mark.created|naturaltime }}</span>
             </p>
-          </div>-->
+          </div>
         </header>
+        {% if mark.picture %}
         <div class="photo">
-          <img src="https://farm3.staticflickr.com/2430/3729158698_a50f932c48_z_d.jpg" alt="towel on beach"/>
+            <img src="{{ mark.picture.all.0.medium|default:"https://farm3.staticflickr.com/2430/3729158698_a50f932c48_z_d.jpg" }}" alt="towel on beach"/>
         </div>
+        {% endif %}
+        {% if mark.text %}
         <div class="message">
-          <p>The island we landed on was called Samothrace. We were so thankful to be there. We thought we’d reached safety.</p>
+            <p>{{ mark.text }}</p>
         </div>
+        {% endif %}
         <div class="number-of-views">
           <small>344 views</small>
         </div>
