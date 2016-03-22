@@ -3,6 +3,7 @@ from .web import *
 from .space import *
 from .log import *
 from .utils import get_env_variable
+from .aws import *
 from .auth import *
 
 INSTALLED_APPS += AUTH_INSTALLED_APPS
