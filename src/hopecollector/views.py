@@ -3,22 +3,30 @@ import json
 
 from django.conf import settings
 
-from rest_framework import mixins
 from rest_framework import generics
+from rest_framework.filters import DjangoFilterBackend, OrderingFilter
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
-from hopecollector import serializers
+from hopecollector import serializers, filters
 from hopecollector.utils import generate_upload_prefix
 from hopebase import permissions
 from hopespace.models import LocationMark
 
 
-class LocationMarkSubmitView(generics.CreateAPIView):
+class LocationMarkView(generics.ListCreateAPIView):
     permission_classes = [getattr(permissions, p) for p in settings.LOCATION_PERMS]
     required_scopes = ['set-location']
     model = LocationMark
+    filter_backends = (DjangoFilterBackend, OrderingFilter)
+    filter_class = filters.LocationMarkFilterSet
+    ordering_fields = ('created',)
+    ordering = ('-created',)
     serializer_class = serializers.LocationMarkSerializer
+
+
+    def get_queryset(self):
+        return LocationMark.objects.filter(user=self.request.user)
 
 
 @api_view(['POST'])

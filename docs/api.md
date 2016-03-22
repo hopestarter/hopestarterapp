@@ -117,6 +117,51 @@ Request attributes:
 * `image_url`: the S3 URL of a previously uploaded image.
 
 
+## Read user's past positions (_/collector/mark/_)
+
+```
+curl -s -H "Authorization: Bearer LLXoqcMuxm3QPIYhmL9I1SJp7oNMD5" http://127.0.0.1:8000/api/collector/mark/ | python -m json.tool
+{
+    "count": 8,
+    "next": null,
+    "previous": null,
+    "results": {
+        "features": [
+            {
+                "geometry": {
+                    "coordinates": [
+                        1000.0,
+                        1000.0
+                    ],
+                    "type": "Point"
+                },
+                "properties": {
+                    "created": "2016-08-22T16:20:09.822000Z"
+                },
+                "type": "Feature"
+            },
+            {
+                "geometry": {
+                    "coordinates": [
+                        123.0,
+                        123.0
+                    ],
+                    "type": "Point"
+                },
+                "properties": {
+                    "created": "2012-08-22T16:20:09.822000Z"
+                },
+                "type": "Feature"
+            },
+			...
+		]
+	}
+}
+```
+
+Filtering on the `created` field is possible. Also ordering based on the `created` field. TODO add some examples.
+
+
 ## Edit user profile (_/user/profile/_)
 
 To use this endpoint you need a token with `update-profile` scope.

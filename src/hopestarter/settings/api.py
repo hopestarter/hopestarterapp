@@ -16,6 +16,7 @@ INSTALLED_APPS += (
     'rest_framework_gis',
     'social.apps.django_app.default',
     'rest_framework_social_oauth2',
+    'django_filters',
     'hopecollector',
 )
 
