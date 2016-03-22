@@ -8,3 +8,5 @@ AWS_VERIFY=True
 
 AWS_QUERYSTRING_AUTH = False
 
+
+BROKEN_IMAGE_URL = 'https://{}/images/medium/broken_image.png'.format(AWS_BUCKET_UPLOAD_CDN)
