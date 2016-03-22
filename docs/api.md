@@ -104,7 +104,11 @@ Important: This operation requires a token the `set-location` scope (see example
 			"type": "point",
 			"coordinates": [1000, 1000]
 		},
-		"image_url": "s3://hopebucket/uploads/70e03e9b-242a-49a6-85fa-cba18dabeebd/123456/myfamily.jpg"
+        "picture": [
+            {
+                "url": "s3://staginghopestarterimageupload/uploads/4d45d9f3-956f-4939-972c-cd33b0bd945c/profile.jpg"
+            }
+        ]
 	}
 
 	$ curl -H "Authorization: Bearer <your_access_token>" -X POST -H "Content-Type: application/json" -d "$JSON_BODY"  http://localhost:8000/api/collector/mark/
@@ -114,7 +118,7 @@ The server responds with `202 Created` upon succesfull validation of the data.
 Request attributes:
 * `created`: an ISO formatted timestamp of when this position was recorded (timezone information is required, for example above, the timezone is UTC).
 * `point`: a Geo-JSON formatted feature specification. `type` is required to be `point`.
-* `image_url`: the S3 URL of a previously uploaded image.
+* `picture`: a list of S3 URLs of previously uploaded images.
 
 
 ## Read user's past positions (_/collector/mark/_)
@@ -136,7 +140,12 @@ curl -s -H "Authorization: Bearer LLXoqcMuxm3QPIYhmL9I1SJp7oNMD5" http://127.0.0
                     "type": "Point"
                 },
                 "properties": {
-                    "created": "2016-08-22T16:20:09.822000Z"
+                    "created": "2016-08-22T16:20:09.822000Z",
+                    "picture": [
+                        {
+                            "url": "https://d2uc1tz5ijwlrf.cloudfront.net/images/medium/uploads/4d45d9f3-956f-4939-972c-cd33b0bd945c/profile.jpg"
+                        }
+					]
                 },
                 "type": "Feature"
             },
@@ -149,7 +158,12 @@ curl -s -H "Authorization: Bearer LLXoqcMuxm3QPIYhmL9I1SJp7oNMD5" http://127.0.0
                     "type": "Point"
                 },
                 "properties": {
-                    "created": "2012-08-22T16:20:09.822000Z"
+                    "created": "2012-08-22T16:20:09.822000Z",
+                    "picture": [
+                        {
+                            "url": "https://d2uc1tz5ijwlrf.cloudfront.net/images/medium/uploads/4d45d9f3-956f-4939-972c-cd33b0bd945c/profile.jpg"
+                        }
+					]
                 },
                 "type": "Feature"
             },

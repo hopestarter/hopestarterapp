@@ -12,6 +12,7 @@ class LocationMarkSerializer(GeoFeatureModelSerializer):
     user = serializers.HiddenField(default=create_only_user)
 
     class _ImageSerializer(serializers.HyperlinkedModelSerializer):
+        url = fields.ProfileURLField(max_length=200, allow_blank=True)
 
         class Meta:
             model = LocationImageUpload
