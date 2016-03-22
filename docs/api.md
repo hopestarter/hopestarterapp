@@ -48,6 +48,9 @@ We use the [Resource owner password credentials](http://tools.ietf.org/html/rfc6
 
 	$ curl -H "Authorization: Bearer <your_access_token>" -X GET http://localhost:8000/api/some/api/method/
 
+
+If you want to request a token with multiple scopes separate the scopes with a space character, e.g. in URL encoding: `scope=update-profile%20set-location`.
+
 ##  Authentication with social network identity via mobile app (_/o/auth/_)
 
 TBD
