@@ -31,7 +31,7 @@ class ProfileURLField(fields.CharField):
         bucket_name, key_name = self.get_bucket_and_key(data)
         if bucket_name not in [settings.AWS_BUCKET_UPLOAD]:
             raise ValidationError("Invalid bucket name in URL")
-        bucket = boto3.resource('s3', verify=False).Bucket(bucket_name)
+        bucket = boto3.resource('s3', verify=settings.AWS_VERIFY).Bucket(bucket_name)
         key = bucket.Object(key_name)
         try:
             metadata = key.metadata

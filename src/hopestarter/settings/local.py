@@ -19,3 +19,5 @@ SITE_ID = 1
 GRAPPELLI_INDEX_DASHBOARD = 'hopestarter.dashboard.CustomIndexDashboard'
 
 ACCOUNT_SIGNUP_PASSWORD_VERIFICATION = False
+
+AWS_VERIFY=False

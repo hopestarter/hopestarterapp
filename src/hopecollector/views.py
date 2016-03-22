@@ -54,7 +54,7 @@ def upload_image(request):
         ]
     })
 
-    client = boto3.client('sts')
+    client = boto3.client('sts', verify=settings.AWS_VERIFY)
     response = client.get_federation_token(
         Name=request.user.username,
         Policy=bpolicy,
