@@ -119,6 +119,7 @@ Request attributes:
 * `created`: an ISO formatted timestamp of when this position was recorded (timezone information is required, for example above, the timezone is UTC).
 * `point`: a Geo-JSON formatted feature specification. `type` is required to be `point`.
 * `picture`: a list of S3 URLs of previously uploaded images.
+* `text`: a free text description of the event
 
 
 ## Read user's past positions (_/collector/mark/_)
@@ -141,6 +142,7 @@ curl -s -H "Authorization: Bearer LLXoqcMuxm3QPIYhmL9I1SJp7oNMD5" http://127.0.0
                 },
                 "properties": {
                     "created": "2016-08-22T16:20:09.822000Z",
+                    "text": "Finally we arrived..",
                     "picture": [
                         {
                             "url": "https://d2uc1tz5ijwlrf.cloudfront.net/images/medium/uploads/4d45d9f3-956f-4939-972c-cd33b0bd945c/profile.jpg"
@@ -159,6 +161,7 @@ curl -s -H "Authorization: Bearer LLXoqcMuxm3QPIYhmL9I1SJp7oNMD5" http://127.0.0
                 },
                 "properties": {
                     "created": "2012-08-22T16:20:09.822000Z",
+                    "text": "Still not there yet..",
                     "picture": [
                         {
                             "url": "https://d2uc1tz5ijwlrf.cloudfront.net/images/medium/uploads/4d45d9f3-956f-4939-972c-cd33b0bd945c/profile.jpg"
