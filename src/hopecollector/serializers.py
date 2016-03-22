@@ -38,4 +38,4 @@ class LocationMarkSerializer(GeoFeatureModelSerializer):
         model = LocationMark
         geo_field = "point"
         depth = 1
-        fields = ('created', 'point', 'user', 'picture')
+        fields = ('created', 'point', 'user', 'picture', 'text')

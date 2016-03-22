@@ -9,6 +9,8 @@ class LocationMark(models.Model):
     created = models.DateTimeField()
     point = models.PointField()
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='marks')
+    text = models.TextField(null=True, blank=True)
+
 
     # Returns the string representation of the model.
     def __str__(self):              # __unicode__ on Python 2
