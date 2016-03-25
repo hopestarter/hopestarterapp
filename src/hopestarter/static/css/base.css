@@ -137,6 +137,11 @@ h2.title {
   float: left;
 }
 
+.profile-picture img {
+    max-width:100%;
+    max-height:100%;
+}
+
 .username {
   color: #3DB4CC;
   font-weight: bold;
