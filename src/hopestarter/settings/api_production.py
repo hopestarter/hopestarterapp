@@ -24,7 +24,7 @@ SECRET_KEY = get_env_variable("SECRET_KEY")
 #REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = ('rest_framework.renderers.JSONRenderer',)
 #REST_FRAMEWORK["DEFAULT_AUTHENTICATION_CLASSES"] = (
 #    'oauth2_provider.ext.rest_framework.OAuth2Authentication',
-)
+#)
 #LOCATION_PERMS = ['IsAuthenticated', 'TokenHasScope']
 #PROFILE_PERMS = ['IsAuthenticated', 'TokenHasScope']
 #ETHNICITY_PERMS = ['IsAuthenticated', 'TokenHasResourceScope']
