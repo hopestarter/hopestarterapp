@@ -1,15 +1,24 @@
-from oauth2_provider.ext.rest_framework import TokenHasScope
+from oauth2_provider.ext.rest_framework import (
+    OAuth2Authentication, TokenHasScope, TokenHasResourceScope
+)
 from rest_framework.permissions import *
 
-class OptionalTokenHasScope(TokenHasScope):
+class WeakTokenMixin(object):
+
     """
-    The request is authenticated as a user and if the token
-    exists it has the right scope.
+    The request is authenticated as a user if the token
+    exists it has the right scope or if it was already authenticated.
     """
 
     def has_permission(self, request, view):
-        token = request.auth
-
-        if not token:
+        if request.successful_authenticator != OAuth2Authentication:
             return True
-        return super(OptionalTokenHasScope, self).has_permission(request, view)
+        return super(WeakTokenMixin, self).has_permission(request, view)
+
+
+class WeakTokenHasScope(WeakTokenMixin, TokenHasScope):
+    pass
+
+
+class WeakTokenHasResourceScope(WeakTokenMixin, TokenHasResourceScope):
+    pass

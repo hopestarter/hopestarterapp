@@ -1,10 +1,21 @@
+from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from django.conf import settings
 
-from rest_framework import generics
+from rest_framework import generics, mixins
 
 from hopebase import serializers, permissions
 from hopebase.models import UserProfile
+
+
+class UserView(generics.RetrieveAPIView):
+    permission_classes = [getattr(permissions, p) for p in settings.ETHNICITY_PERMS]
+    required_scopes = ['account']
+    model = User
+    serializer_class = serializers.UserSerializer
+
+    def get_object(self):
+        return self.request.user
 
 
 class UserProfileView(generics.RetrieveUpdateAPIView):
