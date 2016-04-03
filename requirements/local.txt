@@ -1,5 +1,5 @@
 -r base.txt
 -r auth.txt
 -r web.txt
-django-debug-toolbar
-django-extensions
+django-debug-toolbar==1.4
+django-extensions==1.6.1
