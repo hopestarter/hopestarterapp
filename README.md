@@ -39,6 +39,17 @@ ansible-playbook -i inventory/local local.yml
 
 Last, run `./manage.py syncdb` from within the `src` directory.
 
+
+## Test fixtures
+
+Optionally load the fixtures as follows:
+
+```
+./manage.py loaddata hopestarter/fixtures/auth.yaml
+./manage.py loaddata hopebase/fixtures/data.yaml
+./manage.py loaddata hopespace/fixtures/data.yaml
+```
+
 ## Running the website
 
 Execute `./manage.py runserver` from within the `src` directory.
