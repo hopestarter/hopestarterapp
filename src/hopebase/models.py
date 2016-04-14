@@ -38,7 +38,7 @@ class ImageUpload(models.Model):
     modified = models.DateTimeField(editable=False, blank=True)
     url = models.URLField(max_length=200, null=True, blank=True)
 
-    class Meta:
+    class Meta(object):
         abstract = True
 
     def save(self, *args, **kwargs):

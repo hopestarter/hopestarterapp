@@ -24,7 +24,7 @@ class LocationImageUpload(ImageUpload):
 
 
 class Ethnicity(models.Model):
-    class Meta:
+    class Meta(object):
         ordering = ['name']
         verbose_name_plural = "ethnicities"
 

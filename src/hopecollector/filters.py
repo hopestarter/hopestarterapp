@@ -9,12 +9,12 @@ class LocationMarkFilterSet(FilterSet):
     after = django_filters.IsoDateTimeFilter(name="created", lookup_expr='gte')
     before = django_filters.IsoDateTimeFilter(name="created", lookup_expr='lte')
 
-    class Meta:
+    class Meta(object):
         model = LocationMark
         fields = ['created', 'user']
 
 
 class UserLocationMarkFilterSet(LocationMarkFilterSet):
-    class Meta:
-        model = LocationMark
+
+    class Meta(LocationMarkFilterSet.Meta):
         fields = ['created']
