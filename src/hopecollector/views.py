@@ -3,7 +3,7 @@ import json
 
 from django.conf import settings
 
-from rest_framework import generics
+from rest_framework import generics, mixins
 from rest_framework.filters import DjangoFilterBackend, OrderingFilter
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -14,16 +14,20 @@ from hopebase import permissions
 from hopespace.models import LocationMark
 
 
-class LocationMarkView(generics.ListCreateAPIView):
+class LocationMarkView(generics.ListAPIView):
     permission_classes = [getattr(permissions, p) for p in settings.LOCATION_PERMS]
-    required_scopes = ['set-location']
-    model = LocationMark
+    queryset = LocationMark.objects.all()
     filter_backends = (DjangoFilterBackend, OrderingFilter)
     filter_class = filters.LocationMarkFilterSet
     ordering_fields = ('created',)
     ordering = ('-created',)
     serializer_class = serializers.LocationMarkSerializer
 
+
+class UserLocationMarkView(generics.CreateAPIView, LocationMarkView):
+    filter_class = filters.UserLocationMarkFilterSet
+    required_scopes = ['set-location']
+    serializer_class = serializers.UserLocationMarkSerializer
 
     def get_queryset(self):
         return LocationMark.objects.filter(user=self.request.user)
