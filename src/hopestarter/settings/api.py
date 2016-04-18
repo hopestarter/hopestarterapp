@@ -1,4 +1,9 @@
-from .base import *
+import os
+
+if os.environ.get('LOGNAME')=='mpetyx':
+    from .mpetyx_base import *
+else:
+    from .base import *
 from .space import *
 from .log import *
 from .aws import *
@@ -48,4 +53,5 @@ LOCATION_PERMS = ['IsAuthenticated', 'WeakTokenHasScope']
 PROFILE_PERMS = ['IsAuthenticated', 'WeakTokenHasScope']
 ETHNICITY_PERMS = ['IsAuthenticated', 'WeakTokenHasScope']
 
-from .api_secret import *
+if os.environ.get('LOGNAME')!='mpetyx':
+    from .api_secret import *
