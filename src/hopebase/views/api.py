@@ -6,12 +6,15 @@ from rest_framework import generics, mixins
 
 from hopebase import serializers, permissions
 from hopebase.models import UserProfile
+from hopebase.pagination import StandardResultsSetPagination
 
 
 class UserView(generics.RetrieveAPIView):
     permission_classes = [getattr(permissions, p) for p in settings.ETHNICITY_PERMS]
     required_scopes = ['account']
     model = User
+    pagination_class = StandardResultsSetPagination
+
     serializer_class = serializers.UserSerializer
 
     def get_object(self):
@@ -22,6 +25,7 @@ class UserProfileView(generics.RetrieveUpdateAPIView):
     permission_classes = [getattr(permissions, p) for p in settings.PROFILE_PERMS]
     required_scopes = ['update-profile']
     model = UserProfile
+    pagination_class = StandardResultsSetPagination
     serializer_class = serializers.UserProfileSerializer
 
     def get_queryset(self):
