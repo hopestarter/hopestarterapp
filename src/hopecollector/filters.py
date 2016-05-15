@@ -9,7 +9,7 @@ class LocationMarkFilterSet(FilterSet):
     after = django_filters.IsoDateTimeFilter(name="created", lookup_expr='gte')
     before = django_filters.IsoDateTimeFilter(name="created", lookup_expr='lte')
 
-    class Meta(object):
+    class Meta:
         model = LocationMark
         fields = ['created', 'user']
 

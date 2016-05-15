@@ -10,7 +10,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     picture = fields.ProfileURLField(max_length=200, allow_blank=True)
 
-    class Meta(object):
+    class Meta:
         model = models.UserProfile
         exclude = ('user', 'id', 'modified')
         read_only_fields = ('created')
@@ -28,7 +28,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         return "{}?user={}".format(
             reverse('collector:locationmark', request=request), obj.id)
 
-    class Meta(object):
+    class Meta:
         model = get_user_model()
         fields = ('username', 'profile', 'ethnicities', 'mark')
         read_only_fields = ('username',)

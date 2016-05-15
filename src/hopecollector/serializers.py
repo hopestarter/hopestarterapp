@@ -16,7 +16,7 @@ class LocationMarkSerializer(GeoFeatureModelSerializer):
     class _ImageSerializer(serializers.HyperlinkedModelSerializer):
         url = ProfileURLField(max_length=200, allow_blank=True)
 
-        class Meta(object):
+        class Meta:
             model = LocationImageUpload
             exclude = ('mark', 'modified', 'created')
 
@@ -35,7 +35,7 @@ class LocationMarkSerializer(GeoFeatureModelSerializer):
             LocationImageUpload.objects.create(mark=mark, **picture)
         return mark
 
-    class Meta(object):
+    class Meta:
         model = LocationMark
         geo_field = "point"
         depth = 1
