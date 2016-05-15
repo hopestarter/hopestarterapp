@@ -3,7 +3,7 @@ import json
 
 from django.conf import settings
 
-from rest_framework import generics, mixins
+from rest_framework import generics
 from rest_framework.filters import DjangoFilterBackend, OrderingFilter
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
