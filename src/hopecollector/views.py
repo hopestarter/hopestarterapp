@@ -26,7 +26,8 @@ class LocationMarkView(generics.ListCreateAPIView):
 
 
     def get_queryset(self):
-        return LocationMark.objects.filter(user=self.request.user)
+        # return LocationMark.objects.filter(user=self.request.user)
+        return LocationMark.objects.all().order_by('-created')
 
 
 @api_view(['POST'])

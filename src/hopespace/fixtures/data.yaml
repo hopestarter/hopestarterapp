@@ -1,0 +1,320 @@
+- fields:
+    created: 2012-08-22 16:20:09.822000+00:00
+    point: SRID=4326;POINT (1000.0000000000000000 1000.0000000000000000)
+    text: null
+    user: [trialarilaro11]
+  model: hopespace.locationmark
+  pk: 7
+- fields:
+    created: 2012-08-22 16:20:09.822000+00:00
+    point: SRID=4326;POINT (1000.0000000000000000 1000.0000000000000000)
+    text: null
+    user: [trialarilaro11]
+  model: hopespace.locationmark
+  pk: 8
+- fields:
+    created: 2012-08-22 16:20:09.822000+00:00
+    point: SRID=4326;POINT (1000.0000000000000000 1000.0000000000000000)
+    text: null
+    user: [trialarilaro11]
+  model: hopespace.locationmark
+  pk: 9
+- fields:
+    created: 2012-08-22 16:20:09.822000+00:00
+    point: SRID=4326;POINT (22.7636718718310682 27.4497903262556378)
+    text: null
+    user: [testuser123455]
+  model: hopespace.locationmark
+  pk: 10
+- fields:
+    created: 2012-08-22 16:20:09.822000+00:00
+    point: SRID=4326;POINT (1000.0000000000000000 1000.0000000000000000)
+    text: null
+    user: [testuser123455]
+  model: hopespace.locationmark
+  pk: 11
+- fields:
+    created: 2012-08-22 16:20:09.822000+00:00
+    point: SRID=4326;POINT (1000.0000000000000000 1000.0000000000000000)
+    text: null
+    user: [testuser123455]
+  model: hopespace.locationmark
+  pk: 12
+- fields:
+    created: 2012-08-22 16:20:09.822000+00:00
+    point: SRID=4326;POINT (1000.0000000000000000 1000.0000000000000000)
+    text: null
+    user: [testuser123455]
+  model: hopespace.locationmark
+  pk: 13
+- fields:
+    created: 2012-08-22 16:20:09.822000+00:00
+    point: SRID=4326;POINT (1000.0000000000000000 1000.0000000000000000)
+    text: null
+    user: [testuser123455]
+  model: hopespace.locationmark
+  pk: 14
+- fields:
+    created: 2012-08-22 16:20:09.822000+00:00
+    point: SRID=4326;POINT (1000.0000000000000000 1000.0000000000000000)
+    text: null
+    user: [testuser123455]
+  model: hopespace.locationmark
+  pk: 15
+- fields:
+    created: 2012-08-22 16:20:09.822000+00:00
+    point: SRID=4326;POINT (1000.0000000000000000 1000.0000000000000000)
+    text: null
+    user: [testuser123455]
+  model: hopespace.locationmark
+  pk: 16
+- fields:
+    created: 2012-08-22 16:20:09.822000+00:00
+    point: SRID=4326;POINT (1000.0000000000000000 1000.0000000000000000)
+    text: null
+    user: [testuser123455]
+  model: hopespace.locationmark
+  pk: 17
+- fields:
+    created: 2012-08-22 16:20:09.822000+00:00
+    point: SRID=4326;POINT (1000.0000000000000000 1000.0000000000000000)
+    text: null
+    user: [testuser123455]
+  model: hopespace.locationmark
+  pk: 18
+- fields:
+    created: 2012-08-22 16:20:09.822000+00:00
+    point: SRID=4326;POINT (1000.0000000000000000 1000.0000000000000000)
+    text: null
+    user: [testuser123455]
+  model: hopespace.locationmark
+  pk: 19
+- fields:
+    created: 2012-08-22 16:20:09.822000+00:00
+    point: SRID=4326;POINT (1000.0000000000000000 1000.0000000000000000)
+    text: null
+    user: [testuser123455]
+  model: hopespace.locationmark
+  pk: 20
+- fields:
+    created: 2012-08-22 16:20:09.822000+00:00
+    point: SRID=4326;POINT (1000.0000000000000000 1000.0000000000000000)
+    text: null
+    user: [testuser123455]
+  model: hopespace.locationmark
+  pk: 21
+- fields:
+    created: 2012-08-22 16:20:09.822000+00:00
+    point: SRID=4326;POINT (1000.0000000000000000 1000.0000000000000000)
+    text: null
+    user: [testuser123455]
+  model: hopespace.locationmark
+  pk: 22
+- fields:
+    created: 2012-08-22 16:20:09.822000+00:00
+    point: SRID=4326;POINT (1000.0000000000000000 1000.0000000000000000)
+    text: null
+    user: [testuser123455]
+  model: hopespace.locationmark
+  pk: 23
+- fields:
+    created: 2012-08-22 16:20:09.822000+00:00
+    point: SRID=4326;POINT (1000.0000000000000000 1000.0000000000000000)
+    text: null
+    user: [testuser123455]
+  model: hopespace.locationmark
+  pk: 24
+- fields:
+    created: 2012-08-22 16:20:09.822000+00:00
+    point: SRID=4326;POINT (1000.0000000000000000 1000.0000000000000000)
+    text: null
+    user: [testuser123455]
+  model: hopespace.locationmark
+  pk: 25
+- fields:
+    created: 2012-08-22 16:20:09.822000+00:00
+    point: SRID=4326;POINT (1000.0000000000000000 1000.0000000000000000)
+    text: null
+    user: [testuser123455]
+  model: hopespace.locationmark
+  pk: 26
+- fields:
+    created: 2012-08-22 16:20:09.822000+00:00
+    point: SRID=4326;POINT (1000.0000000000000000 1000.0000000000000000)
+    text: null
+    user: [testuser123455]
+  model: hopespace.locationmark
+  pk: 27
+- fields:
+    created: 2012-08-22 16:20:09.822000+00:00
+    point: SRID=4326;POINT (1000.0000000000000000 1000.0000000000000000)
+    text: null
+    user: [testuser123455]
+  model: hopespace.locationmark
+  pk: 28
+- fields:
+    created: 2012-08-22 16:20:09.822000+00:00
+    point: SRID=4326;POINT (1000.0000000000000000 1000.0000000000000000)
+    text: null
+    user: [testuser123455]
+  model: hopespace.locationmark
+  pk: 29
+- fields:
+    created: 2012-08-22 16:20:09.822000+00:00
+    point: SRID=4326;POINT (1000.0000000000000000 1000.0000000000000000)
+    text: null
+    user: [testuser123455]
+  model: hopespace.locationmark
+  pk: 30
+- fields:
+    created: 2012-08-22 16:20:09.822000+00:00
+    point: SRID=4326;POINT (1000.0000000000000000 1000.0000000000000000)
+    text: null
+    user: [testuser123455]
+  model: hopespace.locationmark
+  pk: 31
+- fields:
+    created: 2012-08-22 16:20:09.822000+00:00
+    point: SRID=4326;POINT (1000.0000000000000000 1000.0000000000000000)
+    text: null
+    user: [testuser123455]
+  model: hopespace.locationmark
+  pk: 32
+- fields:
+    created: 2012-08-22 16:20:09.822000+00:00
+    point: SRID=4326;POINT (1000.0000000000000000 1000.0000000000000000)
+    text: null
+    user: [testuser123455]
+  model: hopespace.locationmark
+  pk: 33
+- fields:
+    created: 2012-08-22 16:20:09.822000+00:00
+    point: SRID=4326;POINT (1000.0000000000000000 1000.0000000000000000)
+    text: null
+    user: [testuser123455]
+  model: hopespace.locationmark
+  pk: 34
+- fields: {created: ! '2016-02-25 10:09:53.405563+00:00', mark: 20, modified: ! '2016-02-25
+      10:09:53.405577+00:00', url: 'http://foobar.com/'}
+  model: hopespace.locationimageupload
+  pk: 1
+- fields: {created: ! '2016-02-25 10:11:19.693248+00:00', mark: 21, modified: ! '2016-02-25
+      10:11:19.693260+00:00', url: 'http://foobar.com/'}
+  model: hopespace.locationimageupload
+  pk: 2
+- fields: {created: ! '2016-02-25 10:13:48.265132+00:00', mark: 24, modified: ! '2016-02-25
+      10:13:48.265154+00:00', url: 'http://foobar.com/'}
+  model: hopespace.locationimageupload
+  pk: 3
+- fields: {created: ! '2016-02-25 10:14:06.812840+00:00', mark: 25, modified: ! '2016-02-25
+      10:14:06.812864+00:00', url: 'http://foobar.com/'}
+  model: hopespace.locationimageupload
+  pk: 4
+- fields: {created: ! '2016-02-25 10:14:06.817312+00:00', mark: 25, modified: ! '2016-02-25
+      10:14:06.817334+00:00', url: 'http://tralala.com/foo'}
+  model: hopespace.locationimageupload
+  pk: 5
+- fields: {created: ! '2016-02-25 10:14:12.846836+00:00', mark: 26, modified: ! '2016-02-25
+      10:14:12.846851+00:00', url: 'http://foobar.com/'}
+  model: hopespace.locationimageupload
+  pk: 6
+- fields: {created: ! '2016-02-25 10:14:12.848846+00:00', mark: 26, modified: ! '2016-02-25
+      10:14:12.848861+00:00', url: 'http://tralala.com/foo'}
+  model: hopespace.locationimageupload
+  pk: 7
+- fields: {created: ! '2016-02-25 10:42:04.575265+00:00', mark: 27, modified: ! '2016-02-25
+      10:42:04.575279+00:00', url: 'http://foobar.com/'}
+  model: hopespace.locationimageupload
+  pk: 8
+- fields: {created: ! '2016-02-25 10:42:04.578150+00:00', mark: 27, modified: ! '2016-02-25
+      10:42:04.578163+00:00', url: 'http://tralala.com/foo'}
+  model: hopespace.locationimageupload
+  pk: 9
+- fields: {created: ! '2016-02-25 10:42:10.552832+00:00', mark: 28, modified: ! '2016-02-25
+      10:42:10.552845+00:00', url: 'http://foobar.com/'}
+  model: hopespace.locationimageupload
+  pk: 10
+- fields: {created: ! '2016-02-25 10:42:10.554198+00:00', mark: 28, modified: ! '2016-02-25
+      10:42:10.554208+00:00', url: 'http://tralala.com/foo'}
+  model: hopespace.locationimageupload
+  pk: 11
+- fields: {created: ! '2016-02-25 10:42:21.308048+00:00', mark: 29, modified: ! '2016-02-25
+      10:42:21.308065+00:00', url: 'http://foobar.com/'}
+  model: hopespace.locationimageupload
+  pk: 12
+- fields: {created: ! '2016-02-25 10:42:21.310191+00:00', mark: 29, modified: ! '2016-02-25
+      10:42:21.310202+00:00', url: 'http://tralala.com/foo'}
+  model: hopespace.locationimageupload
+  pk: 13
+- fields: {created: ! '2016-02-25 10:42:32.630944+00:00', mark: 30, modified: ! '2016-02-25
+      10:42:32.630958+00:00', url: 'http://foobar.com/'}
+  model: hopespace.locationimageupload
+  pk: 14
+- fields: {created: ! '2016-02-25 10:42:32.632365+00:00', mark: 30, modified: ! '2016-02-25
+      10:42:32.632375+00:00', url: 'http://tralala.com/foo'}
+  model: hopespace.locationimageupload
+  pk: 15
+- fields: {created: ! '2016-02-26 08:20:20.667613+00:00', mark: 31, modified: ! '2016-02-26
+      08:20:20.667624+00:00', url: 'http://foobar.com/'}
+  model: hopespace.locationimageupload
+  pk: 16
+- fields: {created: ! '2016-02-26 08:20:20.671308+00:00', mark: 31, modified: ! '2016-02-26
+      08:20:20.671318+00:00', url: 'http://tralala.com/foo'}
+  model: hopespace.locationimageupload
+  pk: 17
+- fields: {created: ! '2016-02-26 08:20:57.185553+00:00', mark: 32, modified: ! '2016-02-26
+      08:20:57.185565+00:00', url: 'http://foobar.com/'}
+  model: hopespace.locationimageupload
+  pk: 18
+- fields: {created: ! '2016-02-26 08:20:57.186817+00:00', mark: 32, modified: ! '2016-02-26
+      08:20:57.186827+00:00', url: 'http://tralala.com/foo'}
+  model: hopespace.locationimageupload
+  pk: 19
+- fields: {created: ! '2016-02-26 08:21:26.048882+00:00', mark: 33, modified: ! '2016-02-26
+      08:21:26.048893+00:00', url: 'http://foobar.com/'}
+  model: hopespace.locationimageupload
+  pk: 20
+- fields: {created: ! '2016-02-26 08:21:26.050579+00:00', mark: 33, modified: ! '2016-02-26
+      08:21:26.050590+00:00', url: 'http://tralala.com/foo'}
+  model: hopespace.locationimageupload
+  pk: 21
+- fields: {created: ! '2016-02-11 16:57:04.947891+00:00', modified: ! '2016-02-11
+      16:57:04.947902+00:00', name: ohlala}
+  model: hopespace.ethnicity
+  pk: 2
+- fields: {created: ! '2016-02-12 06:24:51.145850+00:00', modified: ! '2016-02-12
+      06:24:51.145860+00:00', name: Greek}
+  model: hopespace.ethnicity
+  pk: 3
+- fields: {created: ! '2016-02-12 06:28:46.181688+00:00', modified: ! '2016-02-12
+      06:28:46.181698+00:00', name: Albanian}
+  model: hopespace.ethnicity
+  pk: 4
+- fields:
+    created: 2016-02-11 16:57:04.957435+00:00
+    ethnicity: 2
+    modified: 2016-02-11 16:57:04.957445+00:00
+    person: [testeth8]
+  model: hopespace.ethnicmember
+  pk: 1
+- fields:
+    created: 2016-02-12 06:28:46.192145+00:00
+    ethnicity: 4
+    modified: 2016-02-12 06:28:46.192156+00:00
+    person: [testuser]
+  model: hopespace.ethnicmember
+  pk: 3
+- fields:
+    created: 2016-02-17 09:22:30.069900+00:00
+    ethnicity: 4
+    modified: 2016-02-17 09:22:30.069909+00:00
+    person: [testuser123455]
+  model: hopespace.ethnicmember
+  pk: 4
+- fields:
+    created: 2016-03-21 07:43:04.046308+00:00
+    ethnicity: 4
+    modified: 2016-03-21 07:43:04.046320+00:00
+    person: [testuser123455123]
+  model: hopespace.ethnicmember
+  pk: 5

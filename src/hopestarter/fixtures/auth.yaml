@@ -1,0 +1,270 @@
+- fields:
+    date_joined: 2015-11-14 13:51:39.152887+00:00
+    email: admin@hopestarter.org
+    first_name: 'Admin Admenopoulos'
+    groups: []
+    is_active: true
+    is_staff: true
+    is_superuser: true
+    last_login: 2016-03-22 23:01:35.748643+00:00
+    last_name: ''
+    password: pbkdf2_sha256$20000$7RdwVfTuiNGQ$hAaloE7CiZqHtu1vd33f9Fw5yxq0k8WzCSgSix8vB4M=
+    user_permissions: []
+    username: admin
+  model: auth.user
+  pk: 1
+- fields:
+    date_joined: 2016-02-07 18:14:40.154695+00:00
+    email: ''
+    first_name: ''
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: 2016-02-07 18:14:40.231374+00:00
+    last_name: ''
+    password: pbkdf2_sha256$20000$wcSg1fTNEF5B$W4k1yeWCsBgb0wboOdh2VKL3TdPKX4S3KlX1sUhUyU8=
+    user_permissions: []
+    username: trialarilaro
+  model: auth.user
+  pk: 4
+- fields:
+    date_joined: 2016-02-07 18:15:04.166317+00:00
+    email: ''
+    first_name: ''
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: 2016-02-07 18:15:04.243802+00:00
+    last_name: ''
+    password: pbkdf2_sha256$20000$UOuTnvZ4uXfV$ArQPrfc42DEpM3Uc3127/p0OB8pqh2g9/L0xgR+zXcA=
+    user_permissions: []
+    username: trialarilaro2
+  model: auth.user
+  pk: 5
+- fields:
+    date_joined: 2016-02-07 18:20:16.160108+00:00
+    email: ''
+    first_name: ''
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: 2016-02-07 18:20:53.650336+00:00
+    last_name: ''
+    password: pbkdf2_sha256$20000$PtilYeSPtGY9$2op5/M1ZmdLapm9vCbE7c/qZolULnExAxM6+NuoghL4=
+    user_permissions: []
+    username: trialarilaro3
+  model: auth.user
+  pk: 6
+- fields:
+    date_joined: 2016-02-07 18:25:38.319079+00:00
+    email: ''
+    first_name: ''
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: 2016-02-07 18:25:47.479126+00:00
+    last_name: ''
+    password: pbkdf2_sha256$20000$zXeeQu2PzbjF$cLUST5j0/9ZEXQwZqmQ7SDIPqPWhwOiyVxglDyOP0GQ=
+    user_permissions: []
+    username: trialarilaro8
+  model: auth.user
+  pk: 7
+- fields:
+    date_joined: 2016-02-07 18:26:55.661465+00:00
+    email: ''
+    first_name: ''
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: 2016-02-07 18:26:55.729906+00:00
+    last_name: ''
+    password: pbkdf2_sha256$20000$PuPsPxFSVyTx$RiiYYDV5FXQwhZCFdwFyxnxLwoabA2fpTDhDN/N0ZT4=
+    user_permissions: []
+    username: trialarilaro9
+  model: auth.user
+  pk: 8
+- fields:
+    date_joined: 2016-02-07 18:28:42.562680+00:00
+    email: ''
+    first_name: ''
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: 2016-02-07 18:28:42.624220+00:00
+    last_name: ''
+    password: pbkdf2_sha256$20000$4vb8sVSmcFyp$+K8OszCADJcHTuF0S+UrTWvMx8lH33B0cW7T7Xq60cE=
+    user_permissions: []
+    username: trialarilaro10
+  model: auth.user
+  pk: 9
+- fields:
+    date_joined: 2016-02-07 18:30:09.136043+00:00
+    email: ''
+    first_name: ''
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: 2016-02-07 18:30:09.198062+00:00
+    last_name: ''
+    password: pbkdf2_sha256$20000$uZNW7PRaebBt$0572yj4B6KNqbGlBMn3z5CrvvC3tKDx9t/qXwvOvJGo=
+    user_permissions: []
+    username: trialarilaro11
+  model: auth.user
+  pk: 10
+- fields:
+    date_joined: 2016-02-11 16:10:45.322199+00:00
+    email: ''
+    first_name: ''
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: null
+    last_name: ''
+    password: pbkdf2_sha256$20000$xv7ooHxz68YJ$MOjrnyBlCPvkkQzjSkx794WWwm9hnh5hq7OAiCqBndM=
+    user_permissions: []
+    username: testeth
+  model: auth.user
+  pk: 11
+- fields:
+    date_joined: 2016-02-11 16:11:45.071766+00:00
+    email: ''
+    first_name: ''
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: null
+    last_name: ''
+    password: pbkdf2_sha256$20000$yQul1Jo86X5N$Y7YgKU3RUnNi8Mo3v8HpTGfH8B6UCnE9k1vvIYXXszg=
+    user_permissions: []
+    username: testeth2
+  model: auth.user
+  pk: 12
+- fields:
+    date_joined: 2016-02-11 16:12:34.853151+00:00
+    email: ''
+    first_name: ''
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: 2016-02-11 16:13:24.519968+00:00
+    last_name: ''
+    password: pbkdf2_sha256$20000$BR0HzSQisZLj$UI+1dUC3nymsMURGLJbJk5onm2QEj9Q4ut18RIR5snE=
+    user_permissions: []
+    username: testeth3
+  model: auth.user
+  pk: 13
+- fields:
+    date_joined: 2016-02-11 16:17:13.772599+00:00
+    email: ''
+    first_name: ''
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: 2016-02-11 16:17:13.869665+00:00
+    last_name: ''
+    password: pbkdf2_sha256$20000$xMrexlX8XfM1$GMmh3wWAjDZ6vMwkU7FpnELW+H2tJOINRVMvRo9hE5g=
+    user_permissions: []
+    username: testeth4
+  model: auth.user
+  pk: 14
+- fields:
+    date_joined: 2016-02-11 16:17:58.367882+00:00
+    email: ''
+    first_name: ''
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: 2016-02-11 16:17:58.428213+00:00
+    last_name: ''
+    password: pbkdf2_sha256$20000$SEckdu3oLE7l$RAZEldmdfrqeZxv2J+Ne3ujMS2bvBbw6WR9hkSuxDtU=
+    user_permissions: []
+    username: testeth5
+  model: auth.user
+  pk: 15
+- fields:
+    date_joined: 2016-02-11 16:23:15.761702+00:00
+    email: ''
+    first_name: ''
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: 2016-02-11 16:23:16.252056+00:00
+    last_name: ''
+    password: pbkdf2_sha256$20000$2t9i62RFdnqy$00NqKy1O5jL1FnaLLJLgeLvhw/8pSTJRBgDt+u7ZLxM=
+    user_permissions: []
+    username: testeth7
+  model: auth.user
+  pk: 16
+- fields:
+    date_joined: 2016-02-11 16:57:04.911981+00:00
+    email: ''
+    first_name: ''
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: 2016-02-11 16:57:05.002998+00:00
+    last_name: ''
+    password: pbkdf2_sha256$20000$cOjrbxq0dknp$etBJCcceRSa86xLGOFuDWRqD9y0EfcQNNbT6Ku73/jA=
+    user_permissions: []
+    username: testeth8
+  model: auth.user
+  pk: 17
+- fields:
+    date_joined: 2016-02-12 06:28:46.130911+00:00
+    email: ''
+    first_name: ''
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: 2016-02-12 06:28:46.232690+00:00
+    last_name: ''
+    password: pbkdf2_sha256$20000$DhyJ2rLovYbO$J0d/pJjKqay+dw0Xu6Fdo8TkDK7Us2AR6P86l9O3EjU=
+    user_permissions: []
+    username: testuser
+  model: auth.user
+  pk: 19
+- fields:
+    date_joined: 2016-02-17 09:22:30.014765+00:00
+    email: ''
+    first_name: ''
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: 2016-02-17 09:22:30.148278+00:00
+    last_name: ''
+    password: pbkdf2_sha256$20000$tB6NDTDxek1q$+sqiHryB6OBrML8j9+CrimQGZJHJO3mhlxvhBgkTLIY=
+    user_permissions: []
+    username: testuser123455
+  model: auth.user
+  pk: 20
+- fields:
+    date_joined: 2016-03-21 07:43:03.559075+00:00
+    email: ''
+    first_name: ''
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: 2016-03-21 07:43:04.268783+00:00
+    last_name: ''
+    password: pbkdf2_sha256$20000$WPe1T1ldJm28$UhHJ43lj0SAdPyK5X7BssscmlHRX0MMO9SPepwWKlFA=
+    user_permissions: []
+    username: testuser123455123
+  model: auth.user
+  pk: 21

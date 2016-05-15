@@ -12,6 +12,7 @@ class UserView(generics.RetrieveAPIView):
     permission_classes = [getattr(permissions, p) for p in settings.ETHNICITY_PERMS]
     required_scopes = ['account']
     model = User
+
     serializer_class = serializers.UserSerializer
 
     def get_object(self):
