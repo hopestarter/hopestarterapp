@@ -5,9 +5,12 @@ from hopecollector import views
 
 
 urlpatterns = format_suffix_patterns([
-    url(r'^mark/$',
+    url(r'^marks/$',
         views.LocationMarkView.as_view(),
         name='locationmark'),
+    url(r'^mark/$',
+        views.UserLocationMarkView.as_view(),
+        name='user_marks'),
     url(r'^uploadimage/$',
         views.upload_image,
         name='uploadimage'),

@@ -2,17 +2,19 @@ from rest_framework_gis.serializers import GeoFeatureModelSerializer
 from rest_framework import serializers
 
 from hopespace.models import LocationMark, LocationImageUpload
-from hopebase import fields
+from hopebase.fields import ProfileURLField
+from hopebase.serializers import UserSerializer
 
 create_only_user = serializers.CreateOnlyDefault(serializers.CurrentUserDefault())
+
 
 class LocationMarkSerializer(GeoFeatureModelSerializer):
     """ A class to serialize location marks as GeoJSON compatible data """
 
-    user = serializers.HiddenField(default=create_only_user)
+    user = UserSerializer()
 
     class _ImageSerializer(serializers.HyperlinkedModelSerializer):
-        url = fields.ProfileURLField(max_length=200, allow_blank=True)
+        url = ProfileURLField(max_length=200, allow_blank=True)
 
         class Meta:
             model = LocationImageUpload
@@ -26,7 +28,6 @@ class LocationMarkSerializer(GeoFeatureModelSerializer):
             del r['properties']['picture']
         return r
 
-
     def create(self, validated_data):
         pictures = validated_data.pop('picture', [])
         mark = LocationMark.objects.create(**validated_data)
@@ -38,4 +39,14 @@ class LocationMarkSerializer(GeoFeatureModelSerializer):
         model = LocationMark
         geo_field = "point"
         depth = 1
+        fields = ('created', 'point', 'user', 'picture', 'text')
+
+
+class UserLocationMarkSerializer(LocationMarkSerializer):
+    """ A class to serialize location marks as GeoJSON compatible data """
+
+    user = serializers.HiddenField(default=create_only_user)
+
+    class Meta(LocationMarkSerializer.Meta):
+        read_only_fields = ('user',)
         fields = ('created', 'point', 'user', 'picture', 'text')

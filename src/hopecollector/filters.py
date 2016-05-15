@@ -6,9 +6,15 @@ from hopespace.models import LocationMark
 
 
 class LocationMarkFilterSet(FilterSet):
-    after = django_filters.IsoDateTimeFilter(name="created", lookup_type='gte')
-    before = django_filters.IsoDateTimeFilter(name="created", lookup_type='lte')
+    after = django_filters.IsoDateTimeFilter(name="created", lookup_expr='gte')
+    before = django_filters.IsoDateTimeFilter(name="created", lookup_expr='lte')
 
     class Meta:
         model = LocationMark
+        fields = ['created', 'user']
+
+
+class UserLocationMarkFilterSet(LocationMarkFilterSet):
+
+    class Meta(LocationMarkFilterSet.Meta):
         fields = ['created']
