@@ -2,7 +2,7 @@ __author__ = 'mpetyx'
 
 
 import os
-from .utils import get_env_variable
+# from .utils import get_env    _variable
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
