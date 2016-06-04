@@ -12,6 +12,7 @@ class UserProfile(models.Model):
                                 related_name='profile')
     name = models.CharField(max_length=100, null=True, blank=True)
     surname = models.CharField(max_length=100, null=True, blank=True)
+    bitcoin = models.CharField(max_length=100, null=True, blank=True)
     created = models.DateTimeField(editable=False, blank=True)
     modified = models.DateTimeField(editable=False, blank=True)
     picture = models.URLField(max_length=200, null=True, blank=True)

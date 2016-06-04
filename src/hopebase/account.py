@@ -20,6 +20,7 @@ class AccountAdapter(DefaultAccountAdapter):
             'name': form.cleaned_data.get('name', None),
             'surname': form.cleaned_data.get('surname', None),
             'picture': form.cleaned_data.get('picture', None),
+            'bitcoin': form.cleaned_data.get('bitcoin', None),
         }
         with transaction.atomic():
             user.save()

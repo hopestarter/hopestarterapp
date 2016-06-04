@@ -11,6 +11,7 @@ class SignupForm(forms.Form):
         label="Last name", max_length=settings.NAME_MAX, required=False)
     picture = forms.URLField(
         label="Profile picture URL", required=False)
+    bitcoin = forms.CharField(label="Bitcoin", max_length=100, required=False)
 
     def signup(self, request, user):
         """
