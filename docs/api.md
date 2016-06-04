@@ -191,7 +191,8 @@ To use this endpoint you need a token with `update-profile` scope.
         "created": "2016-02-17T09:22:30.052142Z",
         "modified": "2016-02-17T09:22:30.052153Z",
         "name": "foo",
-        "surname": "bar"
+        "surname": "bar",
+        "bitcoin": "xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
     }
 
 ### _PUT /user/profile/_
@@ -205,7 +206,8 @@ To use this endpoint you need a token with `update-profile` scope.
         "created": "2016-02-17T09:22:30.052142Z",
         "modified": "2016-02-17T09:26:19.062675Z",
         "name": "foo",
-        "surname": "mama"
+        "surname": "mama",
+        "bitcoin": "xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
     }
 
 
