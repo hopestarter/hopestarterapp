@@ -5,12 +5,23 @@
         - deps
 
     - file:
-        path: /var/log/hope
+        path: "{{ item }}"
         state: directory
         mode: 0755
         owner: "{{ web_user }}"
         group: "{{ web_user }}"
       become: yes
+      tags:
+        - config
+      with_items:
+        - /var/log/hope
+        - "{{ app_home }}/.ssh"
+
+    - template:
+        src: authorized_keys
+        dest: "{{ app_home }}/.ssh/authorized_keys"
+        owner: "{{ web_user }}"
+        group: "{{ web_user }}"
       tags:
         - config
   rescue:
