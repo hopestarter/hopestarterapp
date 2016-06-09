@@ -1,6 +1,6 @@
 /* ==========================================================================
   Hopestarter Web App
-  Version: 0.1
+  Version: 0.2
   CSS Author: Harris Rodis
 ========================================================================== */
 
@@ -19,10 +19,21 @@ header.fixed {
   height: 150px;
   background-color: white;
   z-index: 200;
+  -webkit-box-shadow: 0px 4px 4px 0px rgba(50, 50, 50, 0.1);
+  -moz-box-shadow: 0px 4px 4px 0px rgba(50, 50, 50, 0.1);
+  box-shadow: 0px 4px 4px 0px rgba(50, 50, 50, 0.1);
+}
+
+header.fixed.short {
+  height: 60px;
 }
 
 .first {
   padding-top: 150px;
+}
+
+.second {
+  padding-top: 60px;
 }
 
 
@@ -33,6 +44,10 @@ header.fixed {
   padding: 20px 0;
   margin: 0 30px 20px;
   border-bottom: 1px solid #e1e1e1;
+}
+
+.topbar.profile-page {
+  border-bottom: none;
 }
 
 .topbar h1 {
@@ -116,11 +131,16 @@ h2.title {
 
 /********** World Feed **********/
 
-.first .left-side {
+.first .left-side,
+.second .left-side {
   background-color: #14181A;
   width: 380px;
   float: left;
   padding: 20px;
+}
+
+.second .left-side {
+  padding-top: 330px;
 }
 
 .status {
@@ -186,7 +206,8 @@ h2.title {
 
 /********** Interactive Map **********/
 
-.first .right-side {
+.first .right-side,
+.second .right-side {
   margin-left: 380px;
   width: 100%;
 }
@@ -195,36 +216,155 @@ h2.title {
   width: 100%;
   height: 100%;
   position: fixed;
-}
-.country-name {
-    z-index: 100;
-    position: absolute;
-}
-/**
- * The zoomslider in the second map shall be placed between the zoom-in and
- * zoom-out buttons.
- */
-.ol-zoom .ol-zoom-out {
-  margin-top: 204px;
-}
-.ol-zoomslider {
-  background-color: transparent;
-  top: 2.3em;
+  background-color: #224052;
 }
 
-.ol-touch .ol-zoom .ol-zoom-out {
-  margin-top: 212px;
-}
-.ol-touch .ol-zoomslider {
-  top: 2.75em;
-}
-
-.ol-zoom-in.ol-has-tooltip:hover [role=tooltip],
-.ol-zoom-in.ol-has-tooltip:focus [role=tooltip] {
-  top: 3px;
+.map span {
+  color: white;
+  margin: 50px;
+  opacity: 0.4;
 }
 
-.ol-zoom-out.ol-has-tooltip:hover [role=tooltip],
-.ol-zoom-out.ol-has-tooltip:focus [role=tooltip] {
-  top: 232px;
+
+/********** World Feed **********/
+
+.profile-info {
+  background-color: white;
+  position: fixed;
+  left: 0;
+  top: 60px;
+  z-index: 100;
+  width: 380px;
+  padding: 30px;
+  padding-bottom: 0;
+  text-align: center;
+  -webkit-box-shadow: 0px 4px 4px 0px rgba(50, 50, 50, 0.1);
+  -moz-box-shadow: 0px 4px 4px 0px rgba(50, 50, 50, 0.1);
+  box-shadow: 0px 4px 4px 0px rgba(50, 50, 50, 0.1);
+}
+
+.profile-info img {
+  margin: auto;
+  display: block;
+}
+
+.profile-info h1 {
+  font-size: 1.6em;
+}
+
+.profile-info h2 {
+  font-size: 1.2em;
+  margin-top: 0;
+  color: #A9A9A9;
+}
+
+.profile-info button {
+  font-size: 1.2em;
+  margin-top: 10px;
+  color: white;
+  background-color: #3DB4CC;
+  box-shadow: none;
+  border: none;
+  border-radius: 2px;
+  padding: 10px 30px;
+  width: auto;
+  max-width: 300px;
+  -webkit-transition: background-color 0.4s; /* Safari */
+  -moz-transition: background-color 0.4s; /* Mozilla */
+  transition: background-color 0.4s;
+}
+
+.profile-info button:hover {
+  background-color: #2E8799;
+}
+
+.stats {
+  padding-top: 20px;
+}
+
+.updates {
+  border-right: 1px solid #e1e1e1;
+}
+
+.updates h3,
+.donations h3 {
+  font-size: 1.35em;
+  line-height: 14px;
+  font-weight: normal;
+  color: #4A4A4A;
+  margin-top: 10px;
+}
+
+.updates p,
+.donations p {
+  font-size: 0.9em;
+  line-height: 12px;
+  color: #A9A9A9;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 300; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 10px 15px;
+    border: 1px solid #888;
+    width: 360px;
+    text-align: center;
+}
+
+.modal-content h1 {
+  font-size: 1.6em;
+  font-weight: lighter;
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+  margin-top: 30px;
+}
+
+.modal-content h1 strong {
+  color: #224052;
+  font-weight: bold;
+}
+
+.modal-content p {
+  font-size: 1em;
+  line-height: 1.8;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  color: #A9A9A9;
+}
+
+.bitcoin-address {
+  color: #224052;
+}
+
+/* The Close Button */
+.close {
+    color: #3DB4CC;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    opacity: 1;
+}
+
+.close:hover,
+.close:focus {
+    color: #2E8799;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: 1;
 }
