@@ -8,12 +8,10 @@ from hopebase import models, fields
 class UserProfileSerializer(serializers.ModelSerializer):
     """ A class to serialize the user profile """
 
-    picture = fields.ProfileURLField(max_length=200, allow_blank=True)
-
     class Meta:
         model = models.UserProfile
         exclude = ('user', 'id', 'modified')
-        read_only_fields = ('created')
+        read_only_fields = ('created', 'picture')
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -32,3 +30,9 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         model = get_user_model()
         fields = ('username', 'profile', 'ethnicities', 'mark')
         read_only_fields = ('username',)
+
+
+class PictureSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = models.UserProfile
+        fields = ('pk', 'picture')

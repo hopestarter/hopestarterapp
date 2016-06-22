@@ -16,6 +16,7 @@ except ImportError:
 ROOT_URLCONF = 'hopestarter.urls.api'
 
 INSTALLED_APPS += (
+    'storages',
     'oauth2_provider',
     'rest_framework',
     'rest_framework_gis',
@@ -46,6 +47,16 @@ AUTHENTICATION_BACKENDS = (
 )
 
 SITE_ID = 2
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+AWS_S3_SECURE_URLS = True # use https
+AWS_QUERYSTRING_AUTH = False
+AWS_S3_HOST = 's3-eu-west-1.amazonaws.com'
+# see http://developer.yahoo.com/performance/rules.html#expires
+AWS_HEADERS = {
+    'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+    'Cache-Control': 'max-age=94608000',
+}
 
 GRAPPELLI_INDEX_DASHBOARD = 'hopecollector.dashboard.CustomIndexDashboard'
 
