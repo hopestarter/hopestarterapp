@@ -7,11 +7,22 @@ from hopebase import models, fields
 
 class UserProfileSerializer(serializers.ModelSerializer):
     """ A class to serialize the user profile """
+    photo = serializers.SerializerMethodField()
+
+    def get_photo(self, obj):
+        return {
+                'large': obj.large_picture.url,
+                'medium': obj.medium_picture.url,
+                'small': obj.small_picture.url,
+                'thumbnail': obj.thumbnail_picture.url
+        }
 
     class Meta:
         model = models.UserProfile
-        exclude = ('user', 'id', 'modified')
-        read_only_fields = ('created', 'picture')
+        exclude = ('user', 'id', 'modified', 'picture', 'large_picture',
+                   'medium_picture', 'small_picture', 'thumbnail_picture',
+                   )
+        read_only_fields = ('created', 'photo')
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -33,6 +44,10 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class PictureSerializer(serializers.HyperlinkedModelSerializer):
+    """
+    Shows picture upload result
+    """
+
     class Meta:
         model = models.UserProfile
         fields = ('pk', 'picture')
