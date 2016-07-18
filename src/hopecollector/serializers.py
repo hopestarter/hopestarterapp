@@ -13,6 +13,13 @@ class LocationMarkSerializer(GeoFeatureModelSerializer):
     photo = serializers.SerializerMethodField()
 
     def get_photo(self, obj):
+        if not obj.picture:
+            return {
+                'large': None,
+                'medium': None,
+                'small': None,
+                'thumbnail': None
+            }
         return {
             'large': obj.large_picture.url,
             'medium': obj.medium_picture.url,
