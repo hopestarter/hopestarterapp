@@ -11,7 +11,7 @@ urlpatterns = format_suffix_patterns([
     url(r'^mark/$',
         views.UserLocationMarkView.as_view(),
         name='user_marks'),
-    url(r'^uploadimage/$',
+    url(r'^image/(?P<pk>\d+)/$',
         views.upload_image,
-        name='uploadimage'),
+        name='mark_image'),
 ]);

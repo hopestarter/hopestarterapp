@@ -9,7 +9,6 @@ from StringIO import StringIO
 
 
 def upload_image_to(instance, filename):
-    filename_base, filename_ext = splitext(filename)
     return 'media/marks/%s/%s' % (instance.user.username, filename)
 
 

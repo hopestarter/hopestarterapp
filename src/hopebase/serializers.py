@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from rest_framework.reverse import reverse
 
-from hopebase import models, fields
+from hopebase import models
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
@@ -11,10 +11,10 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     def get_photo(self, obj):
         return {
-                'large': obj.large_picture.url,
-                'medium': obj.medium_picture.url,
-                'small': obj.small_picture.url,
-                'thumbnail': obj.thumbnail_picture.url
+            'large': obj.large_picture.url,
+            'medium': obj.medium_picture.url,
+            'small': obj.small_picture.url,
+            'thumbnail': obj.thumbnail_picture.url
         }
 
     class Meta:
