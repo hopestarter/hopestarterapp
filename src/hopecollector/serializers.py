@@ -1,8 +1,7 @@
 from rest_framework_gis.serializers import GeoFeatureModelSerializer
 from rest_framework import serializers
 
-from hopespace.models import LocationMark, LocationImageUpload
-from hopebase.fields import ProfileURLField
+from hopespace.models import LocationMark
 from hopebase.serializers import UserSerializer
 
 create_only_user = serializers.CreateOnlyDefault(serializers.CurrentUserDefault())
@@ -10,43 +9,47 @@ create_only_user = serializers.CreateOnlyDefault(serializers.CurrentUserDefault(
 
 class LocationMarkSerializer(GeoFeatureModelSerializer):
     """ A class to serialize location marks as GeoJSON compatible data """
-
     user = UserSerializer()
+    photo = serializers.SerializerMethodField()
 
-    class _ImageSerializer(serializers.HyperlinkedModelSerializer):
-        url = ProfileURLField(max_length=200, allow_blank=True)
-
-        class Meta:
-            model = LocationImageUpload
-            exclude = ('mark', 'modified', 'created')
-
-    picture = _ImageSerializer(many=True, required=False)
-
-    def to_representation(self, obj):
-        r = super(LocationMarkSerializer, self).to_representation(obj)
-        if r and 'picture' in r['properties'] and not r['properties']['picture']:
-            del r['properties']['picture']
-        return r
-
-    def create(self, validated_data):
-        pictures = validated_data.pop('picture', [])
-        mark = LocationMark.objects.create(**validated_data)
-        for picture in pictures:
-            LocationImageUpload.objects.create(mark=mark, **picture)
-        return mark
+    def get_photo(self, obj):
+        if not obj.picture:
+            return {
+                'large': None,
+                'medium': None,
+                'small': None,
+                'thumbnail': None
+            }
+        return {
+            'large': obj.large_picture.url,
+            'medium': obj.medium_picture.url,
+            'small': obj.small_picture.url,
+            'thumbnail': obj.thumbnail_picture.url
+        }
 
     class Meta:
         model = LocationMark
         geo_field = "point"
         depth = 1
-        fields = ('created', 'point', 'user', 'picture', 'text')
+        exclude = ('picture', 'large_picture', 'medium_picture',
+                   'small_picture', 'thumbnail_picture',
+                  )
+        read_only_fields = ('created', 'photo')
 
 
 class UserLocationMarkSerializer(LocationMarkSerializer):
     """ A class to serialize location marks as GeoJSON compatible data """
-
     user = serializers.HiddenField(default=create_only_user)
 
     class Meta(LocationMarkSerializer.Meta):
-        read_only_fields = ('user',)
-        fields = ('created', 'point', 'user', 'picture', 'text')
+        pass
+
+
+class MarkPictureSerializer(serializers.HyperlinkedModelSerializer):
+    """
+    Shows picture upload result
+    """
+
+    class Meta:
+        model = LocationMark
+        fields = ('pk', 'picture')

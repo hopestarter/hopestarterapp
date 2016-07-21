@@ -2,8 +2,10 @@ import boto3
 import json
 
 from django.conf import settings
+from django.http import Http404
+from django.core.exceptions import PermissionDenied
 
-from rest_framework import generics
+from rest_framework import generics, status
 from rest_framework.filters import DjangoFilterBackend, OrderingFilter
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -30,54 +32,21 @@ class UserLocationMarkView(generics.CreateAPIView, LocationMarkView):
     serializer_class = serializers.UserLocationMarkSerializer
 
     def get_queryset(self):
-        # return LocationMark.objects.filter(user=self.request.user)
-        return LocationMark.objects.all().order_by('-created')
+        return LocationMark.objects.filter(user=self.request.user).order_by('-created')
 
 
-@api_view(['POST'])
-def upload_image(request):
-    bname = settings.AWS_BUCKET_UPLOAD
-    bprefix = generate_upload_prefix()
-    barn = "arn:aws:s3:::" + bname
-    bpolicy = json.dumps({
-        "Version": "2012-10-17",
-        "Statement": [
-            {
-                "Effect": "Allow",
-                "Action": "s3:ListAllMyBuckets",
-                "Resource": "arn:aws:s3:::*"
-            },
-            {
-                "Effect": "Allow",
-                "Action": [
-                    "s3:ListBucket",
-                    "s3:GetBucketLocation"
-                    ],
-                "Resource": barn
-            },
-            {
-                "Effect": "Allow",
-                "Action": [
-                    "s3:PutObject",
-                    "s3:GetObject",
-                    "s3:DeleteObject"
-                    ],
-                "Resource": "{}/{}*".format(barn, bprefix)
-            }
-        ]
-    })
-
-    client = boto3.client('sts', verify=settings.AWS_VERIFY)
-    response = client.get_federation_token(
-        Name=request.user.username,
-        Policy=bpolicy,
-        DurationSeconds=900
-    )
-    return Response({
-        "credentials": response['Credentials'],
-        "bucket": {
-            "name": bname,
-            "prefix": bprefix,
-            "region" : settings.AWS_BUCKET_REGION
-        }
-    });
+@api_view(['PUT'])
+def upload_image(request, pk=None):
+    try:
+        mark = LocationMark.objects.get(pk=pk)
+    except LocationMark.DoesNotExist:
+        raise Http404("Location Mark {mark_id} does not exists".format(mark_id=pk))
+    if mark.user != request.user:
+        raise PermissionDenied("You do not have permission for Mark {mark_id}".format(mark_id=pk))
+    if mark.picture:
+        mark.picture.delete()
+    serializer = serializers.MarkPictureSerializer(mark, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

@@ -2,8 +2,7 @@
 - hosts: frontend
   remote_user: ec2-user
   pre_tasks:
-      - local_action: include pre.yml
-        run_once: true
+      - include: pre.yml
   roles:
       - common
       - { role: hopestarterdb, dbhost: "{{ rds.instance.endpoint }}" }

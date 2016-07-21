@@ -10,6 +10,5 @@ def api_root(request, format=None):
     return Response({
         'mark': reverse('collector:user_marks', request=request, format=format),
         'marks': reverse('collector:locationmark', request=request, format=format),
-        'uploadimage': reverse('collector:uploadimage', request=request, format=format),
         'user': reverse('base:account', request=request, format=format)
     })

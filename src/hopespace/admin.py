@@ -13,6 +13,7 @@ class EthnicMemberAdmin(admin.ModelAdmin):
 
 class LocationMarkAdmin(admin.OSMGeoAdmin):
     readonly_fields = ('created', 'user')
+    list_display = ('__unicode__', 'user', 'large_picture',)
 
 admin.site.register(Ethnicity, EthnicityAdmin)
 admin.site.register(EthnicMember, EthnicMemberAdmin)

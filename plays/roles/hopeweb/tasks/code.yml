@@ -8,12 +8,17 @@
       - geos
       - gdal
       - nginx
+      - zlib-devel
+      - libjpeg-turbo-devel
 
 - name: updating source code to {{ git_version }}
   git: repo={{ repo_url }} dest="{{ app_home }}/hopestarterapp" version={{ git_version }}
 
 - name: installing virtualenv
   pip: name=virtualenv state=present extra_args="--user"
+
+- name: upgrade pip
+  pip: name=pip state=latest virtualenv="{{ app_home }}/venv/" virtualenv_site_packages=yes
 
 - name: installing python dependencies
   pip: requirements="{{ app_home }}/hopestarterapp/requirements/production.txt" virtualenv="{{ app_home }}/venv" virtualenv_site_packages=yes

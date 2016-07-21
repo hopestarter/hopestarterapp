@@ -16,6 +16,7 @@ except ImportError:
 ROOT_URLCONF = 'hopestarter.urls.api'
 
 INSTALLED_APPS += (
+    'storages',
     'oauth2_provider',
     'rest_framework',
     'rest_framework_gis',

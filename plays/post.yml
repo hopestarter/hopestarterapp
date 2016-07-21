@@ -1,4 +1,8 @@
-- local_action: slack token={{ slack_token }} msg="Deployment finished."
-  when: slack_token is defined
-  tags: ['always']
+- block:
 
+  - slack: token={{ slack_token }} msg="Deployment finished."
+    when: slack_token is defined
+    tags: ['always']
+
+  delegate_to: localhost
+  run_once: true
