@@ -15,7 +15,7 @@
     {% for mark in object_list %}
       <div class="status">
         <header>
-          <a class="profile-picture" href="#"><img src="{{ mark.user.profile.thumbnail_picture|default:"https://dl-web.dropbox.com/account_photo/get/dbid%3AAADpuOR1rMlu--LBQJi4BXnoUVIM0RYzpWY?vers=1417006963406&circle_crop=1&size=128x128" }}" alt="profile picture of {{ mark.user.profile|escape }}"/></a>
+          <a class="profile-picture" href="#"><img src="{% if mark.user.profile.thumbnail_picture %}{{ mark.user.profile.thumbnail_picture.url }}{% else %}https://dl-web.dropbox.com/account_photo/get/dbid%3AAADpuOR1rMlu--LBQJi4BXnoUVIM0RYzpWY?vers=1417006963406&circle_crop=1&size=128x128{% endif %}" alt="profile picture of {{ mark.user.profile|escape }}"/></a>
           <a class="username" href="#">{{ mark.user.profile }}</a>
           <div class="meta">
             <p>
@@ -25,7 +25,7 @@
         </header>
         {% if mark.picture %}
         <div class="photo">
-            <img src="{{ mark.picture.all.0.medium|default:"https://farm3.staticflickr.com/2430/3729158698_a50f932c48_z_d.jpg" }}" alt="towel on beach"/>
+            <img src="{{ mark.picture.url }}" alt="towel on beach"/>
         </div>
         {% endif %}
         {% if mark.text %}
