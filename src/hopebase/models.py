@@ -29,6 +29,12 @@ class UserProfile(models.Model):
     created = models.DateTimeField(editable=False, auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
+    def picture_tag(self):
+        return u'<a href="{}"><img src="{}" /></a>'.format(self.large_picture.url, self.small_picture.url)
+
+    picture_tag.short_description = 'Picture'
+    picture_tag.allow_tags = True
+
     def save(self, *args, **kwargs):
         self.modified = timezone.now()
         if self.picture:
