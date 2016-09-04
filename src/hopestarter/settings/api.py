@@ -32,7 +32,8 @@ OAUTH2_PROVIDER = {
         'write': 'Write scope',
         'set-location': 'Set location',
         'update-profile': 'Update Profile'
-    }
+    },
+    'ACCESS_TOKEN_EXPIRE_SECONDS': 1296000
 }
 
 TEMPLATES[0]['OPTIONS']['context_processors'] += (
