@@ -1,0 +1,21 @@
+FROM ubuntu:14.04
+
+MAINTAINER Adrian Perez <aperezhrd@gmail.com>
+
+# Base settings
+ENV HOME /root
+ENV PGUSER hopestarter
+ENV PGPASS secret
+ENV DBNAME hopestarter
+
+RUN apt-get update -y && apt-get install postgresql postgresql-contrib -y;
+RUN apt-get update -y && apt-get install postgis postgresql-9.3-postgis-2.1 -y;
+RUN apt-get update -y && apt-get install libpq-dev -y;
+RUN apt-get update -y && apt-get install python-pip -y;
+RUN apt-get update -y && apt-get install python-dev -y;
+RUN apt-get update -y && apt-get install libtiff5-dev libjpeg8-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python-tk -y;
+RUN apt-get update -y && apt-get install git -y;
+RUN apt-get update -y && apt-get install libffi-dev -y;
+
+
+

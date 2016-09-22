@@ -1,0 +1,1 @@
+docker run -p 18000:8000 -p 18001:8001 -ti -v hopestarter-postgres-conf:/etc/postgresql -v hopestarter-postgres-log:/var/log/postgresql -v hopestarter-postgres-dbdata:/var/lib/postgresql -v hopestarter-storage:/root/hopestarter/site hopestarter-server
