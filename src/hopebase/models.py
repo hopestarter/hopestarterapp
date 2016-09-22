@@ -42,15 +42,15 @@ class UserProfile(models.Model):
             medium_size = (500, 500)
             small_size = (200, 200)
             thumbnail_size = (45, 45)
+
             # Get image name
             image_name = self.user.username
-            # Resize and append
             image = Image.open(StringIO(self.picture.read()))
+            
+            # Large size
             image.thumbnail(large_size, Image.ANTIALIAS)
-            background = Image.new('RGBA', large_size, (20, 24, 26, 255))
-            background.paste(image,
-                            ((large_size[0] - image.size[0]) / 2,
-                            (large_size[1] - image.size[1]) / 2))
+            background = Image.new('RGBA', image.size, (20, 24, 26, 255))
+            background.paste(image)
             output = StringIO()
             background.save(output, format='PNG', quality=75)
             output.seek(0)
