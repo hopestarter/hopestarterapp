@@ -1,0 +1,36 @@
+FROM hopestarter-ansible
+
+MAINTAINER Adrian Perez <aperezhrd@gmail.com>
+
+RUN ["/bin/bash", "-c", "service postgresql start; sudo -u postgres createuser --superuser $PGUSER; sudo -u postgres psql -c \"ALTER USER \"$PGUSER\" WITH PASSWORD '\"$PGPASS\"';\"; sudo -u postgres createdb -O $PGUSER $DBNAME;"]
+
+ADD . /root/hopestarter/
+
+RUN /bin/bash -c 'cd /root/ansible; \
+	source ./hacking/env-setup; \
+	cd /root/hopestarter/plays; \
+	export PGUSER=geotest; \
+	export PGPASS=geotest; \
+	export PGDATABASE=geotest; \
+	ansible-playbook -i inventory/local local.yml;';
+
+RUN \
+	service postgresql start;\
+	cd /root/hopestarter/src; \
+	./manage.py syncdb --noinput; \
+	./manage_api.py syncdb --noinput; \
+	echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', 'test123')" | python manage.py shell;  
+
+CMD \
+	service postgresql start; \
+	cd /root/hopestarter/src; \
+	export LOGLEVEL=DEBUG;\
+	./manage.py runserver 0.0.0.0:8000& \
+	./manage_api.py runserver 0.0.0.0:8001;
+
+# Expose ports
+
+EXPOSE 8000
+EXPOSE 8001
+
+VOLUME  ["/etc/postgresql", "/var/log/postgresql", "/var/lib/postgresql", "/root/hopestarter/site"]

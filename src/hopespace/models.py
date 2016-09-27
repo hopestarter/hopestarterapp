@@ -50,10 +50,8 @@ class LocationMark(models.Model):
             # Resize and append
             image = Image.open(StringIO(self.picture.read()))
             image.thumbnail(large_size, Image.ANTIALIAS)
-            background = Image.new('RGBA', large_size, (20, 24, 26, 255))
-            background.paste(image,
-                            ((large_size[0] - image.size[0]) / 2,
-                            (large_size[1] - image.size[1]) / 2))
+            background = Image.new('RGBA', image.size, (20, 24, 26, 255))
+            background.paste(image)
             output = StringIO()
             background.save(output, format='PNG', quality=75)
             output.seek(0)

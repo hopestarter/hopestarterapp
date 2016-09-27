@@ -1,0 +1,13 @@
+FROM hopestarter-bin-deps
+
+MAINTAINER Adrian Perez <aperezhrd@gmail.com>
+
+ADD ./requirements /root/hopestarter/requirements
+
+RUN	cd root/hopestarter; \
+	pip install -r requirements/test.txt;
+RUN cd root/hopestarter; \
+	pip install -r requirements/api.txt;
+RUN cd root/hopestarter; \
+	pip install -r requirements/auth.txt;  
+RUN pip install paramiko PyYAML Jinja2 httplib2 six;

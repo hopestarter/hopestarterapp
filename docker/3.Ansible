@@ -1,0 +1,11 @@
+FROM hopestarter-python-deps
+
+MAINTAINER Adrian Perez <aperezhrd@gmail.com>
+
+RUN \
+	cd /root; \
+	git clone git://github.com/ansible/ansible.git --recursive; 
+
+RUN /bin/bash -c 'cd /root/ansible; \
+	source ./hacking/env-setup; \
+	ansible all -m ping --ask-pass';
