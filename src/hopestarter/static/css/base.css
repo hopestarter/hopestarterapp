@@ -212,11 +212,6 @@ h2.title {
   width: 100%;
 }
 
-.fill {
-  width: 100%;
-  height: 100%;
-}
-
 .map {
   width: 100%;
   /* Without a fixed height the map won't show. Probably there's a better way of doing this thou */
