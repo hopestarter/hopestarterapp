@@ -40,7 +40,10 @@
     {% endfor %}
     </div>
     <div class="right-side">
-      <div id="map" class="map"></div>
+      <div id="map" class="map">
+          <div id="gmap" class="fill"></div>
+          <div id="olmap" class="fill"></div>
+      </div>
     </div>
   </div>
 
@@ -51,99 +54,160 @@
 <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="http://openlayers.org/en/v3.11.2/build/ol.js"></script>
+<script src="https://cdn.rawgit.com/googlemaps/js-marker-clusterer/gh-pages/src/markerclusterer.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh5N8Kx6R2CrSNUJweWIWRD9w5MXvTr_g"></script>
 <script>
-var map = new ol.Map({
-  controls: ol.control.defaults().extend([
-    new ol.control.OverviewMap(),
-    new ol.control.ZoomSlider()
-  ]),
-  layers: [
-    new ol.layer.Tile({
-      source: new ol.source.MapQuest({layer: 'sat'})
-    }),
-    new ol.layer.Image({
-      source: new ol.source.ImageVector({
-        source: new ol.source.Vector({
-          url: 'http://openlayers.org/en/v3.11.2/examples/data/geojson/countries.geojson',
-          format: new ol.format.GeoJSON()
-        }),
-        style: new ol.style.Style({
-          fill: new ol.style.Fill({
-            color: 'rgba(255, 255, 255, 0.6)'
-          }),
-          stroke: new ol.style.Stroke({
-            color: '#319FD3',
-            width: 1
+    var gmap = null;
+    var map = null;
+    var markerClusterer = null;
+    var featureOverlay = null;
+    var mapStyles = [];
+
+    $.getJSON('/static/map_style.json', function(styles){
+        mapStyles = styles;
+        initMap();
+    })
+
+    var data = [
+        {% for mark in object_list %}
+            {'lat': {{ mark.point.x }}, 'long': {{ mark.point.y }} },
+        {% endfor %}
+    ]
+
+    function initMap() {
+        gmap = new google.maps.Map(document.getElementById('gmap'), {
+          styles: mapStyles,
+          disableDefaultUI: true,
+          keyboardShortcuts: false,
+          draggable: false,
+          disableDoubleClickZoom: true,
+          scrollwheel: false,
+          streetViewControl: false
+        });
+
+        var view = new ol.View({
+          center: [37.979, 27.716],
+          zoom: 7,
+          // make sure the view doesn't go beyond the 22 zoom levels of Google Maps
+          maxZoom: 21
+        });
+        view.on('change:center', function() {
+          var center = ol.proj.transform(view.getCenter(), 'EPSG:3857', 'EPSG:4326');
+          gmap.setCenter(new google.maps.LatLng(center[1], center[0]));
+        });
+        view.on('change:resolution', function() {
+          gmap.setZoom(view.getZoom());
+        });
+
+        var vector = new ol.layer.Image({
+          source: new ol.source.ImageVector({
+            source: new ol.source.Vector({
+              url: 'http://openlayers.org/en/v3.11.2/examples/data/geojson/countries.geojson',
+              format: new ol.format.GeoJSON()
+            }),
+            style: new ol.style.Style({
+              fill: new ol.style.Fill({
+                color: 'rgba(255, 255, 255, 0.01)'
+              }),
+              stroke: new ol.style.Stroke({
+                color: '#319FD3',
+                width: 1
+              })
+            })
           })
-        })
-      })
-    })
-  ],
-  target: 'map',
-  view: new ol.View({
-    center: [300000, 6000000],
-    zoom: 7
-  })
-});
+        });
 
-var featureOverlay = new ol.layer.Vector({
-  source: new ol.source.Vector(),
-  map: map,
-  style: new ol.style.Style({
-    stroke: new ol.style.Stroke({
-      color: '#f00',
-      width: 1
-    }),
-    fill: new ol.style.Fill({
-      color: 'rgba(255,0,0,0.1)'
-    })
-  })
-});
+        var olMapDiv = document.getElementById('olmap');
+        map = new ol.Map({
+          layers: [vector],
+          interactions: ol.interaction.defaults({
+            altShiftDragRotate: false,
+            dragPan: false,
+            rotate: false
+          }).extend([new ol.interaction.DragPan({kinetic: null})]),
+          target: olMapDiv,
+          view: view
+        });
 
-var highlight;
-var info = $('<div>');
-info.addClass('country-name');
-info.addClass('alert');
-info.addClass('alert-success');
-info.hide();
-$('map').append(info);
-var displayFeatureInfo = function(pixel) {
+        featureOverlay = new ol.layer.Vector({
+          source: new ol.source.Vector(),
+          map: map,
+          style: new ol.style.Style({
+            stroke: new ol.style.Stroke({
+              color: '#f00',
+              width: 1
+            }),
+            fill: new ol.style.Fill({
+              color: 'rgba(255,0,0,0.1)'
+            })
+          })
+        });
 
-  var feature = map.forEachFeatureAtPixel(pixel, function(feature, layer) {
-    return feature;
-  });
+        view.setCenter([3000000, 4500000]);
+        view.setZoom(5);
 
-  if (feature) {
-    info.text(feature.getId() + ': ' + feature.get('name'));
-    info.css({top: pixel[1], left: pixel[0]});
-	info.show();
-  } else {
-    info.hide();
-  }
+        olMapDiv.parentNode.removeChild(olMapDiv);
+        gmap.controls[google.maps.ControlPosition.TOP_LEFT].push(olMapDiv);
 
-  if (feature !== highlight) {
-    if (highlight) {
-      featureOverlay.getSource().removeFeature(highlight);
+        map.on('pointermove', function(evt) {
+          if (evt.dragging) {
+            return;
+          }
+          var pixel = map.getEventPixel(evt.originalEvent);
+          displayFeatureInfo(pixel);
+        });
+        map.on('click', function(evt) {
+          displayFeatureInfo(evt.pixel);
+        });
+
+        refreshMap();
     }
-    if (feature) {
-      featureOverlay.getSource().addFeature(feature);
+
+    function refreshMap() {
+        if (markerClusterer) {
+          markerClusterer.clearMarkers();
+        }
+
+        var markers = data.map(function(coord){
+          return new google.maps.Marker({
+            position: new google.maps.LatLng(coord.lat, coord.long),
+            icon: {
+              url: '/static/img/single_pin.svg',
+              size: new google.maps.Size(32,39),
+              anchor: new google.maps.Point(16, 39)
+            },
+          })
+        });
+
+        markerClusterer = new MarkerClusterer(gmap, markers, {
+          maxZoom: 10,
+          averageCenter: true,
+          styles: [{
+            url: '/static/img/group_pin.svg',
+            width: 32,
+            height: 39,
+            textColor: 'white',
+            iconAnchor: [16, 39]
+          }]
+        });
     }
-    highlight = feature;
-  }
 
-};
+    var highlight;
 
-map.on('pointermove', function(evt) {
-  if (evt.dragging) {
-    return;
-  }
-  var pixel = map.getEventPixel(evt.originalEvent);
-  displayFeatureInfo(pixel);
-});
-
-map.on('click', function(evt) {
-  displayFeatureInfo(evt.pixel);
-});
+    function displayFeatureInfo(pixel) {
+      var feature = map.forEachFeatureAtPixel(pixel, function(feature, layer) {
+        return feature;
+      });
+      if (feature !== highlight) {
+        if (highlight) {
+          featureOverlay.getSource().removeFeature(highlight);
+        }
+        if (feature) {
+          featureOverlay.getSource().addFeature(feature);
+        }
+        highlight = feature;
+      }
+    };
 
 </script>
 {% endblock %}

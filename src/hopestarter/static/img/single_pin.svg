@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="32px" height="39px" viewBox="0 0 32 39" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.7 (28169) - http://www.bohemiancoding.com/sketch -->
+    <title>single_pin</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="01" transform="translate(-915.000000, -643.000000)">
+            <g id="map" transform="translate(360.000000, 60.000000)">
+                <g id="pins" transform="translate(320.000000, 229.000000)">
+                    <g id="pin-copy" transform="translate(182.000000, 347.000000)">
+                        <g id="single_pin" transform="translate(46.000000, 0.000000)">
+                            <path d="M23,39 L39,39 L39,23 C39,14.163444 31.836556,7 23,7 C14.163444,7 7,14.163444 7,23 C7,31.836556 14.163444,39 23,39 Z" id="group_pin-copy" fill="#3DB4CC" transform="translate(23.000000, 23.000000) rotate(-315.000000) translate(-23.000000, -23.000000) "></path>
+                            <circle id="Oval-93" fill="#1198B3" cx="23" cy="23" r="10"></circle>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
