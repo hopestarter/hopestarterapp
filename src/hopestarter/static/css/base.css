@@ -214,8 +214,7 @@ h2.title {
 
 .map {
   width: 100%;
-  /* Without a fixed height the map won't show. Probably there's a better way of doing this thou */
-  height: 500px;
+  height: 100%;
   position: fixed !important;
   background-color: #224052;
 }
