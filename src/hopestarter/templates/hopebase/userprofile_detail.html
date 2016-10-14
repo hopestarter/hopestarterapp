@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load humanize %}
+{% load static %}
 
 {% block title %}{{ block.super }} - {{ object|escape}}{% endblock %}
 {% block extrahead %}
@@ -25,7 +26,9 @@
       </div>
       <div class="row donation-button text-center">
         <div class="col-sm-8 col-sm-offset-2">
-          <div class="btn btn-primary btn-block">Donate to {{ object.name }}</div>
+          <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modal">
+            Donate to {{ object.name }}
+          </button>
         </div>
       </div>
       <div class="row profile-meta text-center">
@@ -71,6 +74,22 @@
   <div class="right-side">
       <div id="map" class="map"></div>
     </div>
+</div>
+<div id="modal" class="modal" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h1>Donate bitcoins directly to <strong>{{ object }}</strong></h1>
+        <img src="{% static 'img/qrcode.png' %}" />
+        <p>Bitcoin Address:
+          <span class="bitcoin-address">{{ object.bitcoin }}</span>
+        </p>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}
 
