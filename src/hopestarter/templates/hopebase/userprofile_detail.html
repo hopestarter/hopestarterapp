@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% load static %}
+
+{% block title %}{{ block.super }} - {{ object|escape}}{% endblock %}
+{% block extrahead %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+{{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+<div class="first">
+  <div class="left-side">
+    <div class="row profile-panel">
+      <div class="avatar row">
+        <div class="col-sm-4 col-sm-offset-4">
+          <img src="{% if object.thumbnail_picture %}{{ object.thumbnail_picture.url }}{% else %}https://dl-web.dropbox.com/account_photo/get/dbid%3AAADpuOR1rMlu--LBQJi4BXnoUVIM0RYzpWY?vers=1417006963406&size=64x64{% endif %}" alt="profile picture of {{ object|escape }}"/>
+        </div>
+      </div>
+      <div class="row profile-heading text-center">
+        <h2>{{ object }}</h2>
+        <p>
+          <span class="ethnicity">{% for m in object.user.membership.all %}{{ m.ethnicity }}{% include "comma.html" %}{% endfor %}</span>
+        </p>
+      </div>
+      <div class="row donation-button text-center">
+        <div class="col-sm-8 col-sm-offset-2">
+          <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modal">
+            Donate to {{ object.name }}
+          </button>
+        </div>
+      </div>
+      <div class="row profile-meta text-center">
+        <div class="left-meta col-sm-6">
+          <strong>{{ user_marks|length }}</strong>
+          <br><small>updates</small>
+        </div>
+        <div class="right-meta col-sm-6">
+          <strong>$102</strong>
+          <br><small>donated</small>
+        </div>
+      </div>
+    </div>
+    <div class="feed">
+      {% for mark in user_marks %}
+        <div class="status">
+          <header>
+            <a class="profile-picture" href="#"><img src="{% if object.thumbnail_picture %}{{ object.thumbnail_picture.url }}{% else %}https://dl-web.dropbox.com/account_photo/get/dbid%3AAADpuOR1rMlu--LBQJi4BXnoUVIM0RYzpWY?vers=1417006963406&circle_crop=1&size=128x128{% endif %}" alt="profile picture of {{ object|escape }}"/></a>
+            <a class="username" href="/profile/{{ object.id }}">{{ object }}</a>
+            <div class="meta">
+              <p>
+                <span class="ethnicity">{% for m in object.user.membership.all %}{{ m.ethnicity }}{% include "comma.html" %}{% endfor %}</span> &middot; <span class="location">Athens, Greece</span> &middot; <span class="time">{{ mark.created|naturaltime }}</span>
+              </p>
+            </div>
+          </header>
+          {% if mark.picture %}
+          <div class="photo">
+              <img src="{{ mark.picture.url }}" alt="towel on beach"/>
+          </div>
+          {% endif %}
+          {% if mark.text %}
+          <div class="message">
+              <p>{{ mark.text }}</p>
+          </div>
+          {% endif %}
+          <div class="number-of-views">
+            <small>344 views</small>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="right-side">
+      <div id="map" class="map"></div>
+    </div>
+</div>
+<div id="modal" class="modal" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h1>Donate bitcoins directly to <strong>{{ object }}</strong></h1>
+        <img src="{% static 'img/qrcode.png' %}" />
+        <p>Bitcoin Address:
+          <span class="bitcoin-address">{{ object.bitcoin }}</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extrajs %}
+{{ block.super }}
+<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script>
+  var data = [
+    {% for mark in user_marks %}
+      {'lat': {{ mark.point.x }}, 'long': {{ mark.point.y }} },
+    {% endfor %}
+  ];
+</script>
+
+{% include "map.html" %}
+
+{% endblock %}

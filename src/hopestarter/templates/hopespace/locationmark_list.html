@@ -7,6 +7,22 @@
 {{ block.super }}
 {% endblock %}
 
+{% block header_extra %}
+    <div class="row info">
+        <div class="col-md-7">
+            <h2 class="title">World Updates</h2>
+        </div>
+        <div class="col-md-3 counter">
+            <h3>838 refugees</h3>
+            <p>need your help around the world</p>
+        </div>
+        <div class="col-md-2 counter">
+            <h3>$1206,43</h3>
+            <p>donated to them so far</p>
+        </div>
+    </div>
+{% endblock %}
+
 {% block content %}
 
   <div class="first">
@@ -14,8 +30,8 @@
     {% for mark in object_list %}
       <div class="status">
         <header>
-          <a class="profile-picture" href="#"><img src="{% if mark.user.profile.thumbnail_picture %}{{ mark.user.profile.thumbnail_picture.url }}{% else %}https://dl-web.dropbox.com/account_photo/get/dbid%3AAADpuOR1rMlu--LBQJi4BXnoUVIM0RYzpWY?vers=1417006963406&circle_crop=1&size=128x128{% endif %}" alt="profile picture of {{ mark.user.profile|escape }}"/></a>
-          <a class="username" href="#">{{ mark.user.profile }}</a>
+          <a class="profile-picture" href="/profile/{{ mark.user.profile.id }}"><img src="{% if mark.user.profile.thumbnail_picture %}{{ mark.user.profile.thumbnail_picture.url }}{% else %}https://dl-web.dropbox.com/account_photo/get/dbid%3AAADpuOR1rMlu--LBQJi4BXnoUVIM0RYzpWY?vers=1417006963406&circle_crop=1&size=128x128{% endif %}" alt="profile picture of {{ mark.user.profile|escape }}"/></a>
+          <a class="username" href="/profile/{{ mark.user.profile.id }}">{{ mark.user.profile }}</a>
           <div class="meta">
             <p>
               <span class="ethnicity">{% for m in mark.user.membership.all %}{{ m.ethnicity }}{% include "comma.html" %}{% endfor %}</span> &middot; <span class="location">Athens, Greece</span> &middot; <span class="time">{{ mark.created|naturaltime }}</span>
@@ -39,7 +55,7 @@
     {% endfor %}
     </div>
     <div class="right-side">
-      <div id="map" class="map"></div>
+      <div id="map" class="map" style="top:150px"></div>
     </div>
   </div>
 
@@ -49,69 +65,14 @@
 {{ block.super }}
 <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script src="https://cdn.rawgit.com/googlemaps/js-marker-clusterer/gh-pages/src/markerclusterer.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh5N8Kx6R2CrSNUJweWIWRD9w5MXvTr_g"></script>
 <script>
-    var map = null;
-    var markerClusterer = null;
-    var mapStyles = [];
-
-    $.getJSON('/static/map_style.json', function(styles){
-        mapStyles = styles;
-        initMap();
-    })
-
-    var data = [
-        {% for mark in object_list %}
-            {'lat': {{ mark.point.x }}, 'long': {{ mark.point.y }} },
-        {% endfor %}
-    ]
-
-    function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 37.979, lng: 27.716},
-          zoom: 6,
-          styles: mapStyles
-        });
-
-        // Handle resizing
-        google.maps.event.addDomListener(window, "resize", function() {
-           var center = map.getCenter();
-           google.maps.event.trigger(map, "resize");
-           map.setCenter(center);
-        });
-
-        refreshMap();
-    }
-
-    function refreshMap() {
-        if (markerClusterer) {
-          markerClusterer.clearMarkers();
-        }
-
-        var markers = data.map(function(coord){
-          return new google.maps.Marker({
-            position: new google.maps.LatLng(coord.lat, coord.long),
-            icon: {
-              url: '/static/img/single_pin.svg',
-              size: new google.maps.Size(32,39),
-              anchor: new google.maps.Point(16, 39)
-            },
-          })
-        });
-
-        markerClusterer = new MarkerClusterer(map, markers, {
-          maxZoom: 10,
-          averageCenter: true,
-          styles: [{
-            url: '/static/img/group_pin.svg',
-            width: 32,
-            height: 39,
-            textColor: 'white',
-            iconAnchor: [16, 39]
-          }]
-        });
-    }
-
+  var data = [
+    {% for mark in object_list %}
+      {'lat': {{ mark.point.x }}, 'long': {{ mark.point.y }} },
+    {% endfor %}
+  ];
 </script>
+
+{% include "map.html" %}
+
 {% endblock %}

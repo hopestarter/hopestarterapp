@@ -39,22 +39,11 @@
 						</nav>
 					</div>
 				</div>
-				<div class="row info">
-					<div class="col-md-7">
-						<h2 class="title">World Updates</h2>
-					</div>
-					<div class="col-md-3 counter">
-						<h3>838 refugees</h3>
-						<p>need your help around the world</p>
-					</div>
-					<div class="col-md-2 counter">
-						<h3>$1206,43</h3>
-						<p>donated to them so far</p>
-					</div>
-				</div>
+				{% block header_extra %}{% endblock %}
 			</header>
 
 		    {% block content %}{% endblock %}
+            <script src="{% static 'javascript/app.js' %}"></script>
 		    {% block extrajs %}{% endblock %}
 	  	</div>
   </body>

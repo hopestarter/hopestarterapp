@@ -16,7 +16,6 @@ body > .container-fluid {
 header.fixed {
   position: fixed;
   width: 100%;
-  height: 150px;
   background-color: white;
   z-index: 200;
   -webkit-box-shadow: 0px 4px 4px 0px rgba(50, 50, 50, 0.1);
@@ -29,7 +28,7 @@ header.fixed.short {
 }
 
 .first {
-  padding-top: 150px;
+  padding-top: 60px;
 }
 
 .second {
@@ -41,8 +40,9 @@ header.fixed.short {
 /********** Header **********/
 
 .topbar {
-  padding: 20px 0;
-  margin: 0 30px 20px;
+  height: 40px;
+  padding: 20px 0 40px;
+  margin: 0 30px;
   border-bottom: 1px solid #e1e1e1;
 }
 
@@ -98,8 +98,9 @@ header.fixed.short {
 }
 
 .info {
+  height: 49px;
   padding-top: 10px;
-  margin: 0 30px;
+  margin: 20px 30px;
 }
 
 h2.title {
@@ -131,12 +132,15 @@ h2.title {
 
 /********** World Feed **********/
 
+.feed {
+  background-color: #14181A;
+  padding: 20px;
+}
+
 .first .left-side,
 .second .left-side {
-  background-color: #14181A;
   width: 380px;
   float: left;
-  padding: 20px;
 }
 
 .second .left-side {
@@ -213,10 +217,12 @@ h2.title {
 }
 
 .map {
-  width: 100%;
-  height: 100%;
-  position: fixed !important;
+  position: absolute;
   background-color: #224052;
+  top: 60px;
+  left: 380px;
+  bottom: 0;
+  right: 0;
 }
 
 .map span {
@@ -306,7 +312,7 @@ h2.title {
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 300; /* Sit on top */
+    /*z-index: 300;*/ /* Sit on top */
     padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;
@@ -368,3 +374,40 @@ h2.title {
     cursor: pointer;
     opacity: 1;
 }
+
+/* Profile Page */
+.profile-panel {
+  height: 100%;
+  background-color: white;
+  padding: 20px;
+}
+
+
+.profile-panel img {
+  width: 64px;
+  height: 64px;
+}
+
+.donation-button {
+  margin: 10px 0 10px;
+}
+
+.donation-button .btn {
+  background-color: #3DB4D1;
+  border-width: 0;
+}
+
+.profile-panel .left-meta {
+  border-right: 1px solid #e1e1e1;
+}
+
+.left-panel {
+  margin-right: 0;
+  padding-right: 0;
+}
+
+.right-panel {
+  margin-left: 0;
+  padding-left: 0;
+}
+
