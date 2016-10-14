@@ -1,0 +1,64 @@
+<script src="https://cdn.rawgit.com/googlemaps/js-marker-clusterer/gh-pages/src/markerclusterer.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh5N8Kx6R2CrSNUJweWIWRD9w5MXvTr_g"></script>
+<script>
+    var map = null;
+    var markerClusterer = null;
+    var mapStyles = [];
+
+    $.getJSON('/static/map_style.json', function(styles){
+        mapStyles = styles;
+        initMap();
+    })
+
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: data[0].lat, lng: data[0].long},
+          zoom: 6,
+          styles: mapStyles
+        });
+
+        // Handle resizing
+        google.maps.event.addDomListener(window, "resize", function() {
+           var center = map.getCenter();
+           google.maps.event.trigger(map, "resize");
+           map.setCenter(center);
+        });
+
+        // Set the map fixed as soon as it's finished loading
+        google.maps.event.addListener(map, "tilesloaded", function() {
+           document.getElementById("map").style.position = "fixed";
+        });
+
+        refreshMap(data);
+    }
+
+    function refreshMap(coordinates) {
+        if (markerClusterer) {
+          markerClusterer.clearMarkers();
+        }
+
+        var markers = coordinates.map(function(coord){
+          return new google.maps.Marker({
+            position: new google.maps.LatLng(coord.lat, coord.long),
+            icon: {
+              url: '/static/img/single_pin.svg',
+              size: new google.maps.Size(32,39),
+              anchor: new google.maps.Point(16, 39)
+            },
+          })
+        });
+
+        markerClusterer = new MarkerClusterer(map, markers, {
+          maxZoom: 10,
+          averageCenter: true,
+          styles: [{
+            url: '/static/img/group_pin.svg',
+            width: 32,
+            height: 39,
+            textColor: 'white',
+            iconAnchor: [16, 39]
+          }]
+        });
+    }
+
+</script>
