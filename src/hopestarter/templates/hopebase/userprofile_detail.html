@@ -47,7 +47,7 @@
         <div class="status">
           <header>
             <a class="profile-picture" href="#"><img src="{% if object.thumbnail_picture %}{{ object.thumbnail_picture.url }}{% else %}https://dl-web.dropbox.com/account_photo/get/dbid%3AAADpuOR1rMlu--LBQJi4BXnoUVIM0RYzpWY?vers=1417006963406&circle_crop=1&size=128x128{% endif %}" alt="profile picture of {{ object|escape }}"/></a>
-            <a class="username" href="/profile/{{ object.id }}">{{ object }}</a>
+            <a class="username" href="#">{{ object }}</a>
             <div class="meta">
               <p>
                 <span class="ethnicity">{% for m in object.user.membership.all %}{{ m.ethnicity }}{% include "comma.html" %}{% endfor %}</span> &middot; <span class="location">Athens, Greece</span> &middot; <span class="time">{{ mark.created|naturaltime }}</span>
