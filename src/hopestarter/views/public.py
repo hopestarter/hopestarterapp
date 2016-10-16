@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from hopespace.models import LocationMark
 from hopebase.models import UserProfile
 
+BOUNDARY_OFFSET = 0.1  # Boundary offset = 10%
 
 class LocationMarkListView(ListView):
 
@@ -25,5 +26,18 @@ class UserProfileView(DetailView):
     def get_context_data(self, **kwargs):
         obj = self.get_object()
         context = super(UserProfileView, self).get_context_data(**kwargs)
-        context['user_marks'] = obj.user.marks.all()
+        user_marks = context['user_marks'] = obj.user.marks.all()
+
+        min_lat = min([m.point.x for m in user_marks])
+        max_lat = max([m.point.x for m in user_marks])
+        min_lng = min([m.point.y for m in user_marks])
+        max_lng = max([m.point.y for m in user_marks])
+
+        context['view_boundary'] = {
+            'north': min_lat - (max_lat - min_lat) * BOUNDARY_OFFSET,
+            'east': max_lng + (max_lng - min_lng) * BOUNDARY_OFFSET,
+            'south': max_lat + (max_lat - min_lat) * BOUNDARY_OFFSET,
+            'west': min_lng - (max_lng - min_lng) * BOUNDARY_OFFSET
+        }
+
         return context

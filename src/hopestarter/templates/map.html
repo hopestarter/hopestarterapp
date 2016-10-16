@@ -12,8 +12,6 @@
 
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: data[0].lat, lng: data[0].long},
-          zoom: 6,
           styles: mapStyles
         });
 
@@ -28,6 +26,18 @@
         google.maps.event.addListener(map, "tilesloaded", function() {
            document.getElementById("map").style.position = "fixed";
         });
+
+        {% if view_boundary %}
+        map.fitBounds({
+            north: {{ view_boundary.north }},
+            east: {{ view_boundary.east }},
+            south: {{ view_boundary.south }},
+            west: {{ view_boundary.west }}
+        });
+        {% else %}
+        map.setCenter({ lat: 0, lng: 0 });
+        map.setZoom(2);
+        {% endif %}
 
         refreshMap(data);
     }
