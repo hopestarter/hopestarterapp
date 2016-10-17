@@ -10,7 +10,7 @@ from hopestarter.views.public import LocationMarkListView, UserProfileView
 
 urlpatterns = [
     url(r"^$", LocationMarkListView.as_view(), name="home"),
-    url(r"^profile/(?P<pk>\d+)$", UserProfileView.as_view(), name="user-profile"),
+    url(r"^profile/(?P<username>[-\w]+)$", UserProfileView.as_view(), name="user-profile"),
     url(r"^index/$", TemplateView.as_view(template_name="index.html"), name="index"),
     url(r'^accounts/demo_signup/', csrf_exempt(allauth_signup), name="demo_signup"),
     url(r'^accounts/', include('allauth.urls')),
