@@ -86,4 +86,4 @@ MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, "..", ".." "site", "media"))
 
 NAME_MAX = 100
 
-DEFAULT_PROFILE_IMAGE = 'https://github.com/hopestarter/hopestarterapp/blob/master/src/hopestarter/static/img/avatar_b.png'
+DEFAULT_PROFILE_IMAGE = 'https://raw.githubusercontent.com/hopestarter/hopestarterapp/master/src/hopestarter/static/img/avatar_b.png'
