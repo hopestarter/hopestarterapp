@@ -50,6 +50,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'hopestarter.context_processors.template_settings',
             ],
         },
     },
@@ -84,3 +85,5 @@ STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, "..", "..", "site", "static
 MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, "..", ".." "site", "media"))
 
 NAME_MAX = 100
+
+DEFAULT_PROFILE_IMAGE = 'https://github.com/hopestarter/hopestarterapp/blob/master/src/hopestarter/static/img/avatar_b.png'

@@ -14,7 +14,7 @@
     <div class="row profile-panel">
       <div class="avatar row">
         <div class="col-sm-4 col-sm-offset-4 text-center">
-          <img src="{% if object.thumbnail_picture %}{{ object.thumbnail_picture.url }}{% else %}https://dl-web.dropbox.com/account_photo/get/dbid%3AAADpuOR1rMlu--LBQJi4BXnoUVIM0RYzpWY?vers=1417006963406&size=64x64{% endif %}" alt="profile picture of {{ object|escape }}"/>
+          <img src="{% if object.thumbnail_picture %}{{ object.thumbnail_picture.url }}{% else %}{{ DEFAULT_PROFILE_IMAGE }}{% endif %}" alt="profile picture of {{ object|escape }}"/>
         </div>
       </div>
       <div class="row profile-heading text-center">
