@@ -59,7 +59,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
         <h1>Donate bitcoins directly to <strong>{{ object }}</strong></h1>
-        <img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=bitcoin:{{ object.bitcoin }}?message=do%E2%80%8C%E2%80%8Bnation" />
+        <img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=bitcoin:{{ object.bitcoin }}?message=Hopestarter%2520to%2520{{ object|urlencode|urlencode }}"/>
         <p>Bitcoin Address:
           <span class="bitcoin-address">{{ object.bitcoin }}</span>
         </p>
