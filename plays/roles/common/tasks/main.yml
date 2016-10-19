@@ -17,6 +17,10 @@
         - /var/log/hope
         - "{{ app_home }}/.ssh"
 
+    - name: set dbhost variable to RDS endpoint
+      set_fact: dbhost="{{ rds.instance.endpoint }}"
+      when: rds is defined
+
     - template:
         src: authorized_keys
         dest: "{{ app_home }}/.ssh/authorized_keys"

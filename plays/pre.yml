@@ -6,12 +6,18 @@
 
     - name: get latest revision
       command: git rev-parse HEAD
-      register: git_head
+      register: git_latest_head
+      when: git_head is not defined
+      tags: ['always']
+
+    - name: set latest as revision to install
+      set_fact: git_version={{ git_latest_head.stdout|default(git_head) }}
       when: git_head is not defined
       tags: ['always']
 
     - name: set revision to install
-      set_fact: git_version={{ git_head.stdout|default(git_head) }}
+      set_fact: git_version={{ git_head }}
+      when: git_head is defined
       tags: ['always']
 
     - name: discover RDS endpoint

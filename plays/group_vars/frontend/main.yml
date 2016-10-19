@@ -4,3 +4,13 @@ social_twitter_secret: "{{ vaulted_social_twitter_secret }}"
 raven_dsn: "{{ vaulted_raven_dsn }}"
 aws_api_key: "{{ vaulted_aws_api_key }}"
 aws_api_secret: "{{ vaulted_aws_api_secret }}"
+rds_instance_name: HopestarterTest
+dbuser: "{{ lookup('env','PGUSER') }}"
+dbpass: "{{ lookup('env','PGPASS') }}"
+dbadmin: postgres
+dbadminpw: postgres
+dbname: hopestarter
+become_user: root
+become_method: sudo
+repo_url: "https://github.com/hopestarter/hopestarterapp.git"
+app_home: /home/ec2-user/

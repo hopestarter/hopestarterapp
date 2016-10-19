@@ -1,0 +1,29 @@
+---
+- name: set up database
+  hosts: frontend
+  pre_tasks:
+      - include: pre.yml
+  roles:
+      - common
+      - hopestarterdb
+- name: update api server
+  hosts: frontend
+  pre_tasks:
+      - include: pre.yml
+  roles:
+      - hopeapi
+      - hopesecrets
+  post_tasks:
+      - include: post.yml
+  vars:
+      app_settings: hopestarter.settings.api_production
+- name: update frontend
+  hosts: frontend
+  pre_tasks:
+      - include: pre.yml
+  roles:
+      - hopeweb
+  post_tasks:
+      - include: post.yml
+  vars:
+      app_settings: hopestarter.settings.production

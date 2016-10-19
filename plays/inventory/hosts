@@ -5,3 +5,6 @@ localhost
 
 [frontend:children]
 tag_nodetype_frontend
+
+[frontend:vars]
+ansible_user=ec2-user
