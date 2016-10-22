@@ -28,12 +28,18 @@
         });
 
         {% if view_boundary %}
-        map.fitBounds({
-            north: {{ view_boundary.north }},
-            east: {{ view_boundary.east }},
-            south: {{ view_boundary.south }},
-            west: {{ view_boundary.west }}
-        });
+        if(data.length > 1) {
+            map.fitBounds({
+                north: {{ view_boundary.north }},
+                east: {{ view_boundary.east }},
+                south: {{ view_boundary.south }},
+                west: {{ view_boundary.west }}
+            });
+        } else {
+            // Set a maximum zoom in case there is only one mark
+            map.setCenter(data[0]);
+            map.setZoom(15);
+        }
         {% else %}
         map.setCenter({ lat: 37.57070524233119, lng: 22.12646484375 });
         map.setZoom(5);
@@ -49,7 +55,7 @@
 
         var markers = coordinates.map(function(coord){
           return new google.maps.Marker({
-            position: new google.maps.LatLng(coord.lat, coord.long),
+            position: new google.maps.LatLng(coord.lat, coord.lng),
             icon: {
               url: '/static/img/single_pin.svg',
               size: new google.maps.Size(32,39),
