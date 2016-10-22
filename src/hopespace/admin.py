@@ -16,7 +16,7 @@ class EthnicMemberAdmin(admin.ModelAdmin):
 
 class LocationMarkAdmin(admin.GeoModelAdmin):
     readonly_fields = ('created', 'user')
-    list_display = ('__unicode__', 'user', 'large_picture',)
+    list_display = ('__unicode__', 'user', 'large_picture', 'city', 'country')
     formfield_overrides = {
         models.PointField: {'widget': Textarea }
     }
