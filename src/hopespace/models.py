@@ -92,8 +92,8 @@ class LocationMark(models.Model):
                         image_name + '_thumbnail.png', 'image/png',
                         output.len, None)
 
-        if self.point:
-            (city, state, country) = geocode(self.point.x, self.point.y)
+        if self.point and (not self.country or not self.city):
+            (city, state, country) = geocode(self.point.y, self.point.x)
             # Save the state if the city is not available
             self.city = city if city else state
             self.country = country
