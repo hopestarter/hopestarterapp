@@ -12,7 +12,7 @@ if 'django.contrib.sites' not in INSTALLED_APPS:
 	INSTALLED_APPS += ('django.contrib.sites',)
 
 try:
-    from .api_secret import *
+    from .secret import *
     RAVEN_CONFIG = {
         'dsn': RAVEN_DSN
     }
