@@ -44,7 +44,7 @@
 <script>
   var data = [
     {% for mark in object_list %}
-      {'lat': {{ mark.point.x }}, 'long': {{ mark.point.y }} },
+      {'lat': {{ mark.point.x }}, 'lng': {{ mark.point.y }} },
     {% endfor %}
   ];
 </script>

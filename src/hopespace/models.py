@@ -7,6 +7,8 @@ from time import time
 from PIL import Image
 from StringIO import StringIO
 
+from hopespace.utils import geocode
+
 
 def upload_image_to(instance, filename):
     return 'media/marks/%s/%s' % (instance.user.username, filename)
@@ -26,6 +28,8 @@ class LocationMark(models.Model):
     point = models.PointField()
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='marks')
     text = models.TextField(null=True, blank=True)
+    city = models.TextField(null=True, blank=True)
+    country = models.TextField(null=True, blank=True)
     created = models.DateTimeField(editable=False, auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
@@ -82,6 +86,13 @@ class LocationMark(models.Model):
             self.thumbnail_picture = InMemoryUploadedFile(output, 'ImageField',
                         image_name + '_thumbnail.png', 'image/png',
                         output.len, None)
+
+        if self.point:
+            (city, state, country) = geocode(self.point.x, self.point.y)
+            # Save the state if the city is not available
+            self.city = city if city else state
+            self.country = country
+
         super(LocationMark, self).save(*args, **kwargs)
 
     def __unicode__(self):

@@ -6,7 +6,9 @@
     <a class="username" href="/profile/{{ mark.user.username }}">{{ mark.user.profile }}</a>
     <div class="meta">
       <p>
-        <span class="ethnicity">{% for m in mark.user.membership.all %}{{ m.ethnicity }}{% include "comma.html" %}{% endfor %}</span> &middot; <span class="location">Athens, Greece</span> &middot; <span class="time">{{ mark.created|naturaltime }}</span>
+        <span class="ethnicity">{% for m in mark.user.membership.all %}{{ m.ethnicity }}{% include "comma.html" %}{% endfor %}</span>
+          &middot; <span class="location">{% if mark.city %}{{ mark.city }},{% endif %}{% if mark.country %}{{ mark.country }} &middot; {% endif %}</span>
+         <span class="time">{{ mark.created|naturaltime }}</span>
       </p>
     </div>
   </header>

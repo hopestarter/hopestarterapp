@@ -5,3 +5,4 @@ redis==2.10.3
 django-grappelli==2.7.3
 boto3==1.2.3
 Pillow==3.3.0
+googlemaps==2.4.4
