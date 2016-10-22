@@ -3,6 +3,8 @@ from django.conf import settings
 from django.utils import timezone
 from django.core.files.uploadedfile import InMemoryUploadedFile
 
+from hopespace.image import get_rotation
+
 from time import time
 from PIL import Image
 from StringIO import StringIO
@@ -53,6 +55,9 @@ class LocationMark(models.Model):
             image_name = str(int(time()))
             # Resize and append
             image = Image.open(StringIO(self.picture.read()))
+            rotation = get_rotation(image)
+            if rotation is not None:
+                image = image.transpose(rotation)
             image.thumbnail(large_size, Image.ANTIALIAS)
             background = Image.new('RGBA', image.size, (20, 24, 26, 255))
             background.paste(image)
