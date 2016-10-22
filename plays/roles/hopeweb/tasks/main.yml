@@ -3,6 +3,7 @@
       template: src=envrc.j2 dest="{{ app_home }}/.envrc"
       tags:
         - config
+      notify: web changed
 
     - include: code.yml
       tags:
@@ -19,5 +20,6 @@
       tags:
           - config
           - code
+      notify: web changed
   rescue:
     - include: rescue.yml state=web

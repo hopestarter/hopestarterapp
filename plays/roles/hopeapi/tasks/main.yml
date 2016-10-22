@@ -2,6 +2,7 @@
     - name: setup env
       template: src=envrc.j2 dest="{{ app_home }}/.envrc"
       tags: ['config']
+      notify: api changed
 
     - name: configuring AWS_ACCESS_KEY_ID
       lineinfile:
@@ -11,6 +12,7 @@
         line: "{{ aws_api_key }}"
       no_log: true
       tags: ['config']
+      notify: api changed
 
     - name: configuring AWS_SECRET_ACCESS_KEY
       lineinfile:
@@ -20,6 +22,7 @@
         line: "{{ aws_api_secret }}"
       no_log: true
       tags: ['config']
+      notify: api changed
 
     - include: code.yml
       tags: ['code']
@@ -34,5 +37,6 @@
       tags:
           - config
           - code
+      notify: api changed
   rescue:
     - include: rescue.yml state=api

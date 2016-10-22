@@ -3,3 +3,9 @@
   become: yes
   tags:
       - config
+
+- name: api changed
+  file: path="{{ app_home }}/vassals/api.ini" state=touch
+  tags:
+      - config
+      - code

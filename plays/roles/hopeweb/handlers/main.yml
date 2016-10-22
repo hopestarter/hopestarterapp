@@ -3,3 +3,9 @@
   become: yes
   tags:
       - config
+
+- name: web changed
+  file: path="{{ app_home }}/vassals/site.ini" state=touch
+  tags:
+      - config
+      - code

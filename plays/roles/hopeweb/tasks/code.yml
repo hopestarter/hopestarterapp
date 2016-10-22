@@ -13,6 +13,7 @@
 
 - name: updating source code to {{ git_version }}
   git: repo={{ repo_url }} dest="{{ app_home }}/hopestarterapp" version={{ git_version }}
+  notify: web changed
 
 - name: installing virtualenv
   pip: name=virtualenv state=present extra_args="--user"
@@ -22,3 +23,4 @@
 
 - name: installing python dependencies
   pip: requirements="{{ app_home }}/hopestarterapp/requirements/production.txt" virtualenv="{{ app_home }}/venv" virtualenv_site_packages=yes
+  notify: web changed
