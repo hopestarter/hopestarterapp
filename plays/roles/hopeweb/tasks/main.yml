@@ -21,5 +21,11 @@
           - config
           - code
       notify: web changed
+
+    - name: web changed
+      file: path="{{ app_home }}/vassals/site.ini" state=touch
+      tags:
+          - config
+          - code
   rescue:
     - include: rescue.yml state=web
