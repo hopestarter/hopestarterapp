@@ -35,6 +35,12 @@ header.fixed.short {
   padding-top: 60px;
 }
 
+.locked {
+  pointer-events: none;
+  cursor: default;
+  color: #eeeeee;
+}
+
 
 
 /********** Header **********/
