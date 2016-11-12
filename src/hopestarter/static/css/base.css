@@ -35,12 +35,6 @@ header.fixed.short {
   padding-top: 60px;
 }
 
-.locked {
-  pointer-events: none;
-  cursor: default;
-  color: #eeeeee;
-}
-
 
 
 /********** Header **********/
@@ -415,5 +409,15 @@ h2.title {
 .right-panel {
   margin-left: 0;
   padding-left: 0;
+}
+
+
+
+
+
+.locked {
+  pointer-events: none;
+  cursor: default;
+  color: #eeeeee;
 }
 
