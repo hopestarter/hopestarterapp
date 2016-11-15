@@ -6,7 +6,7 @@ A django app for the hopestarter.org webapp
 # Usage and testing
 
 ## Docker
-If you have docker installed, you can build an image and launch a container ready for you to use and test changes by using the scripts ./docker/build_image.py and ./docker/start_container. build_image.py must be called from the project's root directory. 
+If you have docker installed, you can build an image and launch a container ready for you to use and test changes by using the scripts ./docker/build_image.py and ./docker/start_container. build_image.py must be called from the project's root directory.
 
 The former script does just what it says in its name by using the dockerfiles named 1.BinaryDeps, 2.PythonDeps, 3.Ansible and 4.ServerSetup. The later starts a container with the resulting image with some sensible defaults like port mappings and storage volumes.
 
@@ -40,7 +40,7 @@ cd plays
 export PGUSER=geotest
 export PGPASS=geotest
 export PGDATABASE=geotest
-ansible-playbook -i inventory/local local.yml
+ansible-playbook -i inventory local.yml
 ```
 
 Last, run `./manage.py syncdb` from within the `src` directory.
