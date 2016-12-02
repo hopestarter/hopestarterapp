@@ -1,6 +1,6 @@
 {% load humanize %}
 
-<div class="status">
+<div class="status" data-mark-id="{{ mark.id }}">
   <header>
       <a class="profile-picture" href="/profile/{{ mark.user.username }}"><img src="{% if mark.user.profile.thumbnail_picture %}{{ mark.user.profile.thumbnail_picture.url }}{% else %}{{ DEFAULT_PROFILE_IMAGE }}{% endif %}" alt="profile picture of {{ mark.user.profile|escape }}"/></a>
     <a class="username" href="/profile/{{ mark.user.username }}">{{ mark.user.profile }}</a>
