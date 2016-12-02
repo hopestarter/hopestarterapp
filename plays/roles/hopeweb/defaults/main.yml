@@ -7,3 +7,4 @@ djangoenv:
 django_home: "{{ app_home }}/hopestarterapp/src/"
 venv_path: "{{ app_home }}/venv/"
 git_version: HEAD
+migrate_django: false
