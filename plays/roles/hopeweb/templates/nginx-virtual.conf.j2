@@ -18,6 +18,10 @@ server {
         alias {{ app_home }}/hopestarterapp/site/static;
     }
 
+    location ~ /(android-|apple-|ms-|fav)icon.* {
+        root {{ app_home }}/hopestarterapp/site/static/img;
+    }
+
     # Finally, send all non-media requests to the Django server.
     location / {
         uwsgi_pass  django;
