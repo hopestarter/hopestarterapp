@@ -18,7 +18,7 @@ from hopespace.models import LocationMark
 
 class LocationMarkView(generics.ListAPIView):
     permission_classes = [getattr(permissions, p) for p in settings.LOCATION_PERMS]
-    queryset = LocationMark.objects.all()
+    queryset = LocationMark.objects.filter(hidden=None)
     filter_backends = (DjangoFilterBackend, OrderingFilter)
     filter_class = filters.LocationMarkFilterSet
     ordering_fields = ('created',)

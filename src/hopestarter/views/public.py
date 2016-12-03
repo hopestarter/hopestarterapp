@@ -1,4 +1,5 @@
 from django.views.generic import ListView, DetailView
+from django.db.models import Q
 from django.contrib.auth.models import User
 from django.conf import settings
 
@@ -12,6 +13,7 @@ class LocationMarkListView(ListView):
 
     def get_queryset(self):
         qs = LocationMark.objects.exclude(user__profile=None)
+        qs = qs.filter(Q(hidden=None) | Q(user=self.request.user))
         qs = qs.order_by('-created')
         qs = qs.select_related('user')
         qs = qs.prefetch_related('user__membership')
@@ -20,6 +22,7 @@ class LocationMarkListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(LocationMarkListView, self).get_context_data(**kwargs)
         context['google_api_key'] = settings.GOOGLE_MAPS_KEY
+        context['mark_opts'] = LocationMark._meta
 
         return context
 
