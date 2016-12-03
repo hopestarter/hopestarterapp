@@ -34,15 +34,18 @@ class LocationMark(models.Model):
     country = models.TextField(null=True, blank=True)
     created = models.DateTimeField(editable=False, auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
+    hidden = models.ForeignKey(
+        settings.AUTH_USER_MODEL, null=True, blank=True,
+        related_name='censored_posts')
 
     class Meta:
         ordering = ('-created',)
 
     # Returns the string representation of the model.
     def __str__(self):
-        return "<MARK:{}:{},{}:{}>".format(
+        return "<MARK:{}:{},{}:{}:{}>".format(
             self.id, self.point.coords[0], self.point.coords[1],
-            self.created.isoformat())
+            self.created.isoformat(), self.user_id)
 
     def save(self, *args, **kwargs):
         self.modified = timezone.now()
@@ -100,12 +103,8 @@ class LocationMark(models.Model):
 
         super(LocationMark, self).save(*args, **kwargs)
 
-
     def __unicode__(self):
         return self.__str__()
-
-
-#class LocationImageUpload(models.Model):
 
 
 class Ethnicity(models.Model):
