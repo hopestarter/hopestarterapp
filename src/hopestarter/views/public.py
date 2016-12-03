@@ -20,6 +20,7 @@ class LocationMarkListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(LocationMarkListView, self).get_context_data(**kwargs)
         context['google_api_key'] = settings.GOOGLE_MAPS_KEY
+        context['mark_opts'] = LocationMark._meta
 
         return context
 

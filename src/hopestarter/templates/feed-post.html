@@ -1,4 +1,6 @@
 {% load humanize %}
+{% load admin_urls %}
+
 
 <div class="status" data-mark-id="{{ mark.id }}">
   <header>
@@ -23,6 +25,13 @@
   </div>
   {% endif %}
   <div class="number-of-views">
-    <small>344 views</small>
+      <small>344 views</small>
   </div>
+
+  {% if request.user.is_staff %}
+  <div class="actions">
+      <small><a href="{% url 'admin:hopespace_locationmark_changelist' %}?q={{ mark.pk }}">view in admin</a></small>|
+      <small><a href="{% url mark_opts|admin_urlname:'censor_location_mark' mark.pk %}">hide</a></small>
+  </div>
+  {% endif %}
 </div>

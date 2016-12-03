@@ -5,7 +5,9 @@ Built-in, globally-available admin actions.
 from django.contrib.admin import helpers
 from django.contrib.gis import admin
 from django.contrib.gis.db import models
+from django.core.urlresolvers import reverse
 from django.forms.widgets import Textarea
+from django.shortcuts import redirect
 from django.template.response import TemplateResponse
 from django.utils.encoding import force_text
 from django.utils.translation import ugettext as _
@@ -26,6 +28,7 @@ class EthnicMemberAdmin(admin.ModelAdmin):
 def censor_location_mark(modeladmin, request, queryset):
     if request.POST.get('post'):
         # user confirmed
+        modeladmin.message_user(request, "Post censored")
         queryset.update(hidden=request.user)
         return None
 
@@ -55,6 +58,7 @@ censor_location_mark.short_description = "Censor"
 
 
 def uncensor_location_mark(modeladmin, request, queryset):
+    modeladmin.message_user(request, "Post uncensored")
     queryset.update(hidden=None)
 uncensor_location_mark.short_description = "Uncensor"
 
@@ -67,6 +71,30 @@ class LocationMarkAdmin(admin.GeoModelAdmin):
         models.PointField: {'widget': Textarea}
     }
     actions = [censor_location_mark, uncensor_location_mark]
+    search_fields = ['^user__username', '^user__email', '=id']
+
+    def get_urls(self):
+        from django.conf.urls import url, patterns
+        urls = super(LocationMarkAdmin, self).get_urls()
+        my_urls = patterns(
+            '',
+            url(
+                r'censor/(?P<mark_id>\d+)/',
+                self.admin_site.admin_view(censor_location_mark_view),
+                name='hopespace_locationmark_censor_location_mark',
+            ),
+        )
+        return my_urls + urls
+
+
+def censor_location_mark_view(request, mark_id):
+    queryset = LocationMark.objects.filter(id=mark_id)
+    modeladmin = admin.site._registry[LocationMark]
+    response = censor_location_mark(modeladmin, request, queryset)
+    if response is None:
+        url = reverse('admin:hopespace_locationmark_changelist')
+        return redirect('{}?q={}'.format(url, mark_id))
+    return response
 
 
 admin.site.register(Ethnicity, EthnicityAdmin)
