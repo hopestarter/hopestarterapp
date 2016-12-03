@@ -15,6 +15,9 @@ from django.utils.translation import ugettext as _
 from hopespace.models import (
     LocationMark, Ethnicity, EthnicMember
 )
+from hopebase.util import (
+    increment_user_post_count, decrement_user_post_count
+)
 
 
 class EthnicityAdmin(admin.ModelAdmin):
@@ -30,6 +33,9 @@ def censor_location_mark(modeladmin, request, queryset):
         # user confirmed
         modeladmin.message_user(request, "Post censored")
         queryset.update(hidden=request.user)
+        users = {m.user.id: m.user for m in queryset}
+        for uid in users:
+            decrement_user_post_count(users[uid])
         return None
 
     opts = modeladmin.model._meta
@@ -60,6 +66,9 @@ censor_location_mark.short_description = "Censor"
 def uncensor_location_mark(modeladmin, request, queryset):
     modeladmin.message_user(request, "Post uncensored")
     queryset.update(hidden=None)
+    users = {m.user.id: m.user for m in queryset}
+    for uid in users:
+        increment_user_post_count(users[uid])
 uncensor_location_mark.short_description = "Uncensor"
 
 
