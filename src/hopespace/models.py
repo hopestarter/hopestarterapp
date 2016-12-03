@@ -100,6 +100,7 @@ class LocationMark(models.Model):
 
         super(LocationMark, self).save(*args, **kwargs)
 
+
     def __unicode__(self):
         return self.__str__()
 

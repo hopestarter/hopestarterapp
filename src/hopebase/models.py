@@ -46,7 +46,7 @@ class UserProfile(models.Model):
             # Get image name
             image_name = self.user.username
             image = Image.open(StringIO(self.picture.read()))
-            
+
             # Large size
             image.thumbnail(large_size, Image.ANTIALIAS)
             background = Image.new('RGBA', image.size, (20, 24, 26, 255))
@@ -85,3 +85,12 @@ class UserProfile(models.Model):
 
     def __unicode__(self):
         return " ".join(filter(None, [self.name, self.surname]))
+
+
+class UserStats(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL,
+                                related_name='stats')
+    created = models.DateTimeField(editable=False, auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+
+    post_count = models.IntegerField(default=0)

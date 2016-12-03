@@ -32,10 +32,20 @@ class UserProfileSerializer(serializers.ModelSerializer):
         read_only_fields = ('created', 'photo')
 
 
+class UserStatsSerializer(serializers.ModelSerializer):
+    """A class to serialize statistics about a user """
+
+    class Meta:
+        model = models.UserStats
+        exclude = ('id', 'user')
+        read_only_fields = ('created', 'modified')
+
+
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     profile = UserProfileSerializer()
     ethnicities = serializers.StringRelatedField(many=True)
     mark = serializers.SerializerMethodField()
+    stats = UserStatsSerializer()
 
     def get_mark(self, obj):
         request = self.context.get('request', None)
@@ -46,7 +56,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = get_user_model()
-        fields = ('username', 'profile', 'ethnicities', 'mark')
+        fields = ('username', 'profile', 'ethnicities', 'mark', 'stats')
         read_only_fields = ('username',)
 
 
