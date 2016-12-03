@@ -6,8 +6,6 @@ from django.conf import settings
 from hopespace.models import LocationMark
 from hopebase.models import UserProfile
 
-BOUNDARY_OFFSET = 0.1  # Boundary offset = 10%
-
 
 def get_common_map_context_data():
     return {
@@ -47,8 +45,12 @@ class UserProfileView(DetailView):
         context['user'] = obj.user
         min_lng, min_lat, max_lng, max_lat = user_marks.extent()
 
-        lat_offset = max(1, (max_lat - min_lat) * BOUNDARY_OFFSET)
-        lng_offset = max(1, (max_lng - min_lng) * BOUNDARY_OFFSET)
+        lat_span = max_lat - min_lat
+        lng_span = max_lng - min_lng
+        lat_offset = max(
+            settings.MAP_MIN_ZOOM, lat_span * settings.MAP_BOUNDARY_OFFSET)
+        lng_offset = max(
+            settings.MAP_MIN_ZOOM, lng_span * settings.MAP_BOUNDARY_OFFSET)
         context['view_boundary'] = {
             'north': min_lat - lat_offset,
             'south': max_lat + lat_offset,
