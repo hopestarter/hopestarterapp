@@ -9,6 +9,13 @@ from hopebase.models import UserProfile
 BOUNDARY_OFFSET = 0.1  # Boundary offset = 10%
 
 
+def get_common_map_context_data():
+    return {
+        'google_api_key': settings.GOOGLE_MAPS_KEY,
+        'mark_opts': LocationMark._meta
+    }
+
+
 class LocationMarkListView(ListView):
 
     def get_queryset(self):
@@ -21,8 +28,7 @@ class LocationMarkListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(LocationMarkListView, self).get_context_data(**kwargs)
-        context['google_api_key'] = settings.GOOGLE_MAPS_KEY
-        context['mark_opts'] = LocationMark._meta
+        context.update(get_common_map_context_data())
 
         return context
 
@@ -52,6 +58,6 @@ class UserProfileView(DetailView):
             'west': min_lng - (max_lng - min_lng) * BOUNDARY_OFFSET
         }
 
-        context['google_api_key'] = settings.GOOGLE_MAPS_KEY
+        context.update(get_common_map_context_data())
 
         return context
