@@ -35,7 +35,7 @@ class UserProfileView(DetailView):
         obj = self.get_object()
         context = super(UserProfileView, self).get_context_data(**kwargs)
         user_marks = context['user_marks'] = obj.user.marks.all()
-        context['user_stats'] = obj.user.stats
+        context['user'] = obj.user
 
         min_lat = min([m.point.x for m in user_marks])
         max_lat = max([m.point.x for m in user_marks])
