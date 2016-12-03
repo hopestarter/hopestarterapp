@@ -179,6 +179,56 @@ curl -s -H "Authorization: Bearer LLXoqcMuxm3QPIYhmL9I1SJp7oNMD5" http://127.0.0
 Filtering on the `created` field is possible. Also ordering based on the `created` field. TODO add some examples.
 
 
+## Read user info (_/user/_)
+
+### _GET /user/_
+
+    * Request:
+    * Response:
+	{
+	  "username": "EmmaratWassef",
+	  "profile": {
+		"photo": {
+		  "large": "https://staginghopestarterimageupload.s3-eu-west-1.amazonaws.com/media/users/864587024232887/864587024232887_large.png",
+		  "small": "https://staginghopestarterimageupload.s3-eu-west-1.amazonaws.com/media/users/864587024232887/864587024232887_small.png",
+		  "medium": "https://staginghopestarterimageupload.s3-eu-west-1.amazonaws.com/media/users/864587024232887/864587024232887_medium.png",
+		  "thumbnail": "https://staginghopestarterimageupload.s3-eu-west-1.amazonaws.com/media/users/864587024232887/864587024232887_thumbnail.png"
+		},
+		"name": "Emarat",
+		"surname": "Wassef ",
+		"bitcoin": "192mUL1bbu3e4X27DpoKT3XCnzHy6qJsZi",
+		"created": "2016-08-27T16:11:45.700941Z"
+	  },
+	  "ethnicities": [
+		"Iraqi"
+	  ],
+	  "mark": "http://api-test.hopestarter.org/api/user/mark/",
+	  "stats": {
+		"created": "2016-12-03T09:03:26.704101Z",
+		"modified": "2016-12-03T09:03:26.704125Z",
+		"post_count": 1
+	  }
+	}
+
+
+Error messages: TBD
+
+
+## Read user stats (_/user/stats/_)
+
+### _GET /user/stats/_
+
+    * Request:
+    * Response:
+	{
+	  "created": "2016-12-03T09:03:26.704101Z",
+	  "modified": "2016-12-03T09:03:26.704125Z",
+	  "post_count": 7
+	}
+
+Error messages: TBD
+
+
 ## Edit user profile (_/user/profile/_)
 
 To use this endpoint you need a token with `update-profile` scope.

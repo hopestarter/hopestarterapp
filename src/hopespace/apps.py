@@ -7,4 +7,4 @@ class HopeSpaceConfig(AppConfig):
     verbose_name = 'Hopestarter Spatial Data'
 
     def ready(self):
-        import hopespace.signals
+        import hopespace.signals   # noqa
