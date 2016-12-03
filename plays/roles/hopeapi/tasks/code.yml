@@ -12,7 +12,7 @@
       - libjpeg-turbo-devel
 
 - name: updating source code to {{ git_version }}
-  git: repo={{ repo_url }} dest="{{ app_home }}/hopestarterapp" version={{ git_version }}
+  git: repo={{ repo_url }} dest="{{ app_home }}/hopestarterapp" version={{ git_version }} force=yes
   notify: api changed
 
 - name: installing virtualenv
