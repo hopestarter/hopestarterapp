@@ -17,6 +17,8 @@ def upload_image_to(instance, filename):
 
 
 class LocationMark(models.Model):
+    objects = models.GeoManager()
+
     picture = models.ImageField(upload_to=upload_image_to,
                     editable=True, null=True, blank=True, max_length=255)
     large_picture = models.ImageField(upload_to=upload_image_to,

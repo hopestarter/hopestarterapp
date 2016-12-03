@@ -45,17 +45,15 @@ class UserProfileView(DetailView):
         context = super(UserProfileView, self).get_context_data(**kwargs)
         user_marks = context['user_marks'] = obj.user.marks.all()
         context['user'] = obj.user
+        min_lng, min_lat, max_lng, max_lat = user_marks.extent()
 
-        min_lat = min([m.point.x for m in user_marks])
-        max_lat = max([m.point.x for m in user_marks])
-        min_lng = min([m.point.y for m in user_marks])
-        max_lng = max([m.point.y for m in user_marks])
-
+        lat_offset = max(1, (max_lat - min_lat) * BOUNDARY_OFFSET)
+        lng_offset = max(1, (max_lng - min_lng) * BOUNDARY_OFFSET)
         context['view_boundary'] = {
-            'north': min_lat - (max_lat - min_lat) * BOUNDARY_OFFSET,
-            'east': max_lng + (max_lng - min_lng) * BOUNDARY_OFFSET,
-            'south': max_lat + (max_lat - min_lat) * BOUNDARY_OFFSET,
-            'west': min_lng - (max_lng - min_lng) * BOUNDARY_OFFSET
+            'north': min_lat - lat_offset,
+            'south': max_lat + lat_offset,
+            'east': max_lng + lng_offset,
+            'west': min_lng - lng_offset,
         }
 
         context.update(get_common_map_context_data())
