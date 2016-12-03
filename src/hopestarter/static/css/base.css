@@ -1,6 +1,6 @@
 /* ==========================================================================
   Hopestarter Web App
-  Version: 0.2
+  Version: 0.3
   CSS Author: Harris Rodis
 ========================================================================== */
 
@@ -33,6 +33,12 @@ header.fixed.short {
 
 .second {
   padding-top: 60px;
+}
+
+.locked {
+  pointer-events: none;
+  cursor: default;
+  color: #eeeeee !important;
 }
 
 
@@ -412,12 +418,242 @@ h2.title {
 }
 
 
-
-
-
-.locked {
-  pointer-events: none;
-  cursor: default;
-  color: #eeeeee;
+/* Refugee Status Area */
+.ref-status {
+  background-color: #626262;
 }
 
+.status-container {
+  max-width: 760px;
+  margin: auto;
+  background-color: white;
+  min-height: 100vh;
+}
+
+.ref-status--topbar {
+  background-color: #F2F2F2;
+  overflow: hidden;
+}
+
+.navbar {
+  padding: 5px 15px;
+  margin: 0;
+}
+
+.navbar h1 {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.navbar--icon {
+  width: 22px;
+  height: 16px;
+  margin-top: 15px;
+  transition: opacity 0.4s ease-out;
+}
+
+.navbar--icon:hover {
+  opacity: .6;
+}
+
+.navbar--icon__back {
+  background: url('/static/img/ngo-view/back-icon.png') no-repeat top left;
+  float: left;
+}
+
+.navbar--icon__logout {
+  background: url('/static/img/ngo-view/logout-icon.png') no-repeat top left;
+  float: right;
+}
+
+.tabbar {
+  padding: 5px 30px;
+}
+
+.tabbar .col-xs-4 {
+  padding: 0;
+}
+
+.tabbar input[type="radio"] {
+  display: none;
+}
+
+.tabbar label {
+  display: inline-block;
+  width: 100%;
+  border: 2px solid #222222;
+  border-left: none;
+  padding: 5px 20px;
+  text-align: center;
+  transition: opacity 0.4s ease-out;
+}
+
+.tabbar label[for="tab1"] {
+  border-left: 2px solid #222222;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px; 
+}
+
+.tabbar label[for="tab3"] {
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px; 
+}
+
+.tabbar label:hover {
+  opacity: .6;
+  cursor: pointer;
+}
+
+.tabbar input:checked + label {
+  background: #222222;
+  color: #fff;
+}
+
+.searchbar {
+  border-top: 2px solid #222222;
+  border-bottom: 2px solid #222222;
+  background: white;
+  padding-left: 40px;
+}
+
+.searchbar input[type="text"] {
+  background: url('/static/img/ngo-view/search-icon.png') no-repeat center left;
+  border: none;
+  box-shadow: none;
+  padding: 10px 10px 10px 26px;
+  font-size: 16px;
+  color: #222222;
+}
+
+.searchbar input[type="text"]:hover, .searchbar input[type="text"]:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+.searchbar input[type="text"]::-webkit-input-placeholder {
+color: #999999 !important;
+}
+ 
+.searchbar input[type="text"]:-moz-placeholder { /* Firefox 18- */
+color: #999999 !important;  
+}
+ 
+.searchbar input[type="text"]::-moz-placeholder {  /* Firefox 19+ */
+color: #999999 !important;  
+}
+ 
+.searchbar input[type="text"]:-ms-input-placeholder {  
+color: #999999 !important;  
+}
+
+.searchbar button[type="submit"] {
+  padding: 10px 20px 10px 5px;
+  font-size: 16px;
+  border: none;
+  background-color: #222222;
+  color: white;
+  transition: opacity 0.4s ease-out;
+}
+
+.searchbar button[type="submit"]:hover {
+  opacity: .6;
+}
+
+.searchbar button[type="submit"]:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+input[type="text"]:placeholder-shown ~ button[type="submit"] {
+  display: none;
+}
+
+input[type="text"]:focus ~ button[type="submit"] {
+  display: block;
+}
+
+.ref-status--profile {
+  padding: 20px 15px;
+  border-bottom: 1px solid #222222;
+}
+
+.ref-status--profile:hover {
+  background-color: #f2f2f2;
+}
+
+.ref-status--profile img.profile-pic {
+  float: left;
+  margin-right: 20px;
+}
+
+.ref-status--profile p.who, .ref-status--profile p.from-where {
+  color: #222222;
+  font-size: 16px;
+  display: block;
+}
+
+.ref-status--profile p.who {
+  font-weight: bold;
+}
+
+.vet-status {
+  width: 100%;
+  margin-top: 15px;
+  padding: 10px;
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: bold;
+  border-radius: 2px;
+  transition: all 0.4s ease-out;
+}
+
+.vet-status:hover {
+  opacity: .6;
+}
+
+.vet-status:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+.vet-status--unvetted {
+  border: 1px solid #999999;
+  color: #999999;
+  background-color: white;
+}
+
+.vet-status--vetted {
+  border: 1px solid #222222;
+  color: white;
+  background-color: #222222;
+}
+
+.icon-vetted {
+  background: url('/static/img/ngo-view/vetted-icon.png') no-repeat bottom left;
+  width: 18px;
+  height: 14px;
+  margin-right: 10px;
+  display: inline-block;
+}
+
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
+  .navbar--icon__back {
+    background: url('/static/img/ngo-view/back-icon@2x.png') no-repeat top left;
+    background-size: 22px 16px;
+  }
+
+  .navbar--icon__logout {
+    background: url('/static/img/ngo-view/logout-icon@2x.png') no-repeat top left;
+    background-size: 22px 16px;
+  }
+  .searchbar input[type="text"] {
+    background: url('/static/img/ngo-view/search-icon@2x.png') no-repeat center left;
+    background-size: 18px 18px;
+  }
+  .icon-vetted {
+    background: url('/static/img/ngo-view/vetted-icon@2x.png') no-repeat bottom left;
+    background-size: 18px 14px;
+  }
+}
