@@ -8,7 +8,7 @@ from rest_framework import status
 from rest_framework.response import Response
 
 from hopebase import serializers, permissions
-from hopebase.models import UserProfile
+from hopebase.models import UserProfile, UserStats
 
 
 class UserView(generics.RetrieveAPIView):
@@ -30,6 +30,21 @@ class UserProfileView(generics.RetrieveUpdateAPIView):
 
     def get_queryset(self):
         return UserProfile.objects.filter(user=self.request.user)
+
+    def get_object(self):
+        queryset = self.filter_queryset(self.get_queryset())
+        obj = get_object_or_404(queryset)
+        self.check_object_permissions(self.request, obj)
+        return obj
+
+
+class UserStatsView(generics.RetrieveAPIView):
+    permission_classes = [getattr(permissions, p) for p in settings.USER_STATS_PERMS]
+    model = UserStats
+    serializer_class = serializers.UserStatsSerializer
+
+    def get_queryset(self):
+        return UserStats.objects.filter(user=self.request.user)
 
     def get_object(self):
         queryset = self.filter_queryset(self.get_queryset())

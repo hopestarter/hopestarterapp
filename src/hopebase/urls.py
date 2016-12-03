@@ -15,7 +15,10 @@ urlpatterns = format_suffix_patterns([
     url(r'^mark/$',
         UserLocationMarkView.as_view(),
         name='user_marks'),
+    url(r'^stats/$',
+        api.UserStatsView.as_view(),
+        name='user_stats'),
     url(r'^$',
         api.UserView.as_view(),
         name='account'),
-]);
+])

@@ -1,7 +1,8 @@
 from oauth2_provider.ext.rest_framework import (
     OAuth2Authentication, TokenHasScope, TokenHasResourceScope
 )
-from rest_framework.permissions import *
+from rest_framework.permissions import *   # noqa
+
 
 class WeakTokenMixin(object):
 

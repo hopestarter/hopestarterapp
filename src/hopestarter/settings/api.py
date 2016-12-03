@@ -54,6 +54,7 @@ GRAPPELLI_INDEX_DASHBOARD = 'hopecollector.dashboard.CustomIndexDashboard'
 LOCATION_PERMS = ['IsAuthenticated', 'WeakTokenHasScope']
 PROFILE_PERMS = ['IsAuthenticated', 'WeakTokenHasScope']
 ETHNICITY_PERMS = ['IsAuthenticated', 'WeakTokenHasScope']
+USER_STATS_PERMS = ['IsAuthenticated']
 
-if os.environ.get('LOGNAME')!='mpetyx':
-    from .api_secret import *
+if os.environ.get('LOGNAME') != 'mpetyx':
+    from .api_secret import *   # noqa

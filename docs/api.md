@@ -214,6 +214,21 @@ Filtering on the `created` field is possible. Also ordering based on the `create
 Error messages: TBD
 
 
+## Read user stats (_/user/stats/_)
+
+### _GET /user/stats/_
+
+    * Request:
+    * Response:
+	{
+	  "created": "2016-12-03T09:03:26.704101Z",
+	  "modified": "2016-12-03T09:03:26.704125Z",
+	  "post_count": 7
+	}
+
+Error messages: TBD
+
+
 ## Edit user profile (_/user/profile/_)
 
 To use this endpoint you need a token with `update-profile` scope.
