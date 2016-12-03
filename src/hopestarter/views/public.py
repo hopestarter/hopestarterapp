@@ -17,7 +17,8 @@ def get_common_map_context_data():
 class LocationMarkListView(ListView):
 
     def get_queryset(self):
-        qs = LocationMark.objects.exclude(user__profile=None)
+        qs = LocationMark.objects.snap_to_grid(0.005)
+        qs = qs.exclude(user__profile=None)
         qs = qs.filter(Q(hidden=None) | Q(user_id=self.request.user.id))
         qs = qs.order_by('-created')
         qs = qs.select_related('user')
@@ -41,7 +42,7 @@ class UserProfileView(DetailView):
     def get_context_data(self, **kwargs):
         obj = self.get_object()
         context = super(UserProfileView, self).get_context_data(**kwargs)
-        user_marks = context['user_marks'] = obj.user.marks.all()
+        user_marks = context['user_marks'] = obj.user.marks.snap_to_grid(0.005)
         context['user'] = obj.user
         min_lng, min_lat, max_lng, max_lat = user_marks.extent()
 

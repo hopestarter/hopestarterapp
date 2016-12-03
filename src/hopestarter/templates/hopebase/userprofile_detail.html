@@ -76,7 +76,7 @@
 <script>
   var data = [
     {% for mark in user_marks %}
-      {'lat': {{ mark.point.y }}, 'lng': {{ mark.point.x }} },
+      {'lat': {{ mark.snap_to_grid.y }}, 'lng': {{ mark.snap_to_grid.x }} },
     {% endfor %}
   ];
 </script>
