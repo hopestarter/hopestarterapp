@@ -22,7 +22,9 @@ class LocationMarkListView(ListView):
         qs = qs.filter(Q(hidden=None) | Q(user_id=self.request.user.id))
         qs = qs.order_by('-created')
         qs = qs.select_related('user')
+        qs = qs.select_related('user__profile')
         qs = qs.prefetch_related('user__membership')
+        qs = qs.prefetch_related('user__vetting_set')
         return qs
 
     def get_context_data(self, **kwargs):

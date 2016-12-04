@@ -27,7 +27,9 @@
   <div class="first">
     <div class="left-side feed">
     {% for mark in object_list %}
+    {% if mark.user.profile.vetted %}
       {% include "feed-post.html" %}
+    {% endif %}
     {% endfor %}
     </div>
     <div class="right-side">
