@@ -62,5 +62,6 @@ class UserProfileView(DetailView):
         }
 
         context.update(get_common_map_context_data())
+        context['request'] = self.request
 
         return context

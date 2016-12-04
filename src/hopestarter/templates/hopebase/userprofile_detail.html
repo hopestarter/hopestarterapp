@@ -39,7 +39,9 @@
     </div>
     <div class="feed">
       {% for mark in user_marks %}
+{% if request.user == object.user or not mark.hidden %}
         {% include "feed-post.html" %}
+{% endif %}
       {% endfor %}
     </div>
   </div>
