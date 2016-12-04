@@ -14,4 +14,5 @@ urlpatterns = [
     url(r"^index/$", TemplateView.as_view(template_name="index.html"), name="index"),
     url(r'^accounts/demo_signup/', csrf_exempt(allauth_signup), name="demo_signup"),
     url(r'^accounts/', include('allauth.urls')),
+    url(r'^partners/', include('hopepartner.urls')),
 ] + admin_patterns

@@ -1,0 +1,77 @@
+{% load static %}
+{% load i18n %}
+{% load account %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Hopestarter Information Pages</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  </head>
+
+  <body class="ref-status">
+    <div class="status-container">
+      <header class="ref-status--topbar">
+        <div class="row navbar">
+          <div class="col-xs-3">
+            <a href="javascript:history.back()" class="navbar--icon navbar--icon__back" title="Go back"></a>
+          </div>
+          <div class="col-xs-6">
+              <h1><img src="{% static 'img/footer/footer-logo.png' %}" srcset="{% static 'img/ngo-view/ref-status-logo.png' %} 1x, {% static 'img/ngo-view/ref-status-logo@2x.png' %} 2x" alt="Hopestarter Refugee Status"></h1>
+          </div>
+          <div class="col-xs-3">
+            <a href="#" class="navbar--icon navbar--icon__logout" title="Log out"></a>
+          </div>
+        </div>
+
+        <div class="row tabbar">
+          <div class="col-xs-4">
+            <input id="tab1" type="radio" name="tabs" checked="checked">
+            <label for="tab1">All</label>
+          </div>
+          <div class="col-xs-4">
+            <input id="tab2" type="radio" name="tabs">
+            <label for="tab2">Vetted</label>
+          </div>
+          <div class="col-xs-4">
+            <input id="tab3" type="radio" name="tabs">
+            <label for="tab3">Unvetted</label>
+          </div>
+        </div>
+
+        <form class="row searchbar">
+          <input class="col-xs-9" type="text" placeholder="Search a refugee name" required>
+          <button class="col-xs-3" type="submit">Search</button>
+        </form>
+      </header>
+
+      <div class="refugees-list">
+        <div id="content1">
+          <div class="ref-status--profile">
+            <img class="profile-pic" src="{% static 'img/ngo-view/profile-pic-placeholder_small.png' %}">
+            <p class="who">First and Last Name</p>
+            <p class="from-where">Ethnicity</p>
+            <button class="vet-status vet-status--unvetted">Unvetted</button>
+          </div>
+          <div class="ref-status--profile">
+            <img class="profile-pic" src="{% static 'img/ngo-view/profile-pic-placeholder_small.png' %}">
+            <p class="who">First and Last Name</p>
+            <p class="from-where">Ethnicity</p>
+            <button class="vet-status vet-status--vetted"><span class="icon-vetted"></span>Vetted</button>
+          </div>
+        </div>
+        <div id="content2">
+
+        </div>
+        <div id="content3">
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+  </body>
+</html>
