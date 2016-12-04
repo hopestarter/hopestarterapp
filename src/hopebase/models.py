@@ -155,7 +155,7 @@ class OrganizationMembership(models.Model):
         super(OrganizationMembership, self).save(*args, **kwargs)
 
     def __unicode__(self):
-        return "%s is involved with the organization %s" % (
+        return "%s (%s)" % (
             self.person, self.organization
         )
 
@@ -170,13 +170,12 @@ class Vetting(models.Model):
 
     @property
     def valid(self):
-        return self.revoked is not None
+        return self.revoked is None
 
     def save(self, *args, **kwargs):
         self.modified = timezone.now()
         super(Vetting, self).save(*args, **kwargs)
 
     def __unicode__(self):
-        return "Organization {} vetted {} on {}".format(
-            self.organization, self.subject, self.created) + \
-            '(revoked on {})'.format(self.revoked) if not self.valid else ''
+        return "{} vetted by {} on {}".format(
+            self.subject, self.organization, self.created)
