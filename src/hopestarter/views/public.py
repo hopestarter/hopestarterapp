@@ -1,4 +1,5 @@
 from django.views.generic import ListView, DetailView
+from django.shortcuts import get_object_or_404
 from django.db.models import Q
 from django.contrib.auth.models import User
 from django.conf import settings
@@ -39,7 +40,7 @@ class UserProfileView(DetailView):
     model = UserProfile
 
     def get_object(self, queryset=None):
-        return User.objects.get(username=self.kwargs['username']).profile
+        return get_object_or_404(UserProfile, user__username=self.kwargs['username'])
 
     def get_context_data(self, **kwargs):
         obj = self.get_object()
