@@ -11,6 +11,15 @@ def upload_image_to(instance, filename):
 
 
 class UserProfile(models.Model):
+    MOBILE_APP = 'app'
+    WEBAPP = 'web'
+    NGO = 'ngo'
+    SIGNUP_CHOICES = (
+        (MOBILE_APP, 'app'),
+        (WEBAPP, 'web'),
+        (NGO, 'ngo'),
+    )
+
     user = models.OneToOneField(settings.AUTH_USER_MODEL,
                                 related_name='profile')
     name = models.CharField(max_length=100, null=True, blank=True)
@@ -28,6 +37,10 @@ class UserProfile(models.Model):
                     editable=False, null=True, blank=True, max_length=255)
     created = models.DateTimeField(editable=False, auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
+    signup = models.SlugField(
+        choices=SIGNUP_CHOICES,
+        default=MOBILE_APP,
+    )
 
     def picture_tag(self):
         return u'<a href="{}"><img src="{}" /></a>'.format(self.large_picture.url, self.small_picture.url)

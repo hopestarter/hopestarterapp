@@ -6,7 +6,7 @@ from hopebase.models import (
 
 class UserProfileAdmin(admin.ModelAdmin):
     fields = ('name', 'surname', 'bitcoin', 'created', 'modified', 'user',
-              'picture_tag', 'picture')
+              'picture_tag', 'picture', 'signup')
     readonly_fields = ('created', 'modified', 'user', 'picture_tag')
 
 

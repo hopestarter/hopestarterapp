@@ -50,18 +50,9 @@
 
       <div class="refugees-list">
         <div id="content1">
-          <div class="ref-status--profile">
-            <img class="profile-pic" src="{% static 'img/ngo-view/profile-pic-placeholder_small.png' %}">
-            <p class="who">First and Last Name</p>
-            <p class="from-where">Ethnicity</p>
-            <button class="vet-status vet-status--unvetted">Unvetted</button>
-          </div>
-          <div class="ref-status--profile">
-            <img class="profile-pic" src="{% static 'img/ngo-view/profile-pic-placeholder_small.png' %}">
-            <p class="who">First and Last Name</p>
-            <p class="from-where">Ethnicity</p>
-            <button class="vet-status vet-status--vetted"><span class="icon-vetted"></span>Vetted</button>
-          </div>
+        {% for profile in object_list %}
+          {% include "vetting-post.html" %}
+        {% endfor %}
         </div>
         <div id="content2">
 
