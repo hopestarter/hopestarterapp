@@ -1,0 +1,7 @@
+{% load static %}
+<div class="ref-status--profile">
+  <a href="{% url 'user-profile' profile.user.username %}"><img class="profile-pic" src="{% if profile.thumbnail_picture %}{{ profile.thumbnail_picture.url }}{% else %}{% static 'img/ngo-view/profile-pic-placeholder_small.png' %}{% endif %}" alt="profile picture of {{ profile|escape }}"/></a>
+  <p class="who">{{ profile }}</p>
+  <p class="from-where">{% for m in profile.user.membership.all %}{{ m.ethnicity }}{% include "comma.html" %}{% endfor %}</p>
+  <button class="vet-status {% if profile.vetted %}vet-stats--vetted{% else %}vet-status--unvetted{% endif %}">Unvetted</button>
+</div>
