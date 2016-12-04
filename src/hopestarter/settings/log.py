@@ -20,6 +20,15 @@ LOGGING = {
             'level': os.environ.get('LOGLEVEL', 'INFO'),
             'propagate': True,
         },
+        'hopepartner': {
+            'handlers': ['stderr'],
+            'level': os.environ.get('LOGLEVEL', 'INFO'),
+            'propagate': True,
+        },
+        'hopecollector': {
+            'handlers': ['stderr'],
+            'level': os.environ.get('LOGLEVEL', 'INFO'),
+            'propagate': True,
+        },
     },
 }
-
