@@ -11,6 +11,15 @@ def upload_image_to(instance, filename):
 
 
 class UserProfile(models.Model):
+    MOBILE_APP = 'app'
+    WEBAPP = 'web'
+    NGO = 'ngo'
+    SIGNUP_CHOICES = (
+        (MOBILE_APP, 'app'),
+        (WEBAPP, 'web'),
+        (NGO, 'ngo'),
+    )
+
     user = models.OneToOneField(settings.AUTH_USER_MODEL,
                                 related_name='profile')
     name = models.CharField(max_length=100, null=True, blank=True)
@@ -28,12 +37,20 @@ class UserProfile(models.Model):
                     editable=False, null=True, blank=True, max_length=255)
     created = models.DateTimeField(editable=False, auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
+    signup = models.SlugField(
+        choices=SIGNUP_CHOICES,
+        default=MOBILE_APP,
+    )
 
     def picture_tag(self):
         return u'<a href="{}"><img src="{}" /></a>'.format(self.large_picture.url, self.small_picture.url)
 
     picture_tag.short_description = 'Picture'
     picture_tag.allow_tags = True
+
+    @property
+    def vetted(self):
+        return self.user.vetting_set.filter(revoked=None).exists()
 
     def save(self, *args, **kwargs):
         self.modified = timezone.now()
@@ -94,3 +111,72 @@ class UserStats(models.Model):
     modified = models.DateTimeField(auto_now=True)
 
     post_count = models.IntegerField(default=0)
+
+
+class Organization(models.Model):
+    name = models.CharField(max_length=100, null=True, blank=True)
+    created = models.DateTimeField(editable=False, auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL,
+                              related_name='ownership')
+
+    members = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        through='OrganizationMembership',
+        related_name='involved_orgs')
+
+    vetted = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        through='Vetting',
+        related_name='vetted_by')
+
+    def save(self, *args, **kwargs):
+        self.modified = timezone.now()
+        super(Organization, self).save(*args, **kwargs)
+
+    def __unicode__(self):
+        return self.name
+
+
+class OrganizationMembership(models.Model):
+    person = models.ForeignKey(settings.AUTH_USER_MODEL,
+                               related_name='involved')
+    organization = models.ForeignKey(Organization, related_name='organization')
+    created = models.DateTimeField(editable=False, auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+    revoked = models.DateTimeField(null=True, blank=True)
+
+    @property
+    def valid(self):
+        return self.revoked is not None
+
+    def save(self, *args, **kwargs):
+        self.modified = timezone.now()
+        super(OrganizationMembership, self).save(*args, **kwargs)
+
+    def __unicode__(self):
+        return "%s is involved with the organization %s" % (
+            self.person, self.organization
+        )
+
+
+class Vetting(models.Model):
+    subject = models.ForeignKey(settings.AUTH_USER_MODEL)
+    reviewer = models.ForeignKey(OrganizationMembership, null=True, blank=True)
+    organization = models.ForeignKey(Organization)
+    created = models.DateTimeField(editable=False, auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+    revoked = models.DateTimeField(null=True, blank=True)
+
+    @property
+    def valid(self):
+        return self.revoked is not None
+
+    def save(self, *args, **kwargs):
+        self.modified = timezone.now()
+        super(Vetting, self).save(*args, **kwargs)
+
+    def __unicode__(self):
+        return "Organization {} vetted {} on {}".format(
+            self.organization, self.subject, self.created) + \
+            '(revoked on {})'.format(self.revoked) if not self.valid else ''

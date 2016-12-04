@@ -22,6 +22,7 @@ INSTALLED_APPS = (
     'hopestarter',
     'hopespace',
     'hopebase',
+    'hopepartner',
 )
 
 MIDDLEWARE_CLASSES = (
