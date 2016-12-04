@@ -48,6 +48,10 @@ class UserProfile(models.Model):
     picture_tag.short_description = 'Picture'
     picture_tag.allow_tags = True
 
+    @property
+    def vetted(self):
+        return self.user.vetting_set.filter(revoked=None).exists()
+
     def save(self, *args, **kwargs):
         self.modified = timezone.now()
         if self.picture:
