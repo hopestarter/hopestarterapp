@@ -212,6 +212,27 @@ h2.title {
   padding-bottom: 10px;
 }
 
+.actions small a {
+  font-size: .8em;
+  color: white;
+  padding: 5px;
+  background-color: #3DB4CC;
+  border-radius: 4px;
+  margin: 10px;
+}
+
+.actions small a:hover {
+  background-color: #2E8799;
+}
+
+.actions small:nth-of-type(2) a {
+  background-color: #ff2b2b;
+}
+
+.actions small:nth-of-type(2) a:hover {
+  background-color: #bf1f1f;
+}
+
 
 
 /********** Interactive Map **********/
