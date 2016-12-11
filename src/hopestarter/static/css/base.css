@@ -8,6 +8,10 @@
 
 /********** Main Styles **********/
 
+body {
+  font-family: sans-serif;
+}
+
 body > .container-fluid {
   padding: 0;
   color: #4A4A4A;
@@ -436,6 +440,62 @@ h2.title {
 .right-panel {
   margin-left: 0;
   padding-left: 0;
+}
+
+
+
+/* NGO Login */
+
+.ngo-login {
+  background-color: #f2f2f2;
+}
+
+.ngo-login .container {
+  max-width: 400px;
+  padding: 0 30px;
+}
+
+.ngo-login header {
+  text-align: center;
+}
+
+.ngo-login header h1 {
+  margin-bottom: 20px;
+}
+
+.ngo-login input, .ngo-login button {
+  display: block;
+  width: 100%;
+  height: 46px;
+  font-size: 16px;
+  margin-top: 20px;
+  padding: 0 10px;
+}
+
+.ngo-login input {
+  border: 2px solid #222;
+  box-shadow: none;
+  color: #222;
+}
+
+.ngo-login button {
+  border: none;
+  background-color: #222222;
+  color: white;
+  transition: opacity 0.4s ease-out;
+  margin-bottom: 40px;
+}
+
+.ngo-login button:hover {
+  opacity: .6;
+}
+
+.ngo-login .secondaryAction {
+  text-align: center;
+  display: block;
+  color: #222;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 
