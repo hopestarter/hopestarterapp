@@ -30,7 +30,7 @@
 
   {% if request.user.is_staff %}
   <div class="actions">
-      <small><a href="{% url 'admin:hopespace_locationmark_changelist' %}?q={{ mark.pk }}">view in admin</a></small>|
+      <small><a href="{% url 'admin:hopespace_locationmark_changelist' %}?q={{ mark.pk }}">view in admin</a></small>
       <small><a href="{% url mark_opts|admin_urlname:'censor_location_mark' mark.pk %}">hide</a></small>
   </div>
   {% endif %}
