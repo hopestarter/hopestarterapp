@@ -1,11 +1,11 @@
 import json
-from datetime import datetime
 
 from django.db import transaction
 from django.http import HttpResponse
 from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
 from django.contrib.auth import get_user_model
 from django.shortcuts import render
+from django.utils import timezone
 from django.views.decorators.http import require_http_methods
 
 from hopebase.models import UserProfile, Vetting
@@ -51,7 +51,7 @@ def vetting(request):
             elif new_status == "unvetted":
                 vets = Vetting.objects.filter(
                     subject__id=user_id, reviewer=reviewer, revoked=None)
-                n = vets.update(revoked=datetime.utcnow())
+                n = vets.update(revoked=timezone.now())
                 data = {"error": False, "msg": "revoked", "count": n}
             return HttpResponse(
                 json.dumps(data), content_type='application/json')
