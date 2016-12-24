@@ -667,7 +667,7 @@ color: #999999 !important;
   outline: none;
 }
 
-input[type="text"]:placeholder-shown ~ button[type="submit"] {
+.searchbar input[type="text"]:placeholder-shown ~ button[type="submit"] {
   display: none;
 }
 
