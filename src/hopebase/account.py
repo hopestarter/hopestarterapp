@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse
 from django.db import transaction
 
 from allauth.account.adapter import DefaultAccountAdapter
@@ -28,3 +29,8 @@ class AccountAdapter(DefaultAccountAdapter):
             if 'ethnicity' in form.cleaned_data:
                 self._associate_ethnicity(
                     user, form.cleaned_data['ethnicity'])
+
+    def get_login_redirect_url(self, request):
+        if request.user.involved.filter(revoked=None).first() is None:
+            return "/"
+        return reverse('vetting')

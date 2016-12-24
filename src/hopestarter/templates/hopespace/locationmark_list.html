@@ -23,6 +23,7 @@
 {% block content %}
 
   <div class="first">
+    {{ block.super }}
     <div class="left-side feed">
     {% for mark in object_list %}
     {% if mark.user.profile.vetted %}
