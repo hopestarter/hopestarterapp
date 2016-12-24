@@ -10,6 +10,25 @@ def upload_image_to(instance, filename):
     return 'media/users/%s/%s' % (instance.user.username, filename)
 
 
+def resize(picture, sizes, name):
+    """Returns a dict of InMemoryUploadedFile objects for each size."""
+
+    uploaded_image = Image.open(StringIO(picture.read()))
+    image = Image.new('RGBA', uploaded_image.size, (20, 24, 26, 255))
+    image.paste(uploaded_image)
+
+    pictures = {}
+    for size in sizes:
+        image.thumbnail(sizes[size], Image.ANTIALIAS)
+        output = StringIO()
+        image.save(output, format='PNG', quality=75)
+        output.seek(0)
+        pictures[size] = InMemoryUploadedFile(
+            output, 'ImageField', "{}_{}.png".format(name, size),
+            'image/png', output.len, None)
+    return pictures
+
+
 class UserProfile(models.Model):
     MOBILE_APP = 'app'
     WEBAPP = 'web'
@@ -25,16 +44,15 @@ class UserProfile(models.Model):
     name = models.CharField(max_length=100, null=True, blank=True)
     surname = models.CharField(max_length=100, null=True, blank=True)
     bitcoin = models.CharField(max_length=100, null=True, blank=True)
-    picture = models.ImageField(upload_to=upload_image_to,
-                    editable=True, null=True, blank=True, max_length=255)
-    large_picture = models.ImageField(upload_to=upload_image_to,
-                    editable=False, null=True, blank=True, max_length=255)
-    medium_picture = models.ImageField(upload_to=upload_image_to,
-                    editable=False, null=True, blank=True, max_length=255)
-    small_picture = models.ImageField(upload_to=upload_image_to,
-                    editable=False, null=True, blank=True, max_length=255)
-    thumbnail_picture = models.ImageField(upload_to=upload_image_to,
-                    editable=False, null=True, blank=True, max_length=255)
+    PICTURE_OPTS = {
+        "null": True, "blank": True, "max_length": 255,
+        "upload_to": upload_image_to
+    }
+    picture = models.ImageField(**PICTURE_OPTS)
+    large_picture = models.ImageField(editable=False, **PICTURE_OPTS)
+    medium_picture = models.ImageField(editable=False, **PICTURE_OPTS)
+    small_picture = models.ImageField(editable=False, **PICTURE_OPTS)
+    thumbnail_picture = models.ImageField(editable=False, **PICTURE_OPTS)
     created = models.DateTimeField(editable=False, auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
     signup = models.SlugField(
@@ -43,7 +61,8 @@ class UserProfile(models.Model):
     )
 
     def picture_tag(self):
-        return u'<a href="{}"><img src="{}" /></a>'.format(self.large_picture.url, self.small_picture.url)
+        return u'<a href="{}"><img src="{}" /></a>'.format(
+            self.large_picture.url, self.small_picture.url)
 
     picture_tag.short_description = 'Picture'
     picture_tag.allow_tags = True
@@ -55,49 +74,16 @@ class UserProfile(models.Model):
     def save(self, *args, **kwargs):
         self.modified = timezone.now()
         if self.picture:
-            large_size = (800, 800)
-            medium_size = (500, 500)
-            small_size = (200, 200)
-            thumbnail_size = (45, 45)
-
-            # Get image name
-            image_name = self.user.username
-            image = Image.open(StringIO(self.picture.read()))
-
-            # Large size
-            image.thumbnail(large_size, Image.ANTIALIAS)
-            background = Image.new('RGBA', image.size, (20, 24, 26, 255))
-            background.paste(image)
-            output = StringIO()
-            background.save(output, format='PNG', quality=75)
-            output.seek(0)
-            self.large_picture = InMemoryUploadedFile(output, 'ImageField',
-                        image_name + '_large.png', 'image/png',
-                        output.len, None)
-            # Medium size
-            background.thumbnail(medium_size, Image.ANTIALIAS)
-            output = StringIO()
-            background.save(output, format='PNG', quality=75)
-            output.seek(0)
-            self.medium_picture = InMemoryUploadedFile(output, 'ImageField',
-                        image_name + '_medium.png', 'image/png',
-                        output.len, None)
-            # Small size
-            background.thumbnail(small_size, Image.ANTIALIAS)
-            output = StringIO()
-            background.save(output, format='PNG', quality=75)
-            output.seek(0)
-            self.small_picture = InMemoryUploadedFile(output, 'ImageField',
-                        image_name + '_small.png', 'image/png',
-                        output.len, None)
-            # Thumbnail size
-            background.thumbnail(thumbnail_size, Image.ANTIALIAS)
-            output = StringIO()
-            background.save(output, format='PNG', quality=75)
-            output.seek(0)
-            self.thumbnail_picture = InMemoryUploadedFile(output, 'ImageField',
-                        image_name + '_thumbnail.png', 'image/png',
-                        output.len, None)
+            pictures = resize(self.picture, sizes={
+                'large': (800, 800),
+                'medium': (500, 500),
+                'small': (200, 200),
+                'thumbnail': (45, 45)
+            }, name=self.user.username)
+            self.large_picture = pictures['large']
+            self.medium_picture = pictures['medium']
+            self.small_picture = pictures['small']
+            self.thumbnail_picture = pictures['thumbnail']
         super(UserProfile, self).save(*args, **kwargs)
 
     def __unicode__(self):
