@@ -538,6 +538,16 @@ h2.title {
   text-align: center;
 }
 
+.navbar form {
+  display: inline;
+}
+
+.navbar button {
+  border:none;
+  padding:0!important;
+  cursor: pointer;
+}
+
 .navbar--icon {
   width: 22px;
   height: 16px;
