@@ -5,8 +5,10 @@ from django.http import HttpResponse
 from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.contrib.auth import get_user_model
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.utils import timezone
+from django.utils.translation import ugettext as _
 from django.views.decorators.http import require_http_methods
 
 from hopebase.models import UserProfile, Vetting
@@ -20,6 +22,7 @@ user_model = get_user_model()
 def vetting(request):
     user = request.user
     if not user.is_authenticated():
+        messages.error(request, _("You must login first."))
         return redirect(reverse('account_login'))
 
     try:

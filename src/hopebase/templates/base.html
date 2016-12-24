@@ -57,12 +57,23 @@
             {% endblock header %}
             {% block header_extra %}{% endblock %}
 			</header>
-
-		    {% block content %}{% endblock %}
+		    {% block content %}
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}danger{% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}warning{% else %}info{% endif %} alert-dismissable {{ message.tags }}">  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+            {% endblock content %}
 	  	</div>
         {% block extrajs %}
 		<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script>
+            $(".alert-info").fadeTo(2000, 500).slideUp(500, function(){
+                    $(".alert-info").alert('close');
+            });
+        </script>
+
 		{% endblock %}
   </body>
 </html>
