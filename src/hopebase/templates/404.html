@@ -1,0 +1,13 @@
+{% extends "account/base.html" %}
+{% load i18n %}
+{% block title %}Hopestarter - {% trans "Page not found" %}{% endblock %}
+{% block header %}
+{{ block.super }}
+<h2>{% trans "404 Page not found"%}</h2>
+<p><em>{% trans "That page is gone, or was never here." %}</em></p>
+{% endblock %}
+
+{% block content %}
+{{ block.super }}
+<p>{% blocktrans %}We can't locate the page you requested. If you think there should definitely be something here, <a href="mailto:info@hopestarter.org">let us know</a>.{% endblocktrans %}</p>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "account/base.html" %}
+{% load i18n %}
+{% block title %}Hopestarter - {% trans "An error occurred" %}{% endblock %}
+{% block header %}
+{{ block.super }}
+<h2>{% trans "500 Internal Server Error"%}</h2>
+<p><em>{% trans "That's life." %}</em></p>
+{% endblock %}
+
+{% block content %}
+{{ block.super }}
+<p>{% blocktrans %}It seems that we had a little trouble while processing your request. If the problem persists <a href="mailto:info@hopestarter.org">let us know</a>.{% endblocktrans %}</p>
+{% endblock %}

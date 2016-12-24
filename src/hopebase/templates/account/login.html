@@ -14,8 +14,8 @@
 
 <form class="login" method="POST" action="{% url 'account_login' %}">
   {% csrf_token %}
-  <input autofocus="autofocus" id="id_login" maxlength="30" name="login" placeholder="{% trans 'Email' %}" type="email">
-  <input id="id_password" name="password" placeholder="{% trans 'Password' %}" type="password">
+  {{ form.login }}
+  {{ form.password }}
   {% if redirect_field_value %}
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
   {% endif %}
