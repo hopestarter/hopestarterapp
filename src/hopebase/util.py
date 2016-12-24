@@ -8,7 +8,6 @@ from hopebase.log import logger
 
 
 def decrement_user_post_count(user):
-    # this should be an upsert but django no support :(
     stats = UserStats.objects.filter(user=user)
     stats.update(
         post_count=F('post_count') - 1, modified=datetime.utcnow())

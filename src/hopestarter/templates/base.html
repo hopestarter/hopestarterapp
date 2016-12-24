@@ -42,8 +42,7 @@
 								<li>
 						{% if user.is_authenticated %}
 						{% user_display user as user_display %}
-									<a title="{% blocktrans %}{{ user_display }} has logged in...{% endblocktrans %}"
-									   href="{% url 'account_logout' %}">{% trans "Logout" %}</a>
+									<form method="post" action="{% url 'account_logout' %}">{% csrf_token %}<button title="{% blocktrans %}{{ user_display }} has logged in...{% endblocktrans %}" type="submit">{% trans "Logout" %}</button> </form>
 						{% else %}
 									<a title="{% trans 'Please login' %}"
 									   href="{% url 'account_login' %}">{% trans "Login" %}</a>

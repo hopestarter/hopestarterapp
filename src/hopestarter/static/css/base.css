@@ -93,7 +93,7 @@ header.fixed.short {
     padding-left: 30px;
 }
 
-.topbar nav ul li a {
+.topbar nav ul li a, .topbar nav ul li button {
   font-size: 1em;
   line-height: 20px;
   color: #3DB4CC;
@@ -102,9 +102,20 @@ header.fixed.short {
   transition: color 0.4s;
 }
 
-.topbar nav ul li a:hover {
+.topbar nav ul li a:hover, .topbar nav ul li button:hover {
   color: #2E8799;
   text-decoration: none;
+}
+
+.topbar nav ul li form {
+  display: inline;
+}
+
+.topbar nav ul li button {
+  background:none!important;
+  border:none;
+  padding:0!important;
+  cursor: pointer;
 }
 
 .info {
@@ -573,12 +584,12 @@ h2.title {
 .tabbar label[for="tab1"] {
   border-left: 2px solid #222222;
   border-top-left-radius: 2px;
-  border-bottom-left-radius: 2px; 
+  border-bottom-left-radius: 2px;
 }
 
 .tabbar label[for="tab3"] {
   border-top-right-radius: 2px;
-  border-bottom-right-radius: 2px; 
+  border-bottom-right-radius: 2px;
 }
 
 .tabbar label:hover {
@@ -615,17 +626,17 @@ h2.title {
 .searchbar input[type="text"]::-webkit-input-placeholder {
 color: #999999 !important;
 }
- 
+
 .searchbar input[type="text"]:-moz-placeholder { /* Firefox 18- */
-color: #999999 !important;  
+color: #999999 !important;
 }
- 
+
 .searchbar input[type="text"]::-moz-placeholder {  /* Firefox 19+ */
-color: #999999 !important;  
+color: #999999 !important;
 }
- 
-.searchbar input[type="text"]:-ms-input-placeholder {  
-color: #999999 !important;  
+
+.searchbar input[type="text"]:-ms-input-placeholder {
+color: #999999 !important;
 }
 
 .searchbar button[type="submit"] {
@@ -719,7 +730,7 @@ input[type="text"]:focus ~ button[type="submit"] {
 }
 
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .navbar--icon__back {
     background: url('/static/img/ngo-view/back-icon@2x.png') no-repeat top left;
     background-size: 22px 16px;
