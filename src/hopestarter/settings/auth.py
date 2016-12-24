@@ -11,7 +11,7 @@ AUTH_INSTALLED_APPS = (
 	'allauth.socialaccount.providers.twitter',
 )
 
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = '/partners/vetting/'
 
 ACCOUNT_SIGNUP_PASSWORD_VERIFICATION = False
 
@@ -19,3 +19,4 @@ ACCOUNT_ADAPTER = 'hopebase.account.AccountAdapter'
 
 ACCOUNT_SIGNUP_FORM_CLASS = 'hopebase.forms.SignupForm'
 
+ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'
