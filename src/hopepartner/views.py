@@ -21,12 +21,16 @@ def vetting(request):
     if not user.is_authenticated:
         raise PermissionDenied
 
-    if request.method == 'POST':
-        try:
-            reviewer = user.involved.filter(revoked=None).first()
-            org = reviewer.organization
-        except ObjectDoesNotExist:
+    try:
+        reviewer = user.involved.filter(revoked=None).first()
+        if reviewer is None:
             raise PermissionDenied
+        org = reviewer.organization
+    except ObjectDoesNotExist:
+        raise PermissionDenied
+
+    if request.method == 'POST':
+
         try:
             data = json.loads(request.body)
             if "id" not in data or "status" not in data:
