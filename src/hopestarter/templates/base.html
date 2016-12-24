@@ -5,10 +5,11 @@
 <html lang="en">
   <head>
     <title>{% block title %}Hopestarter{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8" />
-    {% block extrahead %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    {% endblock %}
+    {% block extrahead %}{% endblock %}
     <script>
      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -25,9 +26,10 @@
 
   </head>
 
-  <body>
-		<div class="container-fluid">
-			<header class="fixed">
+  <body class="{% block body_class %}{# override this #}{% endblock %}">
+        <div class="{% block container_class %}container-fluid{% endblock %}">
+            <header class="{% block header_class %}fixed{% endblock %}">
+            {% block header %}
 				<div class="row topbar">
 					<div class="col-md-12">
 						<h1>
@@ -52,12 +54,15 @@
 						</nav>
 					</div>
 				</div>
-				{% block header_extra %}{% endblock %}
+            {% endblock header %}
+            {% block header_extra %}{% endblock %}
 			</header>
 
 		    {% block content %}{% endblock %}
-            <script src="{% static 'javascript/app.js' %}"></script>
-		    {% block extrajs %}{% endblock %}
 	  	</div>
+        {% block extrajs %}
+		<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		{% endblock %}
   </body>
 </html>

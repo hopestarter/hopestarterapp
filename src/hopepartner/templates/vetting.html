@@ -1,27 +1,42 @@
 {% extends "account/base.html" %}
 {% load static %}
 {% load i18n %}
-{% load account %}
 {% block title %}Hopestarter Refugee Status{% endblock %}
-{% block header_extra %}
+{% block body_class %}ref-status{% endblock %}
+{% block container_class %}status-container{% endblock %}
+{% block header_class %}ref-status--topbar{% endblock %}
+{% block header %}
+        <div class="row navbar">
+          <div class="col-xs-3">
+        <!--
+              <a href="javascript:history.back()" class="navbar--icon navbar--icon__back" title="{% trans 'Go back' %}"></a>
+          -->
+          </div>
+          <div class="col-xs-6">
+              {{ block.super }}
+          </div>
+          <div class="col-xs-3">
+            <form method="post" action="{% url 'account_logout' %}">{% csrf_token %}<button class="navbar--icon navbar--icon__logout" title="{% trans 'Log out' %}" type="submit"></button> </form>
+          </div>
+        </div>
         <div class="row tabbar">
           <div class="col-xs-4">
             <input id="tab1" value="any" type="radio" name="tabs" checked="checked">
-            <label for="tab1">All</label>
+            <label for="tab1">{% trans "All" %}</label>
           </div>
           <div class="col-xs-4">
             <input id="tab2" value="vetted" type="radio" name="tabs">
-            <label for="tab2">Vetted</label>
+            <label for="tab2">{% trans "Vetted" %}</label>
           </div>
           <div class="col-xs-4">
             <input id="tab3" value="unvetted" type="radio" name="tabs">
-            <label for="tab3">Unvetted</label>
+            <label for="tab3">{% trans "Unvetted" %}</label>
           </div>
         </div>
 
         <form class="row searchbar">
-          <input class="col-xs-9" type="text" placeholder="Search a refugee name" required>
-          <button class="col-xs-3" type="submit">Search</button>
+          <input class="col-xs-9" type="text" placeholder="{% trans 'Search a refugee name' %}" required>
+          <button class="col-xs-3" type="submit">{% trans "Search" %}</button>
         </form>
 {% endblock %}
 
@@ -35,6 +50,7 @@
       </div>
 {% endblock %}
 
-{% block extra_js %}
+{% block extrajs %}
+{{ block.super }}
 <script src="{% static 'javascript/ref_status.js' %}"></script>
 {% endblock %}

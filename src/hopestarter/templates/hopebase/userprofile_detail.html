@@ -2,10 +2,6 @@
 {% load static %}
 
 {% block title %}{{ block.super }} - {{ object|escape}}{% endblock %}
-{% block extrahead %}
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-{{ block.super }}
-{% endblock %}
 
 {% block content %}
 
@@ -69,8 +65,7 @@
 
 {% block extrajs %}
 {{ block.super }}
-<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="{% static 'javascript/app.js' %}"></script>
 <script>
   var data = [
     {% for mark in user_marks %}
