@@ -3,8 +3,9 @@ import json
 from django.db import transaction
 from django.http import HttpResponse
 from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
+from django.core.urlresolvers import reverse
 from django.contrib.auth import get_user_model
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.utils import timezone
 from django.views.decorators.http import require_http_methods
 
@@ -18,8 +19,8 @@ user_model = get_user_model()
 @require_http_methods(["GET", "POST"])
 def vetting(request):
     user = request.user
-    if not user.is_authenticated:
-        raise PermissionDenied
+    if not user.is_authenticated():
+        return redirect(reverse('account_login'))
 
     try:
         reviewer = user.involved.filter(revoked=None).first()
