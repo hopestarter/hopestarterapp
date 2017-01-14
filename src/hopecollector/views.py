@@ -2,7 +2,8 @@ import boto3
 import json
 
 from django.conf import settings
-from django.http import Http404
+from django.http import Http404, JsonResponse
+
 from django.core.exceptions import PermissionDenied
 
 from rest_framework import generics, status
@@ -50,3 +51,23 @@ def upload_image(request, pk=None):
         serializer.save()
         return Response(serializer.data)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+def bad_request(request):
+    return Response({'error': 'The request was malformed'},
+                    status=status.HTTP_400_BAD_REQUEST)
+
+
+def permission_denied(request):
+    return Response({'error': 'Permission denied'},
+                    status=status.HTTP_403_FORBIDDEN)
+
+
+def page_not_found(request):
+    return JsonResponse({'error': 'The resource was not found'},
+                        status=status.HTTP_404_NOT_FOUND)
+
+
+def server_error(request):
+    return Response({'error': 'The server encountered an error, try again'},
+                    status=status.HTTP_500_INTERNAL_SERVER_ERROR)

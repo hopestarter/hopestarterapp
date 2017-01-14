@@ -1,4 +1,5 @@
-from django.conf.urls import include, url
+from django.conf.urls import (
+    include, url, handler400, handler403, handler404, handler500)
 
 from hopestarter.views.api import api_root
 from hopestarter.urls.admin import admin_patterns
@@ -13,3 +14,8 @@ urlpatterns = [
     url(r'^api/user/', include('hopebase.urls', namespace="base")),
     url(r'^api/', api_root, name="api_root"),
 ] + admin_patterns
+
+handler400 = 'hopecollector.views.bad_request'
+handler403 = 'hopecollector.views.permission_denied'
+handler404 = 'hopecollector.views.page_not_found'
+handler500 = 'hopecollector.views.server_error'
