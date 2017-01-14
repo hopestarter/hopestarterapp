@@ -22,5 +22,3 @@ ACCOUNT_SIGNUP_FORM_CLASS = 'hopebase.forms.SignupForm'
 ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
-
-ACCOUNT_EMAIL_REQUIRED = True
